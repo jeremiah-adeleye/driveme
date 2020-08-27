@@ -22,11 +22,30 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <button type="button" class="btn btn-custom-primary">Login</button>
-                </a>
-            </li>
+            @if($title == 'login')
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">
+                        <button type="button" class="btn btn-custom-primary">Register</button>
+                    </a>
+                </li>
+            @elseif($title == 'register')
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">
+                        <button type="button" class="btn btn-custom-primary">Login</button>
+                    </a>
+                </li>
+            @else
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">
+                        <button type="button" class="btn btn-custom-primary">Login</button>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">
+                        <button type="button" class="btn btn-custom-primary">Register</button>
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
 </nav>
