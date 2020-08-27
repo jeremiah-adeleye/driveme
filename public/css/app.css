@@ -1,0 +1,24 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.navbar {
+  padding: 2em 5rem;
+  background: #ffffff;
+}
+
+.navbar .navbar-brand img {
+  width: 180px;
+}
+
+.btn.btn-custom-primary {
+  border: 2px solid #20ADF2;
+  color: #20ADF2;
+  padding: 0.5em 2.5em;
+}
+
+.btn.btn-custom-primary :hover {
+  border-color: #20ADF2;
+}
+
