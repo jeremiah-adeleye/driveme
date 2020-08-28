@@ -7,7 +7,7 @@
 @section('content')
     <section id="login-section" class="d-flex flex-column" >
         <div class="row my-auto">
-            <div class="col-md-6">
+            <div class="col-md-6 px-5">
                 <form>
                     <div class="form-group custom" id="email-input" >
                         <label for="email">Email Address</label>
