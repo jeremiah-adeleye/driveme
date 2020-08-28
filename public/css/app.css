@@ -7,6 +7,19 @@ body {
   height: 100%;
 }
 
+a {
+  color: #1d1d1d;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #000000;
+}
+
+.text-primary {
+  color: #20ADF2 !important;
+}
+
 .navbar {
   padding: 2em 5rem;
   background: #ffffff;
@@ -22,6 +35,12 @@ body {
 
 .form-group.custom {
   margin-bottom: 2.5rem;
+}
+
+.form-group.custom label {
+  font-weight: normal;
+  font-family: Roboto, sans-serif;
+  color: #062230;
 }
 
 .btn.btn-custom-primary-outline {
@@ -68,5 +87,18 @@ body {
 #login-button button,
 #register-button button {
   width: 100%;
+}
+
+.dv-image-input .input-label {
+  width: 100%;
+  padding-top: 75%;
+  border: 1px solid #22AEF0;
+  border-radius: 0.5rem;
+  background: url("/img/image_upload_background.png") no-repeat center;
+  background-size: 50%;
+}
+
+.dv-image-input input[type=file] {
+  display: none;
 }
 
