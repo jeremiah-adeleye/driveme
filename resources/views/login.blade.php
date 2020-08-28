@@ -9,7 +9,7 @@
         <div class="row my-auto">
             <div class="col-md-6 px-5">
                 @if(session()->has('error'))
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger alert-dismissible">
                         {{ session()->get('error') }}
                     </div>
                 @endif
