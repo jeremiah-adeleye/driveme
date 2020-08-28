@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'AppController@index');
+Route::get('/', 'AppController@index')->name('home');
 Route::get('login', 'AuthController@login');
 Route::get('register', 'AuthController@register');
 Route::get('driver/register', 'Driver\AuthController@register');
