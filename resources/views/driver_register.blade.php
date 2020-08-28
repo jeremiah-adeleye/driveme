@@ -7,7 +7,7 @@
 @section('content')
     <section id="register-section" class="d-flex flex-column" >
         <p class="font-weight-bold px-4 mb-5" ><a href="/" >Homepage</a> / <span class="text-primary" >Driver Registration</span></p>
-        <div class="row my-auto">
+        <div class="row my-auto align-items-end">
             <div class="col-lg-6 px-5">
                 <form method="post" >
                     {{ csrf_field() }}
