@@ -20,7 +20,7 @@ class AuthController extends Controller
     }
 
     public function register() {
-        return view('driver_register');
+        return view('driver.register');
     }
 
     public function createDriver(DriverRequest $request) {

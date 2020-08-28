@@ -1,4 +1,4 @@
-@extends('layout/app', ['title' => 'register'])
+@extends('layout/app', ['title' => 'user.register'])
 
 @section('head')
     <link rel="stylesheet" href="{{asset('css/register.css')}}" >
@@ -9,6 +9,7 @@
         <div class="row my-auto">
             <div class="col-md-6 px-5">
                 <form method="post" >
+                    {{csrf_field()}}
                     <div class="form-group custom" id="first-name-input" >
                         <label for="first-name">First Name</label>
                         <input type="text" class="form-control input-custom-primary" id="first-name" name="first_name" aria-describedby="firstName">
