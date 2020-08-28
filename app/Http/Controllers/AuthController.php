@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
+use App\Http\Service\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -9,6 +11,12 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
+    private $userService;
+
+    public function __construct(){
+        $this->userService = new UserService();
+    }
+
     public function login() {
         return view('login');
     }
@@ -30,6 +38,14 @@ class AuthController extends Controller
         }
 
         return Redirect::to('login')->with('error', 'Wrong email or password');
+    }
+
+    public function registerUser(UserRequest $request) {
+        $userRequest = $request->only('first_name', 'last_name', 'phone_number', 'email', 'password');
+        $userRequest['role'] = 2;
+        if ($this->userService->make($userRequest)) {
+            return redirect()->route('home')->with('success', 'Account registered');
+        }else return redirect()->back()->with('Error', 'An error occurred');
     }
 
     public function logout() {

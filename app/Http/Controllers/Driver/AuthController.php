@@ -32,6 +32,6 @@ class AuthController extends Controller
             $driverRequest['user_id'] = auth()->id();
             $this->driverService->make($driverRequest);
             return redirect()->route('home')->with('success', 'Account registered, Please await approval');
-        } else  return redirect()->back()->with('Error', 'An error occurred');
+        } else return redirect()->back()->with('Error', 'An error occurred');
     }
 }
