@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
-
-    public function index() {
+    public function login() {
         return view('login');
+    }
+
+    public function register() {
+        return view('register');
     }
 
     public function authenticate(Request $request) {
@@ -25,6 +28,6 @@ class LoginController extends Controller
             return redirect()->intended('/');
         }
 
-        return Redirect::to('login')->withSuc('');
+        return Redirect::to('login');
     }
 }
