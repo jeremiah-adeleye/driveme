@@ -24,18 +24,16 @@ class DriverRequest extends FormRequest
     public function rules()
     {
         return [
-            'firstName' => 'required|string',
-            'lastName' => 'required|string',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
             'email' => 'required|string|email|max:255|unique:users',
-            'phoneNumber' => 'required|string|max:11|unique:users',
-            'dateOfBirth' => 'required|date',
+            'phone_number' => 'required|string|max:11|unique:users',
+            'dob' => 'required|date',
             'location' => 'required|string',
-            'SalaryRange' => 'required',
-            'password' => [
-                'required|string|min:6|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/|confirmed'
-            ],
+            'salary_range' => 'required',
+            'password' => 'required|string|min:6|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
             'address' => 'required|string',
-            'licenceNumber' => 'required|string',
+            'licence_number' => 'required|string',
             'experience' => 'required',
         ];
     }
