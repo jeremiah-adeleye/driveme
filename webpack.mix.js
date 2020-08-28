@@ -17,4 +17,5 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/login.scss', 'public/css')
     .sass('resources/sass/register.scss', 'public/css')
+    .sass('resources/sass/dashboard.scss', 'public/css')
     .sass('resources/sass/admin/app.scss', 'public/css/admin');

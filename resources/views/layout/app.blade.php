@@ -57,6 +57,11 @@
                 @endif
             @else
                 <li class="nav-item">
+                    <a class="nav-link" href="{{url('dashboard')}}">
+                        <button type="button" class="btn btn-custom-primary-outline">Dashboard</button>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{url('logout')}}">
                         <button type="button" class="btn btn-custom-primary-outline">Logout</button>
                     </a>

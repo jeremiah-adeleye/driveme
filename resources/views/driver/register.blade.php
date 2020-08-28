@@ -1,4 +1,4 @@
-@extends('layout/app', ['title' => 'driverRegister'])
+@extends('layout/app', ['title' => 'driver registration'])
 
 @section('head')
     <link rel="stylesheet" href="{{asset('css/register.css')}}" >
