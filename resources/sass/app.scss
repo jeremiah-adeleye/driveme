@@ -4,6 +4,11 @@
     padding: 0;
     margin: 0;
 }
+
+body {
+    height: 100%;
+}
+
 .navbar {
     padding: 2em 5rem;
     background: #ffffff;
@@ -14,7 +19,15 @@
     }
 }
 
-.btn.btn-custom-primary {
+#app-content {
+    padding: 0 5em;
+}
+
+.form-group.custom {
+    margin-bottom: 2.5rem;
+}
+
+.btn.btn-custom-primary-outline {
     border: 2px solid #20ADF2;
     color: #20ADF2;
     padding: 0.5em 2.5em;
@@ -22,4 +35,26 @@
     :hover {
         border-color: #20ADF2;
     }
+}
+
+.btn.btn-custom-primary {
+    border: 2px solid #20ADF2;
+    background: #20ADF2;
+    color: #ffffff;
+    padding: 0.5em 2.5em;
+
+    :hover {
+        border-color: #20ADF2;
+    }
+}
+
+.form-control:focus, :active {
+    outline: none;
+    box-shadow: none;
+    border-color: #22AEF0;
+}
+
+.input-custom-primary {
+    border: 1px solid #22AEF0;
+    padding: 1.5rem 1rem;
 }

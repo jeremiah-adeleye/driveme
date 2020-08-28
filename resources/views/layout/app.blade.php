@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-100" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -10,8 +10,8 @@
     <title>Drive me</title>
     @yield('head')
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light">
+<body class="d-flex flex-column" >
+<nav class="navbar navbar-expand-lg navbar-light" id="top-nav-bar" >
     <a class="navbar-brand" href="#">
         <img src="{{ asset('img/driveme_logo.png') }}" alt="logo" >
     </a>
@@ -25,24 +25,24 @@
             @if($title == 'login')
                 <li class="nav-item">
                     <a class="nav-link" href="/register">
-                        <button type="button" class="btn btn-custom-primary">Register</button>
+                        <button type="button" class="btn btn-custom-primary-outline">Register</button>
                     </a>
                 </li>
             @elseif($title == 'register')
                 <li class="nav-item">
                     <a class="nav-link" href="/login">
-                        <button type="button" class="btn btn-custom-primary">Login</button>
+                        <button type="button" class="btn btn-custom-primary-outline">Login</button>
                     </a>
                 </li>
             @else
                 <li class="nav-item">
                     <a class="nav-link" href="/login">
-                        <button type="button" class="btn btn-custom-primary">Login</button>
+                        <button type="button" class="btn btn-custom-primary-outline">Login</button>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/register">
-                        <button type="button" class="btn btn-custom-primary">Register</button>
+                        <button type="button" class="btn btn-custom-primary-outline">Register</button>
                     </a>
                 </li>
             @endif
@@ -50,7 +50,7 @@
     </div>
 </nav>
 
-<section id="content" >
+<section id="app-content" class="container-fluid flex-grow-1" >
     @yield('content')
 </section>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
