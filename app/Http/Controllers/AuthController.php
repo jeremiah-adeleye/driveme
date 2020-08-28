@@ -28,6 +28,6 @@ class AuthController extends Controller
             return redirect()->intended('/');
         }
 
-        return Redirect::to('login');
+        return Redirect::to('login')->with('error', 'Wrong email or password');
     }
 }

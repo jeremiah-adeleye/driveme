@@ -10,7 +10,6 @@
         <div class="row my-auto align-items-end">
             <div class="col-lg-6 px-5">
                 <form method="post" >
-                    {{ dump($errors) }}
                     {{ csrf_field() }}
                     <div class="row" >
                         <div class="form-group custom col-md-6" id="first-name-input" >

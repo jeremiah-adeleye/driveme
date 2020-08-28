@@ -21,28 +21,44 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('driver/register')}}">
+                    Driver Registration
+                </a>
+            </li>
+        </ul>
+
         <ul class="navbar-nav ml-auto">
-            @if($title == 'login')
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">
-                        <button type="button" class="btn btn-custom-primary-outline">Register</button>
-                    </a>
-                </li>
-            @elseif($title == 'register')
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">
-                        <button type="button" class="btn btn-custom-primary-outline">Login</button>
-                    </a>
-                </li>
+            @if(auth()->guest())
+                @if($title == 'login')
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">
+                            <button type="button" class="btn btn-custom-primary-outline">Register</button>
+                        </a>
+                    </li>
+                @elseif($title == 'register')
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">
+                            <button type="button" class="btn btn-custom-primary-outline">Login</button>
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">
+                            <button type="button" class="btn btn-custom-primary-outline">Login</button>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">
+                            <button type="button" class="btn btn-custom-primary-outline">Register</button>
+                        </a>
+                    </li>
+                @endif
             @else
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">
-                        <button type="button" class="btn btn-custom-primary-outline">Login</button>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">
-                        <button type="button" class="btn btn-custom-primary-outline">Register</button>
+                    <a class="nav-link" href="{{url('logout')}}">
+                        <button type="button" class="btn btn-custom-primary-outline">Logout</button>
                     </a>
                 </li>
             @endif

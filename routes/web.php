@@ -19,3 +19,4 @@ Route::get('register', 'AuthController@register');
 Route::get('driver/register', 'Driver\AuthController@register');
 
 Route::post('driver/register', 'Driver\AuthController@createDriver');
+Route::post('login', 'AuthController@authenticate');
