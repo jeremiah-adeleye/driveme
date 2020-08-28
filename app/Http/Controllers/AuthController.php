@@ -41,10 +41,9 @@ class AuthController extends Controller
     }
 
     public function registerUser(UserRequest $request) {
-        dd('fefe');
         $userRequest = $request->only('first_name', 'last_name', 'phone_number', 'email', 'password');
-        $userRequest['role'] = 2;
-        dd('fefe');
+        $userRequest['role'] = 1;
+
         if ($this->userService->make($userRequest)) {
             return redirect()->route('home')->with('success', 'Account registered');
         }else return redirect()->route('register')->with('Error', 'An error occurred');
