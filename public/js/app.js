@@ -19388,6 +19388,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/sass/auth.scss":
+/*!**********************************!*\
+  !*** ./resources/sass/auth.scss ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nError: ENOENT: no such file or directory, open 'C:\\Users\\festu\\Documents\\Work\\driveme-new\\resources\\sass\\auth.scss'\n    at C:\\Users\\festu\\Documents\\Work\\driveme-new\\node_modules\\webpack\\lib\\NormalModule.js:316:20\n    at C:\\Users\\festu\\Documents\\Work\\driveme-new\\node_modules\\loader-runner\\lib\\LoaderRunner.js:367:11\n    at C:\\Users\\festu\\Documents\\Work\\driveme-new\\node_modules\\loader-runner\\lib\\LoaderRunner.js:203:19\n    at C:\\Users\\festu\\Documents\\Work\\driveme-new\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:85:15\n    at processTicksAndRejections (internal/process/task_queues.js:79:11)");
+
+/***/ }),
+
 /***/ "./resources/sass/dashboard.scss":
 /*!***************************************!*\
   !*** ./resources/sass/dashboard.scss ***!
@@ -19422,14 +19433,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ }),
 
 /***/ 0:
-/*!****************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/login.scss ./resources/sass/register.scss ./resources/sass/dashboard.scss ./resources/sass/admin/app.scss ***!
-  \****************************************************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/auth.scss ./resources/sass/login.scss ./resources/sass/register.scss ./resources/sass/dashboard.scss ./resources/sass/admin/app.scss ***!
+  \*******************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\sass\auth.scss */"./resources/sass/auth.scss");
 __webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\sass\login.scss */"./resources/sass/login.scss");
 __webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\sass\register.scss */"./resources/sass/register.scss");
 __webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\sass\dashboard.scss */"./resources/sass/dashboard.scss");
