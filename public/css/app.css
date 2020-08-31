@@ -77,12 +77,8 @@ a:hover {
   padding: 1.5rem 1rem;
 }
 
-#login-section,
-#register-section {
+#auth-section {
   height: 100%;
-  background-size: cover;
-  background: url("/img/car_background.png") no-repeat right center;
-  background-size: 35rem;
 }
 
 #login-button button,
