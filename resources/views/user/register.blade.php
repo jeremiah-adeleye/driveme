@@ -5,7 +5,9 @@
 @endsection
 
 @section('intro')
-
+    <div id="auth-intro-text" >
+        <h1 class="col-sm-8" >Search, hire and manage Professional drivers</h1>
+    </div>
 @endsection
 
 @section('content')
