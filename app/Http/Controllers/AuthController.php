@@ -37,7 +37,7 @@ class AuthController extends Controller
             return redirect()->intended('/');
         }
 
-        return Redirect::to('login')->with('error', 'Wrong email or password');
+        return Redirect::to('login')->with('error', 'Email or password incorrect');
     }
 
     public function registerUser(UserRequest $request) {
