@@ -12,7 +12,7 @@ class UserService{
         $user = User::create($userRequest);
         if ($user) {
             auth()->login($user);
-            return true;
+            return $user->id;
         }
 
         return false;

@@ -10,6 +10,6 @@ use App\User;
 class DriverService{
 
     public function make($driverRequest) {
-        $driver = Driver::create($driverRequest);
+        return $driver = Driver::create($driverRequest);
     }
 }
