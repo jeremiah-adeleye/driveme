@@ -17,20 +17,14 @@ class DriverService{
 
     public function make(Array $driverRequest) {
         $driver = Driver::create($driverRequest);
-        $passportReq = $driverRequest['passport'];
-        $cvReq = $driverRequest['cv'];
 
-        if ($passportReq != null) {
-            $passportResponse = $this->fileUploadService->cloudinaryUpload($passportReq);
-            $driver->passport = $passportResponse->getRealPath();
+        try {
+            $driver = $this->uploadPassportAndCv($driver, $driverRequest);
+            $driver->save();
+        }catch (\Exception $e) {
+            return false;
         }
 
-        if ($cvReq != null) {
-            $cvResponse = $this->fileUploadService->cloudinaryUpload($cvReq);
-            $driver->cv = $cvResponse->getRealPath();
-        }
-
-        $driver->save();
         return $driver;
     }
 
@@ -45,20 +39,30 @@ class DriverService{
             $driver->licence_number = $driverRequest['licence_number'];
             $driver->experience = $driverRequest['experience'];
             $driver->vehicle_type = $driverRequest['vehicle_type'];
-
             $driver->save();
 
-            if (array_key_exists('passport', $driverRequest) && is_file($driverRequest['passport'])) {
-                $passportResponse = $this->fileUploadService->cloudinaryUpload($driverRequest['passport']);
-                $driver->passport = $passportResponse;
+            try {
+                $driver = $this->uploadPassportAndCv($driver, $driverRequest);
+                $driver->save();
+            }catch (\Exception $e) {
+                return false;
             }
 
-            if (array_key_exists('cv', $driverRequest) && is_file($driverRequest['cv'])) {
-                $cvResponse = $this->fileUploadService->cloudinaryUpload($driverRequest['cv']);
-                $driver->cv = $cvResponse;
-            }
-
-            $driver->save();
+            return $driver;
         }
+    }
+
+    private function uploadPassportAndCv(Driver $driver, $driverRequest) {
+        if (array_key_exists('passport', $driverRequest) && is_file($driverRequest['passport'])) {
+            $passportResponse = $this->fileUploadService->cloudinaryUpload($driverRequest['passport']);
+            $driver->passport = $passportResponse;
+        }
+
+        if (array_key_exists('cv', $driverRequest) && is_file($driverRequest['cv'])) {
+            $cvResponse = $this->fileUploadService->cloudinaryUpload($driverRequest['cv']);
+            $driver->cv = $cvResponse;
+        }
+
+        return $driver;
     }
 }

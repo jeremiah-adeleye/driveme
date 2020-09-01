@@ -46,8 +46,6 @@ class AuthController extends Controller
 
         if ($user) {
             $driverRequest['user_id'] = auth()->id();
-            $driverRequest['passport'] = $request->file('passport');
-            $driverRequest['cv'] = $request->file('cv');
             $driver = $this->driverService->make($driverRequest);
 
             return redirect()->route('home')->with('success', 'Account registered, Please await approval');
