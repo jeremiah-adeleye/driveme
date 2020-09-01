@@ -31,4 +31,11 @@ class UserRequest extends FormRequest
             'password' => 'required|string|min:6|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'password.regex' => 'Password must contain at least an uppercase, lowercase, number and special character'
+        ];
+    }
 }

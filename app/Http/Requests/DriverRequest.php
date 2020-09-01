@@ -39,4 +39,10 @@ class DriverRequest extends FormRequest
             'passport' => 'required|image'
         ];
     }
+
+    public function messages(){
+        return [
+            'password.regex' => 'Password must contain at least an uppercase, lowercase, number and special character'
+        ];
+    }
 }
