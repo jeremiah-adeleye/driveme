@@ -31,48 +31,48 @@
                 @if(auth()->guest())
                     @if($title == 'user.login')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('register')}}">
+                            <a class="nav-link" href="{{route('register')}}">
                                 <button type="button" class="btn btn-custom-primary-outline">Register</button>
                             </a>
                         </li>
                     @elseif($title == 'user.register')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('login')}}">
+                            <a class="nav-link" href="{{route('login')}}">
                                 <button type="button" class="btn btn-custom-primary-outline">Login</button>
                             </a>
                         </li>
                     @elseif($title == 'driver.login')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('driver.register')}}">
+                            <a class="nav-link" href="{{route('driver.register')}}">
                                 <button type="button" class="btn btn-custom-primary-outline">Register</button>
                             </a>
                         </li>
                     @elseif($title == 'driver.register')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('login')}}">
+                            <a class="nav-link" href="{{route('driver.login')}}">
                                 <button type="button" class="btn btn-custom-primary-outline">Login</button>
                             </a>
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('login')}}">
+                            <a class="nav-link" href="{{route('login')}}">
                                 <button type="button" class="btn btn-custom-primary-outline">Login</button>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{'register'}}">
+                            <a class="nav-link" href="{{route('register')}}">
                                 <button type="button" class="btn btn-custom-primary-outline">Register</button>
                             </a>
                         </li>
                     @endif
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('dashboard')}}">
+                        <a class="nav-link" href="{{route('dashboard')}}">
                             <button type="button" class="btn btn-custom-primary-outline">Dashboard</button>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('logout')}}">
+                        <a class="nav-link" href="{{route('logout')}}">
                             <button type="button" class="btn btn-custom-primary-outline">Logout</button>
                         </a>
                     </li>

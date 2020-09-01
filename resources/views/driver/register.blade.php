@@ -1,4 +1,4 @@
-@extends('layout/auth', ['title' => 'driver.register'])
+@extends('layout/auth', ['title' => $title])
 
 @section('head')
     <link rel="stylesheet" href="{{asset('css/register.css')}}" >

@@ -18,11 +18,17 @@ class AuthController extends Controller
     }
 
     public function login() {
-        return view('login');
+        $title = 'user.login';
+        $data = compact('title');
+
+        return view('login', $data);
     }
 
     public function register() {
-        return view('user.register');
+        $title = 'user.register';
+        $data = compact('title');
+
+        return view('user.register', $data);
     }
 
     public function authenticate(Request $request) {
