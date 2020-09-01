@@ -61,7 +61,7 @@ class AuthController extends Controller
         $this->userService->update($userRequest);
         $this->driverService->update($driverRequest);
 
-        /*return redirect()->route('dashboard')->with('success', 'Account updated');*/
+        return redirect()->route('dashboard')->with('success', 'Account updated');
     }
 
 }
