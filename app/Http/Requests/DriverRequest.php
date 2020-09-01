@@ -35,6 +35,8 @@ class DriverRequest extends FormRequest
             'address' => 'required|string',
             'licence_number' => 'required|string',
             'experience' => 'required',
+            'cv' => 'required|pdf',
+            'passport' => 'required|image'
         ];
     }
 }

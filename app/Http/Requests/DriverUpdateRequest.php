@@ -34,6 +34,14 @@ class DriverUpdateRequest extends FormRequest
             'address' => 'required|string',
             'licence_number' => 'required|string',
             'experience' => 'required|numeric',
+            'cv' => 'mimetypes:application/pdf',
+            'passport' => 'image',
+        ];
+    }
+
+    public function messages(){
+        return [
+            'cv.mimetypes' => 'Invalid format: CV must be in PDF format',
         ];
     }
 }

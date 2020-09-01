@@ -6,6 +6,7 @@ namespace App\Http\Service;
 
 use App\Driver;
 use App\User;
+use Illuminate\Http\Client\Request;
 
 class DriverService{
 
@@ -50,9 +51,12 @@ class DriverService{
 
             return $driver;
         }
+
+        return false;
     }
 
     private function uploadPassportAndCv(Driver $driver, $driverRequest) {
+
         if (array_key_exists('passport', $driverRequest) && is_file($driverRequest['passport'])) {
             $passportResponse = $this->fileUploadService->cloudinaryUpload($driverRequest['passport']);
             $driver->passport = $passportResponse;
