@@ -37,7 +37,7 @@
                 </div>
             @endif
 
-            <form method="post" >
+            <form method="post" action="{{route('login')}}" >
                 {{csrf_field()}}
                 <div class="form-group custom" id="email-input" >
                     <label for="email">Email Address</label>

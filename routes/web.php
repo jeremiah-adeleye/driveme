@@ -20,7 +20,7 @@ Route::get('register', 'AuthController@register')->name('register');
 Route::get('driver/login', 'Driver\AuthController@login')->name('driver.login');
 Route::get('driver/register', 'Driver\AuthController@register')->name('driver.register');
 
-Route::post('login', 'AuthController@authenticate');
+Route::post('login', 'AuthController@authenticate')->name('login');
 Route::post('register', 'AuthController@registerUser');
 Route::post('driver/register', 'Driver\AuthController@createDriver')->name('driver.register');
 Route::post('driver/update', 'Driver\AuthController@update')->name('driver.update');
