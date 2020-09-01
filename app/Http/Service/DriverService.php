@@ -49,13 +49,11 @@ class DriverService{
             $driver->save();
 
             if (array_key_exists('passport', $driverRequest) && is_file($driverRequest['passport'])) {
-                dd(filetype($driverRequest['passport']));
                 $passportResponse = $this->fileUploadService->cloudinaryUpload($driverRequest['passport']);
                 $driver->passport = $passportResponse;
             }
 
             if (array_key_exists('cv', $driverRequest) && is_file($driverRequest['cv'])) {
-                dd(filetype($driverRequest['cv']));
                 $cvResponse = $this->fileUploadService->cloudinaryUpload($driverRequest['cv']);
                 $driver->cv = $cvResponse;
             }

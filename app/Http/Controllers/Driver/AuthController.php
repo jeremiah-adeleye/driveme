@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Driver;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DriverRequest;
+use App\Http\Requests\DriverUpdateRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Service\DriverService;
 use App\Http\Service\FileUploadService;
@@ -53,14 +54,14 @@ class AuthController extends Controller
         } else return redirect()->back()->with('Error', 'An error occurred');
     }
 
-    public function update(Request $request) {
+    public function update(DriverUpdateRequest $request) {
         $userRequest = $request->only('first_name', 'last_name', 'phone_number', 'email', 'password');
         $driverRequest = $request->only('dob', 'location', 'salary_range', 'address', 'licence_number', 'experience', 'vehicle_type', 'passport', 'cv');
 
         $this->userService->update($userRequest);
         $this->driverService->update($driverRequest);
 
-        return redirect()->route('dashboard')->with('success', 'Account updated');
+        /*return redirect()->route('dashboard')->with('success', 'Account updated');*/
     }
 
 }
