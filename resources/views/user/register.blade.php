@@ -53,7 +53,7 @@
 
             <div class="form-group custom" id="password-input" >
                 <label for="password">Password</label>
-                <input type="password" class="form-control input-custom-primary" id="password" name="password" aria-describedby="password" value="{{  old('password') }}">
+                <input type="password" class="form-control input-custom-primary" id="password" name="password" aria-describedby="password" value="{{  old('password') }}" placeholder="Must contain uppercase, lowercase, number and special character" >
                 @error('password')
                 <small class="text-danger" >{{ $message }}</small>
                 @enderror
