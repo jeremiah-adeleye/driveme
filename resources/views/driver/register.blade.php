@@ -103,7 +103,7 @@
                 <div class="form-group custom col-md-6" id="password-input" >
                     <label for="password">Password</label>
                     <input type="password" class="form-control input-custom-primary" id="password" name="password" aria-describedby="password" placeholder="Must contain uppercase, lowercase, number and special character" >
-                    @error('address')
+                    @error('password')
                     <small class="text-danger" >{{ $message }}</small>
                     @enderror
                 </div>
