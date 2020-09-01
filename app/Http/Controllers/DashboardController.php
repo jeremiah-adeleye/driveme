@@ -12,19 +12,14 @@ class DashboardController extends Controller{
         $userId = auth()->id();
         if ($userId != null) {
             $user = User::find($userId);
-            $data = [
-                'user' => $user
-            ];
 
             if ($user->role == 1) {
-                return view('user.dashboard', $data);
+                return view('user.home', compact('user'));
             }elseif ($user->role == 2) {
-                $driver = Driver::where('user_id', $user->id)->get()->first();
-                $data['driver'] = $driver;
-
-                return view('driver.dashboard', $data);
+                $driver = Driver::whereUserId(auth()->id())->first();
+                return view('driver.dashboard', compact('user', 'driver'));
             }else {
-                return view('admin.dashboard', $data);
+                return view('admin.home', compact('user'));
             }
         }
 
