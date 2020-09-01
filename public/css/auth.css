@@ -1,5 +1,5 @@
 .nav {
-  padding: 2rem 5rem;
+  padding: 2rem 0;
 }
 
 .nav .app-logo {
@@ -9,9 +9,12 @@
 #auth-content #auth-intro {
   background-image: url("/img/auth_background.png");
   background-size: contain;
-  position: relative;
   background-attachment: fixed;
   background-repeat: no-repeat;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
 }
 
 #auth-content #auth-intro .shade {
@@ -35,6 +38,11 @@
   margin-left: 5rem;
   margin-right: 5rem;
   margin-top: 10rem;
+}
+
+#auth-content #auth-intro #auth-intro-text h5 {
+  margin-top: 3rem;
+  color: #20ADF2;
 }
 
 #auth-content #form-into {

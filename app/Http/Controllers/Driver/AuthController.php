@@ -26,14 +26,14 @@ class AuthController extends Controller
 
     public function register() {
         $title = 'driver.register';
-        $data = compact($title);
+        $data = compact('title');
 
         return view('driver.register', $data);
     }
 
     public function login() {
         $title = 'driver.login';
-        $data = compact($title);
+        $data = compact('title');
 
         return view('login', $data);
     }

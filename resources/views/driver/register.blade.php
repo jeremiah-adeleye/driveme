@@ -5,8 +5,14 @@
 @endsection
 
 @section('intro')
-    <div id="auth-intro-text" >
-        <h1 class="col-sm-8" >Search, hire and manage Professional drivers</h1>
+    <div id="auth-intro-text" class="col-sm-8" >
+        <h1>Join over 3,000 drivers in the country</h1>
+        <h5>Benefits</h5>
+        <ul style="list-style-type: none" >
+            <li>1. Competitive salary</li>
+            <li>2. Free Registration</li>
+            <li>3. Easy access to jobs</li>
+        </ul>
     </div>
 @endsection
 

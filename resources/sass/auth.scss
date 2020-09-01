@@ -1,5 +1,5 @@
 .nav {
-    padding: 2rem 5rem;
+    padding: 2rem 0;
     .app-logo {
         width: 10rem;
     }
@@ -9,9 +9,12 @@
     #auth-intro {
         background-image: url("/img/auth_background.png");
         background-size: contain;
-        position: relative;
         background-attachment: fixed;
         background-repeat: no-repeat;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
 
         .shade {
             position: absolute;
@@ -34,7 +37,10 @@
             margin-left: 5rem;
             margin-right: 5rem;
             margin-top: 10rem;
-
+            h5 {
+                margin-top: 3rem;
+                color: #20ADF2;
+            }
         }
     }
 
