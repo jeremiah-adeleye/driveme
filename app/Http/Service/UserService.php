@@ -17,4 +17,17 @@ class UserService{
 
         return false;
     }
+
+    public function update($userRequest) {
+        $userId = auth()->id();
+        if ($userId) {
+            $user = User::find($userId);
+            $user->first_name = $userRequest['first_name'];
+            $user->last_name = $userRequest['last_name'];
+            $user->email = $userRequest['email'];
+            $user->phone_number = $userRequest['phone_number'];
+
+            $user->save();
+        }
+    }
 }
