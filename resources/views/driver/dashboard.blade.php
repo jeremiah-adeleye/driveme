@@ -132,11 +132,7 @@
 
                         <div class="form-group custom col-md-6 dv-image-input" id="cv-input-number-input" >
                             <label for="cv">Upload Your CV</label><br>
-                            <label for="cv" class="input-label" data-target="#cv"
-                               @if($driver->cv != null)
-                                   style="background: url('{{$driver->cv}}') no-repeat center; background-size: contain;"
-                                @endif
-                            ></label>
+                            <label for="cv" class="input-label" data-target="#cv"></label>
                             <input type="file" id="cv" name="cv" aria-describedby="cv" value="{{ $driver->cv }}" >
                             @error('cv')
                             <small class="text-danger" >{{ $message }}</small>

@@ -142,7 +142,7 @@
 
                 <div class="form-group custom col-md-6 dv-image-input" id="cv-input-number-input" >
                     <label for="cv">Upload Your CV</label><br>
-                    <label for="passport" class="input-label" data-target="#cv" ></label>
+                    <label for="cv" class="input-label" data-target="#cv" ></label>
                     <input type="file" id="cv" name="cv" aria-describedby="cv" value="{{ old('cv') }}" >
                     @error('cv')
                     <small class="text-danger" >{{ $message }}</small>
