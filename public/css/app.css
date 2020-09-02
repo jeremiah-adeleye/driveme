@@ -108,3 +108,15 @@ a:hover {
   display: none;
 }
 
+.input-group.right input {
+  border-right: none;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.input-group.right .input-group-text {
+  background: #ffffff;
+  border: 1px solid #22AEF0;
+  border-left: none;
+}
+

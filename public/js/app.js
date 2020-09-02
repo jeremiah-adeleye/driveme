@@ -19332,6 +19332,15 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+var togglePasswordBtn = $('#toggle-password');
+togglePasswordBtn.on('click', function () {
+  var passwordInput = $(togglePasswordBtn.attr('data-target'));
+
+  if (passwordInput.attr('type') === 'password') {
+    passwordInput.attr('type', 'text');
+  } else passwordInput.attr('type', 'password');
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
