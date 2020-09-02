@@ -46,7 +46,14 @@
 
                 <div class="form-group custom" id="password-input" >
                     <label for="password">Password</label>
-                    <input type="password" class="form-control input-custom-primary" id="password" name="password" aria-describedby="password">
+                    <div class="input-group right" >
+                        <input type="password" class="form-control input-custom-primary" id="password" name="password" aria-describedby="password" >
+                        <div class="input-group-append" id="toggle-password" data-target="#password" >
+                            <div class="input-group-text">
+                                <i class="fa fa-eye icon"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group custom" id="login-button" >
