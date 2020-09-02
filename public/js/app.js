@@ -19340,6 +19340,16 @@ togglePasswordBtn.on('click', function () {
     passwordInput.attr('type', 'text');
   } else passwordInput.attr('type', 'password');
 });
+$(document).ready(function () {
+  var alert = $('.alert');
+  alert.on('ready', closeAlert(alert));
+});
+
+function closeAlert(alert) {
+  setTimeout(function () {
+    alert.alert('close');
+  }, 5000);
+}
 
 /***/ }),
 
@@ -19441,10 +19451,21 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/sass/user/dashboard.scss":
+/*!********************************************!*\
+  !*** ./resources/sass/user/dashboard.scss ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/auth.scss ./resources/sass/login.scss ./resources/sass/register.scss ./resources/sass/dashboard.scss ./resources/sass/admin/app.scss ***!
-  \*******************************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/auth.scss ./resources/sass/login.scss ./resources/sass/register.scss ./resources/sass/dashboard.scss ./resources/sass/user/dashboard.scss ./resources/sass/admin/app.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19454,6 +19475,7 @@ __webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\sass
 __webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\sass\login.scss */"./resources/sass/login.scss");
 __webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\sass\register.scss */"./resources/sass/register.scss");
 __webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\sass\dashboard.scss */"./resources/sass/dashboard.scss");
+__webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\sass\user\dashboard.scss */"./resources/sass/user/dashboard.scss");
 module.exports = __webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\sass\admin\app.scss */"./resources/sass/admin/app.scss");
 
 

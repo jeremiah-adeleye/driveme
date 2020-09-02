@@ -6,6 +6,7 @@
     "/css/login.css": "/css/login.css",
     "/css/register.css": "/css/register.css",
     "/css/dashboard.css": "/css/dashboard.css",
+    "/css/user/dashboard.css": "/css/user/dashboard.css",
     "/css/admin/app.css": "/css/admin/app.css",
     "/js/register.js": "/js/register.js"
 }

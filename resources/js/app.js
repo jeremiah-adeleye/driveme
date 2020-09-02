@@ -6,3 +6,14 @@ togglePasswordBtn.on('click', function () {
         passwordInput.attr('type', 'text')
     }else passwordInput.attr('type', 'password')
 });
+
+$(document).ready(function () {
+    let alert = $('.alert');
+    alert.on('ready', closeAlert(alert))
+});
+
+function closeAlert(alert) {
+    setTimeout(function () {
+        alert.alert('close');
+    }, 5000);
+}
