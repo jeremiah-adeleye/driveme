@@ -54,7 +54,7 @@
             <div class="form-group custom" id="password-input" >
                 <label for="password">Password</label>
                 <div class="input-group right" >
-                    <input type="password" class="form-control input-custom-primary" id="password" name="password" aria-describedby="password" value="{{  old('password') }}" placeholder="Must contain uppercase, lowercase, number and special character" >
+                    <input type="password" class="form-control input-custom-primary" id="password" name="password" aria-describedby="password" placeholder="Must contain uppercase, lowercase, number and special character" >
                     <div class="input-group-append" id="toggle-password" data-target="#password" >
                         <div class="input-group-text">
                             <i class="fa fa-eye icon"></i>
