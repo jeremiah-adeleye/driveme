@@ -147,8 +147,9 @@
                     @enderror
                 </div>
 
-                <div class="form-group custom col-md-6 dv-image-input" id="cv-input-number-input" >
+                <div class="form-group custom col-md-6 dv-image-input" id="cv-input" >
                     <label for="cv">Upload Your CV</label><br>
+                    <p class="file-name-preview d-none" ></p>
                     <label for="cv" class="input-label" data-target="#cv" ></label>
                     <input type="file" id="cv" name="cv" aria-describedby="cv" value="{{ old('cv') }}" >
                     @error('cv')

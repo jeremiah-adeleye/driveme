@@ -36,8 +36,8 @@ class DriverRequest extends FormRequest
             'licence_number' => 'required|string',
             'experience' => 'required',
             'vehicle_type' => 'required',
-            'cv' => 'required|pdf',
-            'passport' => 'required|image'
+            'cv' => 'mimetypes:application/pdf',
+            'passport' => 'image',
         ];
     }
 

@@ -93,7 +93,36 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+function readURL(input, parentSelector) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
 
+    reader.onload = function (e) {
+      var inputLabel = $(parentSelector + ' .input-label');
+      inputLabel.css('background-image', "url('".concat(e.target.result, "')"));
+      inputLabel.css('background-repeat', 'no-repeat');
+      inputLabel.css('background-size', 'contain');
+      inputLabel.css('background-position', 'center');
+    };
+
+    reader.readAsDataURL(input.files[0]); // convert to base64 string
+  }
+}
+
+function showFileName(input, parentSelector) {
+  var fakePath = $(input).val();
+  var fileName = fakePath.split("\\").pop();
+  var fileNamePreview = $(parentSelector + ' .file-name-preview');
+  fileNamePreview.removeClass('d-none');
+  fileNamePreview.text(fileName);
+}
+
+$("#passport").change(function () {
+  readURL(this, '#passport-input');
+});
+$("#cv").change(function () {
+  showFileName(this, '#cv-input');
+});
 
 /***/ }),
 

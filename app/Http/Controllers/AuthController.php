@@ -40,7 +40,7 @@ class AuthController extends Controller
         }
 
         if (Auth::attempt($credentials, $remember_me)) {
-            return redirect()->intended('/');
+            return redirect()->intended(route('dashboard'));
         }
 
         return Redirect::to('login')->with('error', 'Email or password incorrect');
