@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/register.js', 'public/js')
+    .js('resources/js/preview_file.js', 'public/js')
     .js('resources/js/admin/app.js', 'public/js/admin')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/auth.scss', 'public/css')

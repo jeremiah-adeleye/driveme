@@ -8,5 +8,6 @@
     "/css/dashboard.css": "/css/dashboard.css",
     "/css/user/dashboard.css": "/css/user/dashboard.css",
     "/css/admin/app.css": "/css/admin/app.css",
+    "/js/preview_file.js": "/js/preview_file.js",
     "/js/register.js": "/js/register.js"
 }

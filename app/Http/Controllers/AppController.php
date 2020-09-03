@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 class AppController extends Controller
 {
     public function index() {
-        return redirect()->route('login');
+        if (auth()->id() != null) {
+            return redirect()->route('dashboard');
+        }else return redirect()->route('login');
     }
 }

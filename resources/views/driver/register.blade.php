@@ -176,4 +176,5 @@
 
 @section('scripts')
     <script src="{{asset('js/register.js')}}" ></script>
+    <script src="{{asset('js/preview_file.js')}}" ></script>
 @endsection

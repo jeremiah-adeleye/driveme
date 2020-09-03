@@ -81,30 +81,59 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/register.js":
-/*!**********************************!*\
-  !*** ./resources/js/register.js ***!
-  \**********************************/
+/***/ "./resources/js/preview_file.js":
+/*!**************************************!*\
+  !*** ./resources/js/preview_file.js ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+function readURL(input, parentSelector) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
 
+    reader.onload = function (e) {
+      var inputLabel = $(parentSelector + ' .input-label');
+      inputLabel.css('background-image', "url('".concat(e.target.result, "')"));
+      inputLabel.css('background-repeat', 'no-repeat');
+      inputLabel.css('background-size', 'contain');
+      inputLabel.css('background-position', 'center');
+    };
+
+    reader.readAsDataURL(input.files[0]); // convert to base64 string
+  }
+}
+
+function showFileName(input, parentSelector) {
+  var fakePath = $(input).val();
+  var fileName = fakePath.split("\\").pop();
+  var fileNamePreview = $(parentSelector + ' .file-name-preview');
+  fileNamePreview.removeClass('d-none');
+  fileNamePreview.text(fileName);
+}
+
+$("#passport").change(function () {
+  readURL(this, '#passport-input');
+});
+$("#cv").change(function () {
+  showFileName(this, '#cv-input');
+});
 
 /***/ }),
 
-/***/ 1:
-/*!****************************************!*\
-  !*** multi ./resources/js/register.js ***!
-  \****************************************/
+/***/ 2:
+/*!********************************************!*\
+  !*** multi ./resources/js/preview_file.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\js\register.js */"./resources/js/register.js");
+module.exports = __webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\js\preview_file.js */"./resources/js/preview_file.js");
 
 
 /***/ })
