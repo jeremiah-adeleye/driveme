@@ -9,34 +9,57 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}" >
     <link rel="stylesheet" href="{{asset('css/user/dashboard.css')}}" >
     <title>Drive me</title>
-    <style>
-        body {
-            height: 100%;
-        }
-        .sidenav {
-            width: 25rem;
-            background: #000000;
-            height: 100%;
-            transition: width .5s;
-        }
-        .sidenav.hide {
-            width: 0;
-        }
-        #dashboard-content {
-            background: #f8f8f8;
-        }
-        .close-btn {
-        }
-    </style>
     @yield('head')
 </head>
 <body class="d-flex flex-column" >
 
 <div class="dashboard-cover d-flex flex-row flex-grow-1" >
-    <div class="sidenav" >
+    <div class="sidenav d-flex flex-column" >
         <div class="close-btn" ><i class="fa fas-tim" ></i></div>
+        <div id="logo" >
+            <img src="{{ asset('img/driveme_logo.png') }}" alt="logo" >
+        </div>
+        <div id="menu-items" class="flex-grow-1" >
+            <a class="menu-item @if($active == 'dashboard.home') active @endif">
+                <img src="{{ asset('img/icons/bar_chart.png') }}" class="menu-item-icon" alt="ic" >
+                <p>Dashboard</p>
+            </a>
+            <a class="menu-item @if($active == 'dashboard.hireDriver') active @endif" >
+                <img src="{{ asset('img/icons/user_icon.png') }}" class="menu-item-icon" alt="ic" >
+                <p>Hire a Driver</p>
+            </a>
+            <a class="menu-item @if($active == 'dashboard.onlineDriving') active @endif">
+                <img src="{{ asset('img/icons/online_driving.png') }}" class="menu-item-icon" alt="ic" >
+                <p>Online Driving </p>
+            </a>
+            <a class="menu-item @if($active == 'dashboard.driverTraining') active @endif">
+                <img src="{{ asset('img/icons/driver_training.png') }}" class="menu-item-icon" alt="ic" >
+                <p>Driver Training</p>
+            </a>
+            <a class="menu-item @if($active == 'dashboard.rentVehicle') active @endif">
+                <img src="{{ asset('img/icons/hire_vehicle.png') }}" class="menu-item-icon" alt="ic" >
+                <p>Hire/Rent a vehicle</p>
+            </a>
+            <a class="menu-item @if($active == 'dashboard.fleetManagement') active @endif">
+                <img src="{{ asset('img/icons/fleet_management.png') }}" class="menu-item-icon" alt="ic" >
+                <p>Fleet Management</p>
+            </a>
+        </div>
     </div>
     <section id="dashboard-content" class="container-fluid flex-grow-1" >
+        <ul id="top-nav" class="nav justify-content-end ">
+            <li class="nav-item">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                        <span id="username-icon" >{{ strtoupper(auth()->user()->first_name[0] . '.' . auth()->user()->last_name[0])}}</span>
+                        {{ ucfirst(auth()->user()->first_name) }}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
         @yield('content')
     </section>
 </div>
