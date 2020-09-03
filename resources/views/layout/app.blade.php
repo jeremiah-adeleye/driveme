@@ -21,14 +21,6 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('driver/register')}}">
-                    Driver Registration
-                </a>
-            </li>
-        </ul>
-
         <ul class="navbar-nav ml-auto">
             @if(auth()->guest())
                 @if($title == 'login')
