@@ -11,15 +11,19 @@ use Illuminate\Http\Client\Request;
 class DriverService{
 
     private $fileUploadService;
+    private $twilioService;
 
     public function __construct(){
         $this->fileUploadService = new FileUploadService();
+        $this->twilioService = new TwilioService();
     }
 
     public function make(Array $driverRequest) {
         $driver = Driver::create($driverRequest);
 
         try {
+            $to = auth()->user()->phone_number;
+            $this->twilioService->sendMessage($to, 'Account registered, Please await approval');
             $driver = $this->uploadPassportAndCv($driver, $driverRequest);
             $driver->save();
         }catch (\Exception $e) {
