@@ -67,7 +67,7 @@
             </div>
 
             <div class="form-group custom" id="register-button" >
-                <button type="submit" class="btn btn-custom-primary">Register</button>
+                <button type="submit" class="btn btn-custom-primary">CREATE AN ACCOUNT</button>
             </div>
         </form>
     </div>

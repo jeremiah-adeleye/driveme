@@ -167,7 +167,7 @@
                 </div>
 
                 <div class="form-group custom col-12" id="register-button" >
-                    <button type="submit" class="btn btn-custom-primary">Register</button>
+                    <button type="submit" class="btn btn-custom-primary">CREATE AN ACCOUNT</button>
                 </div>
             </div>
         </form>

@@ -65,8 +65,8 @@
                 </div>
 
                 <div class="form-group custom" id="login-button" >
-                    <button type="submit" class="btn btn-custom-primary">Login</button>
-                    <div class="text-right" ><a href="#" >Forgot password?</a></div>
+                    <button type="submit" class="btn btn-custom-primary">LOG IN</button>
+                    <div class="text-right" id="forgot-password-link" ><a href="#" >Forgot password?</a></div>
                 </div>
             </form>
         </div>
