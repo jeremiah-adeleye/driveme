@@ -80,6 +80,11 @@ a:hover {
   padding: 1.5rem 1rem;
 }
 
+.custom-select.input-custom-primary {
+  height: auto;
+  padding: 0.75rem 1.75rem 0.75rem 1rem;
+}
+
 #auth-section {
   height: 100%;
 }
