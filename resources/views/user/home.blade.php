@@ -97,7 +97,7 @@
             </div>
         </div>
         <div class="col-md-3 mx-auto" >
-            <div class="calender-cover" >
+            <div class="calender-cover mt-5" >
                 <div id="calendar"></div>
             </div>
         </div>
