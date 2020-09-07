@@ -1,6 +1,7 @@
 @extends('user.layout.dashboard')
 
 @section('head')
+    <link rel="stylesheet" href="{{asset('css/calender.css')}}" >
     <style>
         #registered-drivers {background: #021827}
         #unavailable-drivers {background: #F9AA29}
@@ -95,8 +96,17 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3" >
-            <p>Calender</p>
+        <div class="col-md-3 mx-auto" >
+            <div class="calender-cover" >
+                <div id="calendar"></div>
+            </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src='https://npmcdn.com/react@15.3.0/dist/react.min.js'></script>
+    <script src='https://npmcdn.com/react-dom@15.3.0/dist/react-dom.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js'></script>
+    <script src="{{asset('js/calender.js')}}" ></script>
 @endsection
