@@ -60,7 +60,9 @@
                 </div>
             </li>
         </ul>
-        @yield('content')
+        <div class="p-5" >
+            @yield('content')
+        </div>
     </section>
 </div>
 
