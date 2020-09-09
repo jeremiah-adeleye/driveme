@@ -19351,6 +19351,16 @@ function closeAlert(alert) {
   }, 5000);
 }
 
+$('.dv-custom-select .dropdown-item').on('click', function () {
+  var option = $(this);
+  var dropdown = $(option.parents('.dv-custom-select'));
+  var dropdownToggle = $(dropdown.find('.dropdown-toggle'));
+  var selectInput = $(dropdown.find('.input-value'));
+  dropdownToggle.html("".concat(option.text(), " <i class=\"fas fa-caret-down caret\"></i>"));
+  selectInput.val(option.attr('data-value'));
+  console.log(selectInput);
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

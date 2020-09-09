@@ -131,3 +131,45 @@ a:hover {
         border-left: none;
     }
 }
+
+.input-group.left {
+    input {
+        border-left: none;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+    }
+
+    .input-group-text {
+        background: #ffffff;
+        border: 1px solid #22AEF0;
+        border-right: none;
+    }
+}
+
+.dv-custom-select  {
+    .input-value {display: none;}
+    .dropdown-toggle {
+        color: rgba(6, 34, 48, 0.53);
+        border: 1px solid #20ADF2;
+        padding: .75rem 1rem;
+        width: 20rem;
+        text-align: left;
+        display: flex;
+        align-items: center;
+
+        .caret {
+            color: #20ADF2;
+            margin-left: auto;
+        }
+    }
+
+    .dropdown-toggle::after {
+        display: none;
+    }
+
+    .dropdown-toggle:active, .dropdown-toggle:focus, .dropdown-toggle:hover {
+        box-shadow: none;
+        border: 1px solid #20ADF2;
+        color: rgba(6, 34, 48, 0.53);
+    }
+}
