@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Driver;
 
+use App\Driver;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DriverRequest;
 use App\Http\Requests\DriverUpdateRequest;
@@ -38,18 +39,31 @@ class AuthController extends Controller
         return view('login', $data);
     }
 
-    public function createDriver(DriverRequest $request) {
+    public function createDriver(UserRequest $request) {
         $userRequest = $request->only('first_name', 'last_name', 'phone_number', 'email', 'password');
         $userRequest['role'] = 2;
-        $driverRequest = $request->only('dob', 'location', 'salary_range', 'address', 'licence_number', 'experience', 'vehicle_type', 'cv', 'passport');
         $user = $this->userService->make($userRequest);
 
         if ($user) {
-            $driverRequest['user_id'] = auth()->id();
-            $this->driverService->make($driverRequest);
+            return redirect()->route('driver.login')->with('success', 'Account registered, Please login to complete registration');
+        } else return redirect()->back()->with('error', 'An error occurred');
+    }
 
-            return redirect()->route('driver.login')->with('success', 'Account registered, Please await approval');
-        } else return redirect()->back()->with('Error', 'An error occurred');
+    public function completeRegistration(DriverRequest $request) {
+        $user = auth()->user();
+        if ($user-> role == 2) {
+            $driver = Driver::whereUserId($user->id)->get()->first();
+            dd($driver);
+            if ($driver != null) {
+
+                $driverRequest = $request->only('dob', 'location', 'salary_range', 'address', 'licence_number', 'experience', 'vehicle_type', 'cv', 'passport');
+                $driverRequest['user_id'] = auth()->id();
+                $this->driverService->make($driverRequest);
+
+                return redirect()->route('dashboard')->with('success', 'Registration complete, Please await approval');
+            } else return redirect()->route('dashboard')->with('error', 'Registration completed already');
+
+        }else return response()->view('errors.403');
     }
 
     public function update(DriverUpdateRequest $request) {

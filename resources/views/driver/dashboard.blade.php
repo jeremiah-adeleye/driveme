@@ -124,7 +124,13 @@
 
                         <div class="form-group custom col-md-6" id="vehicle-type-input" >
                             <label for="vehicle-type">What kind of Vehicle do you drive?</label>
-                            <input type="text" class="form-control input-custom-primary" id="vehicle-type" name="vehicle_type" aria-describedby="vehicle_type" value="{{$driver->vehicle_type}}" >
+                            <select class="custom-select input-custom-primary" id="vehicle-type" name="vehicle_type" >
+                                <option hidden >Vehicle type</option>
+                                <option @if($driver->vehicle_type == 'sedan') selected @endif value="sedan">Sedan</option>
+                                <option @if($driver->vehicle_type == 'suv') selected @endif value="suv">SUV</option>
+                                <option @if($driver->vehicle_type == 'truck') selected @endif value="truck">Truck</option>
+                                <option @if($driver->vehicle_type == 'coaster bus') selected @endif value="coaster bus">Coaster Bus</option>
+                            </select>
                             @error('vehicle_type')
                             <small class="text-danger" >{{ $message }}</small>
                             @enderror

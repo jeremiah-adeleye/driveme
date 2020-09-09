@@ -31,7 +31,6 @@ class DriverRequest extends FormRequest
             'dob' => 'required|date',
             'location' => 'required|string',
             'salary_range' => 'required',
-            'password' => 'required|string|min:6|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#% \[\]{}*+,-.:;<=>?@_]).*$/',
             'address' => 'required|string',
             'licence_number' => 'required|string',
             'experience' => 'required',
