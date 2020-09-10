@@ -24,6 +24,7 @@ class CreateDriversTable extends Migration
             $table->string('vehicle_type');
             $table->string('cv')->nullable();
             $table->string('passport')->nullable();
+            $table->integer('approval_status')->default(1);
             $table->unsignedBigInteger('user_id');
 
             $table->timestamps();

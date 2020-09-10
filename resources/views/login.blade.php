@@ -49,7 +49,7 @@
                 {{csrf_field()}}
                 <div class="form-group custom" id="email-input" >
                     <label for="email">Email Address</label>
-                    <input type="email" class="form-control input-custom-primary" id="email" name="email" aria-describedby="email">
+                    <input type="text" class="form-control input-custom-primary" id="email" name="email" aria-describedby="email">
                 </div>
 
                 <div class="form-group custom" id="password-input" >

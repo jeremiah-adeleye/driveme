@@ -24,8 +24,6 @@ class DriverUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
             'email' => 'required|string|email|max:255|unique:users,email,'.auth()->id().'',
             'phone_number' => 'required|string|max:11|unique:users,phone_number,'.auth()->id().'',
             'location' => 'required|string',

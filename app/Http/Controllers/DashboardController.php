@@ -26,7 +26,7 @@ class DashboardController extends Controller{
                 }
 
                 array_push($data, 'driver', 'registrationComplete');
-                return view('driver.dashboard', compact($data));
+                return view('driver.profile', compact($data));
             }else {
                 return view('admin.home', compact($data));
             }

@@ -16,6 +16,22 @@
                 </div>
             </div>
             <div class="col-lg-8 px-5">
+                <div id="approval-status-cover" >
+                    <p>
+                        Status:
+                        @if($registrationComplete)
+                            @if($driver->approval_status == 1)
+                                <span class="badge badge-warning" >Pending approval</span>
+                            @elseif($driver->approval_status == 2)
+                                <span class="badge badge-success" >Approved</span>
+                            @else
+                                <span class="badge badge-danger" >Approval denied</span>
+                            @endif
+                        @else
+                            <span class="badge badge-warning" >Incomplete registration</span>
+                        @endif
+                    </p>
+                </div>
                 <form method="post" action="@if($registrationComplete) {{route('driver.update')}} @else {{route('driver.register.compete')}} @endif" enctype="multipart/form-data" >
                     <div class="mb-4" >
                         @if(session()->has('error'))
@@ -39,7 +55,7 @@
                     <div class="row" >
                         <div class="form-group custom col-md-6" id="first-name-input" >
                             <label for="first-name">First Name</label>
-                            <input type="text" class="form-control input-custom-primary" id="first-name" name="first_name" aria-describedby="firstName" value="{{$user->first_name}}" >
+                            <input type="text" class="form-control input-custom-primary" name="first_name" readonly id="first-name" aria-describedby="firstName" value="{{$user->first_name}}" >
                             @error('first_name')
                             <small class="text-danger" >{{ $message }}</small>
                             @enderror
@@ -47,7 +63,7 @@
 
                         <div class="form-group custom col-md-6" id="last-name-input" >
                             <label for="last-name">Last Name</label>
-                            <input type="text" class="form-control input-custom-primary" id="last-name" name="last_name"  aria-describedby="lastName" value="{{$user->last_name}}" >
+                            <input type="text" class="form-control input-custom-primary" readonly id="last-name" name="last_name"  aria-describedby="lastName" value="{{$user->last_name}}" >
                             @error('last_name')
                             <small class="text-danger" >{{ $message }}</small>
                             @enderror
@@ -71,7 +87,7 @@
 
                         <div class="form-group custom col-md-6" id="dob-input" >
                             <label for="dob">Date of Birth</label>
-                            <input type="date" class="form-control input-custom-primary" id="dob" name="dob" aria-describedby="dateOfBirth" value="{{$driver->dob}}" >
+                            <input type="date" class="form-control input-custom-primary" id="dob" name="dob" aria-describedby="dateOfBirth" value="{{$driver->dob}}" @if($registrationComplete) readonly @endif >
                             @error('dob')
                             <small class="text-danger" >{{ $message }}</small>
                             @enderror

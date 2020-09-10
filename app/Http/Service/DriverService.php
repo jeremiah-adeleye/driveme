@@ -5,6 +5,7 @@ namespace App\Http\Service;
 
 
 use App\Driver;
+use App\Notification;
 use App\User;
 use Illuminate\Http\Client\Request;
 
@@ -20,12 +21,20 @@ class DriverService{
 
     public function make(Array $driverRequest) {
         $driver = Driver::create($driverRequest);
+        $user = auth()->user();
 
         try {
-            $to = auth()->user()->phone_number;
+            $to = $user->phone_number;
             $this->twilioService->sendMessage($to, 'Account registered, Please await approval');
             $driver = $this->uploadPassportAndCv($driver, $driverRequest);
             $driver->save();
+
+            $notification = new Notification();
+            $fullName = $user->first_name .' '. $user->last_name;
+            $notification->notification = "Approval request from $fullName";
+            $notification->link = getenv('APP_URL') .'/dashboard/drivers/'.$driver->id;
+            $notification->save();
+
         }catch (\Exception $e) {
             return false;
         }
@@ -37,7 +46,6 @@ class DriverService{
         $userId = auth()->id();
         if ($userId) {
             $driver = Driver::whereUserId($userId)->first();
-            $driver->dob = $driverRequest['dob'];
             $driver->location = $driverRequest['location'];
             $driver->salary_range = $driverRequest['salary_range'];
             $driver->address = $driverRequest['address'];

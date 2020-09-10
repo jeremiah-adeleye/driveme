@@ -41,6 +41,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Driver whereUserId($value)
  * @method static Builder|Driver whereVehicleType($value)
  * @mixin Builder
+ * @property int $approval_status
+ * @method static Builder|Driver whereApprovalStatus($value)
  */
 class Driver extends Model
 {
