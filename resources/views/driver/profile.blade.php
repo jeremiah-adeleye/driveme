@@ -37,6 +37,8 @@
                             {{route('driver.update')}}
                         @elseif($driver->approval_status == 3)
                             {{route('driver.register.resubmit')}}
+                        @else
+                            {{route('driver.register.compete')}}
                         @endif
                       "
                       enctype="multipart/form-data" >
@@ -190,8 +192,10 @@
                                     UPDATE
                                 @elseif($driver->approval_status == 3)
                                     RESUBMIT
-                                @else
+                                @elseif($driver->approval_status == 4)
                                     ACCESS HAS BEEN REVOKED
+                                @else
+                                    COMPLETE REGISTRATION
                                 @endif
                             </button>
                         </div>

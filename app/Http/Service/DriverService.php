@@ -33,7 +33,7 @@ class DriverService{
             $notification = new Notification();
             $fullName = ucfirst($user->first_name .' '. $user->last_name);
             $notification->notification = "$fullName has submitted application to be a driver";
-            $notification->link = getenv('APP_URL') .'/dashboard/drivers/'.$driver->id;
+            $notification->link = getenv('APP_URL') .'/dashboard/admin/drivers/'.$driver->id;
             $notification->save();
 
         }catch (\Exception $e) {
