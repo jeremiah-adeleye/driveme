@@ -52,9 +52,8 @@ class AuthController extends Controller
     public function completeRegistration(DriverRequest $request) {
         $user = auth()->user();
         if ($user-> role == 2) {
-            $driver = Driver::whereUserId($user->id)->get()->first();
-            dd($driver);
-            if ($driver != null) {
+            $driver = Driver::whereUserId($user->id)->first();
+            if ($driver == null) {
 
                 $driverRequest = $request->only('dob', 'location', 'salary_range', 'address', 'licence_number', 'experience', 'vehicle_type', 'cv', 'passport');
                 $driverRequest['user_id'] = auth()->id();

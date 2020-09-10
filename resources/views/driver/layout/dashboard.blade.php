@@ -5,7 +5,6 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" >
     <link rel="stylesheet" href="{{asset('css/app.css')}}" >
     <link rel="stylesheet" href="{{asset('css/user/dashboard.css')}}" >
@@ -21,29 +20,21 @@
             <img src="{{ asset('img/driveme_logo.png') }}" alt="logo" >
         </div>
         <div id="menu-items" class="flex-grow-1" >
-            <a class="menu-item @if($active == 'dashboard.home') active @endif">
+            <a class="menu-item @if($active == 'dashboard.home') active @endif" href="{{route('dashboard')}}" >
                 <img src="{{ asset('img/icons/bar_chart.png') }}" class="menu-item-icon" alt="ic" >
                 <p>Dashboard</p>
             </a>
-            <a class="menu-item @if($active == 'dashboard.hireDriver') active @endif" href="{{ route('user.drivers') }}" >
+            <a class="menu-item @if($active == 'dashboard.employer details') active @endif" >
                 <img src="{{ asset('img/icons/user_icon.png') }}" class="menu-item-icon" alt="ic" >
-                <p>Hire a Driver</p>
+                <p>Employer Details</p>
             </a>
             <a class="menu-item @if($active == 'dashboard.onlineDriving') active @endif">
                 <img src="{{ asset('img/icons/online_driving.png') }}" class="menu-item-icon" alt="ic" >
-                <p>Online Driving </p>
+                <p>History</p>
             </a>
             <a class="menu-item @if($active == 'dashboard.driverTraining') active @endif">
                 <img src="{{ asset('img/icons/driver_training.png') }}" class="menu-item-icon" alt="ic" >
                 <p>Driver Training</p>
-            </a>
-            <a class="menu-item @if($active == 'dashboard.rentVehicle') active @endif">
-                <img src="{{ asset('img/icons/hire_vehicle.png') }}" class="menu-item-icon" alt="ic" >
-                <p>Hire/Rent a vehicle</p>
-            </a>
-            <a class="menu-item @if($active == 'dashboard.fleetManagement') active @endif">
-                <img src="{{ asset('img/icons/fleet_management.png') }}" class="menu-item-icon" alt="ic" >
-                <p>Fleet Management</p>
             </a>
         </div>
     </div>

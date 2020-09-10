@@ -1,4 +1,4 @@
-@extends('layout/app', ['title' => 'driver dashboard'])
+@extends('driver.layout.dashboard', ['title' => 'driver dashboard'])
 
 @section('head')
     <link rel="stylesheet" href="{{asset('css/dashboard.css')}}" >
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="col-lg-8 px-5">
-                <form method="post" action="{{route('driver.update')}}" enctype="multipart/form-data" >
+                <form method="post" action="@if($registrationComplete) {{route('driver.update')}} @else {{route('driver.register.compete')}} @endif" enctype="multipart/form-data" >
                     <div class="mb-4" >
                         @if(session()->has('error'))
                             <div class="alert alert-danger alert-dismissible fade show">
@@ -95,7 +95,7 @@
 
                         <div class="form-group custom col-md-6" id="password-input" >
                             <label for="password">Password</label>
-                            <input type="password" class="form-control input-custom-primary" id="password" name="password" aria-describedby="password" placeholder="********************" >
+                            <input type="password" class="form-control input-custom-primary" readonly id="password" name="password" aria-describedby="password" placeholder="********************" >
                         </div>
 
                         <div class="form-group custom col-md-6" id="address-input" >
@@ -160,7 +160,13 @@
                         </div>
 
                         <div class="form-group custom col-12" id="register-button" >
-                            <button type="submit" class="btn btn-custom-primary">Update</button>
+                            <button type="submit" class="btn btn-custom-primary">
+                                @if($registrationComplete)
+                                    UPDATE
+                                @else
+                                    COMPLETE REGISTRATION
+                                @endif
+                            </button>
                         </div>
                     </div>
                 </form>

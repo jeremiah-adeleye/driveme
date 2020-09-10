@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins:wght@300,400,500,600,700,800,900&display=swap');
 
 * {
     padding: 0;
@@ -77,6 +77,11 @@ a:hover {
 .input-custom-primary {
     border: 1px solid #22AEF0;
     padding: 1.5rem 1rem;
+}
+
+.input-custom-primary:disabled, .input-custom-primary[readonly] {
+    background-color: #ffffff;
+    opacity: 1;
 }
 
 .custom-select.input-custom-primary {

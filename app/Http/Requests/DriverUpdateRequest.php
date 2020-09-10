@@ -28,12 +28,12 @@ class DriverUpdateRequest extends FormRequest
             'last_name' => 'required|string',
             'email' => 'required|string|email|max:255|unique:users,email,'.auth()->id().'',
             'phone_number' => 'required|string|max:11|unique:users,phone_number,'.auth()->id().'',
-            'dob' => 'required|date',
             'location' => 'required|string',
             'salary_range' => 'required',
             'address' => 'required|string',
             'licence_number' => 'required|string',
             'experience' => 'required|numeric',
+            'vehicle_type' => 'required',
             'cv' => 'mimetypes:application/pdf',
             'passport' => 'image',
         ];
