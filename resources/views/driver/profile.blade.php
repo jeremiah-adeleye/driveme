@@ -15,20 +15,31 @@
                 <div id="approval-status-cover" >
                     <p>
                         Status:
-                        @if($registrationComplete)
-                            @if($driver->approval_status == 1)
-                                <span class="badge badge-warning" >Pending approval</span>
-                            @elseif($driver->approval_status == 2)
-                                <span class="badge badge-success" >Approved</span>
-                            @else
-                                <span class="badge badge-danger" >Approval denied</span>
-                            @endif
+
+                        @if($driver->approval_status == 1)
+                            <span class="badge badge-warning" >Pending approval</span>
+                        @elseif($driver->approval_status == 2)
+                            <span class="badge badge-success" >Approved</span>
+                        @elseif($driver->approval_status == 3)
+                            <span class="badge badge-danger" >Approval denied</span>
+                        @elseif($driver->approval_status == 4)
+                            <span class="badge badge-danger" >Approval revoked</span>
                         @else
                             <span class="badge badge-warning" >Incomplete registration</span>
                         @endif
                     </p>
                 </div>
-                <form method="post" action="@if($registrationComplete) {{route('driver.update')}} @else {{route('driver.register.compete')}} @endif" enctype="multipart/form-data" >
+                <form method="post"
+                      action=
+                      " @if($driver->approval_status == 1)
+                            {{route('driver.register.compete')}}
+                        @elseif($driver->approval_status == 2)
+                            {{route('driver.update')}}
+                        @elseif($driver->approval_status == 3)
+                            {{route('driver.register.resubmit')}}
+                        @endif
+                      "
+                      enctype="multipart/form-data" >
                     <div class="mb-4" >
                         @if(session()->has('error'))
                             <div class="alert alert-danger alert-dismissible fade show">
@@ -173,10 +184,14 @@
 
                         <div class="form-group custom col-12" id="register-button" >
                             <button type="submit" class="btn btn-custom-primary">
-                                @if($registrationComplete)
-                                    UPDATE
-                                @else
+                                @if($driver->approval_status == 1)
                                     COMPLETE REGISTRATION
+                                @elseif($driver->approval_status == 2)
+                                    UPDATE
+                                @elseif($driver->approval_status == 3)
+                                    RESUBMIT
+                                @else
+                                    ACCESS HAS BEEN REVOKED
                                 @endif
                             </button>
                         </div>

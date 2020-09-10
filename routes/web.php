@@ -24,6 +24,7 @@ Route::post('login', 'AuthController@authenticate')->name('login');
 Route::post('register', 'AuthController@registerUser');
 Route::post('driver/register', 'Driver\AuthController@createDriver')->name('driver.register');
 Route::post('driver/register/complete', 'Driver\AuthController@completeRegistration')->name('driver.register.compete');
+Route::post('driver/register/resubmit', 'Driver\AuthController@resubmitRegistration')->name('driver.register.resubmit');
 Route::post('driver/update', 'Driver\AuthController@update')->name('driver.update');
 
 Route::group(['middleware' => ['auth']], function() {

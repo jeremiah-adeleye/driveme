@@ -18,12 +18,17 @@ class UserService{
         return false;
     }
 
-    public function update($userRequest) {
+    public function update($userRequest, $full=false) {
         $userId = auth()->id();
         if ($userId) {
             $user = User::find($userId);
             $user->email = $userRequest['email'];
             $user->phone_number = $userRequest['phone_number'];
+
+            if ($full) {
+                $user->first_name = $userRequest['first_name'];
+                $user->last_name = $userRequest['last_name'];
+            }
 
             $user->save();
         }

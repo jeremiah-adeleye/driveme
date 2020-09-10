@@ -43,25 +43,34 @@ class DriverService{
         return $driver;
     }
 
+    public function resubmitRequest($driverRequest) {
+        $user = auth()->user();
+        $driver = Driver::whereUserId($user->id)->first();
+        $driver->dob = $driverRequest['dob'];
+        $driver->approval_status = 1;
+        $driver->save();
+        $this->updateDetails($driverRequest);
+
+        $fullName = ucfirst($user->first_name .' '. $user->last_name);
+        $this->saveNotification(
+            "$fullName has re-submitted his/her profile for registration",
+            getenv('APP_URL') .'/dashboard/admin/drivers/'.$driver->id
+        );
+    }
+
     public function update($driverRequest) {
         $user = auth()->user();
         $userId = $user->id;
 
         if ($userId) {
             $driver = Driver::whereUserId($userId)->first();
-            $driver->location = $driverRequest['location'];
-            $driver->salary_range = $driverRequest['salary_range'];
-            $driver->address = $driverRequest['address'];
-            $driver->licence_number = $driverRequest['licence_number'];
-            $driver->experience = $driverRequest['experience'];
-            $driver->vehicle_type = $driverRequest['vehicle_type'];
-            $driver->save();
+            $this->updateDetails($driverRequest);
 
-            $notification = new Notification();
             $fullName = ucfirst($user->first_name .' '. $user->last_name);
-            $notification->notification = "$fullName has updated his/her profile";
-            $notification->link = getenv('APP_URL') .'/dashboard/admin/drivers/'.$driver->id;
-            $notification->save();
+            $this->saveNotification(
+                "$fullName has updated his/her profile",
+                getenv('APP_URL') .'/dashboard/admin/drivers/'.$driver->id
+            );
 
             try {
                 $driver = $this->uploadPassportAndCv($driver, $driverRequest);
@@ -74,6 +83,26 @@ class DriverService{
         }
 
         return false;
+    }
+
+    private function updateDetails($driverRequest) {
+        $driver = Driver::whereUserId(auth()->id())->first();
+        $driver->location = $driverRequest['location'];
+        $driver->salary_range = $driverRequest['salary_range'];
+        $driver->address = $driverRequest['address'];
+        $driver->licence_number = $driverRequest['licence_number'];
+        $driver->experience = $driverRequest['experience'];
+        $driver->vehicle_type = $driverRequest['vehicle_type'];
+        $driver->save();
+    }
+
+    private function saveNotification($message, $link, $userId = 1) {
+        $notification = new Notification();
+
+        $notification->notification = $message;
+        $notification->link = $link;
+        $notification->user_id = $userId;
+        $notification->save();
     }
 
     private function uploadPassportAndCv(Driver $driver, $driverRequest) {
