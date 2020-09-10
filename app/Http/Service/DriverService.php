@@ -30,8 +30,8 @@ class DriverService{
             $driver->save();
 
             $notification = new Notification();
-            $fullName = $user->first_name .' '. $user->last_name;
-            $notification->notification = "Approval request from $fullName";
+            $fullName = ucfirst($user->first_name .' '. $user->last_name);
+            $notification->notification = "$fullName has submitted application to be a driver";
             $notification->link = getenv('APP_URL') .'/dashboard/drivers/'.$driver->id;
             $notification->save();
 

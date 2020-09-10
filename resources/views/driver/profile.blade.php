@@ -1,9 +1,5 @@
 @extends('driver.layout.dashboard', ['title' => 'driver dashboard'])
 
-@section('head')
-    <link rel="stylesheet" href="{{asset('css/dashboard.css')}}" >
-@endsection
-
 @section('content')
     <section id="dashboard-section" class="d-flex flex-column" >
         <p class="font-weight-bold px-4 mb-5 text-primary" >Edit Profile</p>

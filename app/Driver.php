@@ -43,6 +43,8 @@ use Illuminate\Support\Carbon;
  * @mixin Builder
  * @property int $approval_status
  * @method static Builder|Driver whereApprovalStatus($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ApprovalRejectionMessage[] $rejectionMessages
+ * @property-read int|null $rejection_messages_count
  */
 class Driver extends Model
 {
@@ -53,5 +55,9 @@ class Driver extends Model
 
     public function user() {
         return $this->hasOne('App\User');
+    }
+
+    public function rejectionMessages() {
+        return $this->hasMany('App\ApprovalRejectionMessage');
     }
 }

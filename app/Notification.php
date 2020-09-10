@@ -24,6 +24,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Notification whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Notification whereUserId($value)
  * @mixin \Eloquent
+ * @property int $seen
+ * @method static \Illuminate\Database\Eloquent\Builder|Notification whereSeen($value)
  */
 class Notification extends Model
 {
