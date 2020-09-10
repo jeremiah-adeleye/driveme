@@ -32,8 +32,8 @@ class DriverController extends Controller{
 
         if ($driver != null) {
             $this->driverService->updateApproval($driver, true);
-            return redirect()->intended(route('dashboard'))->with('success', 'Status updated');
-        }else return redirect()->intended(route('dashboard'))->with('error', 'Driver not found');
+            return redirect()->back()->with('success', 'Status updated');
+        }else return redirect()->back()->with('error', 'Driver not found');
     }
 
     public function rejectApproval($id, ApprovalRejectionRequest $request) {
@@ -41,8 +41,8 @@ class DriverController extends Controller{
 
         if ($driver != null) {
             $this->driverService->updateApproval($driver, false, $request['comment']);
-            return redirect()->intended(route('dashboard'))->with('success', 'Status updated');
-        }else return redirect()->intended(route('dashboard'))->with('error', 'Driver not found');
+            return redirect()->back()->with('success', 'Status updated');
+        }else return redirect()->back()->with('error', 'Driver not found');
     }
 
     public function revokeApproval($id) {
@@ -50,7 +50,7 @@ class DriverController extends Controller{
 
         if ($driver != null) {
             $this->driverService->updateApproval($driver, false);
-            return redirect()->intended(route('dashboard'))->with('success', 'Status updated approved');
-        }else return redirect()->intended(route('dashboard'))->with('error', 'Driver not found');
+            return redirect()->back()->with('success', 'Status updated approved');
+        }else return redirect()->back()->with('error', 'Driver not found');
     }
 }

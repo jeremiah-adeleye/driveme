@@ -73,7 +73,7 @@
                         @endforeach
                     </ul>
                 @else
-                    <a href="{{route('admin.driver.approve', ['id' => $driver->id])}}"><button type="button" class="btn btn-success" >Restore Approve</button></a>
+                    <a href="{{route('admin.driver.approve', ['id' => $driver->id])}}"><button type="button" class="btn btn-success" >Restore Approval</button></a>
                 @endif
             </div>
         </div>
