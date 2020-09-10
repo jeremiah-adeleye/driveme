@@ -48,7 +48,7 @@
         <div class="col-md-6" >
             <div id="response-cover" >
                 @if($driver->approval_status == 1)
-                    <form method="post" action="{{route('admin.driver.reject', ['id' => $driver->id])}}" >
+                    <form class="mb-4" method="post" action="{{route('admin.driver.reject', ['id' => $driver->id])}}" >
                         {{csrf_field()}}
                         <div class="form-group" >
                             <label class="h5" for="comment-input" >Comment</label>
@@ -73,7 +73,7 @@
                         @endforeach
                     </ul>
                 @else
-                    <a href="{{route('admin.driver.approve', ['id' => $driver->id])}}"><button type="button" class="btn btn-success" >Approve</button></a>
+                    <a href="{{route('admin.driver.approve', ['id' => $driver->id])}}"><button type="button" class="btn btn-success" >Restore Approve</button></a>
                 @endif
             </div>
         </div>
