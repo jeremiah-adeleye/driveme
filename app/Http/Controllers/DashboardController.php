@@ -29,7 +29,7 @@ class DashboardController extends Controller{
                 array_push($data, 'driver', 'registrationComplete');
                 return view('driver.profile', compact($data));
             }else {
-                $notifications = Notification::whereSeen(false)->get();
+                $notifications = Notification::whereSeen(false)->orderBy('created_at', 'desc')->get();
                 array_push($data, 'notifications');
 
                 return view('admin.home', compact($data));

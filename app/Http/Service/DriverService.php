@@ -43,7 +43,9 @@ class DriverService{
     }
 
     public function update($driverRequest) {
-        $userId = auth()->id();
+        $user = auth()->user();
+        $userId = $user->id;
+
         if ($userId) {
             $driver = Driver::whereUserId($userId)->first();
             $driver->location = $driverRequest['location'];
@@ -53,6 +55,12 @@ class DriverService{
             $driver->experience = $driverRequest['experience'];
             $driver->vehicle_type = $driverRequest['vehicle_type'];
             $driver->save();
+
+            $notification = new Notification();
+            $fullName = ucfirst($user->first_name .' '. $user->last_name);
+            $notification->notification = "$fullName has updated his/her profile";
+            $notification->link = getenv('APP_URL') .'/dashboard/admin/drivers/'.$driver->id;
+            $notification->save();
 
             try {
                 $driver = $this->uploadPassportAndCv($driver, $driverRequest);

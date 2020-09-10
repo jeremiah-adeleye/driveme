@@ -29,5 +29,6 @@ Route::post('driver/update', 'Driver\AuthController@update')->name('driver.updat
 Route::group(['middleware' => ['auth']], function() {
     Route::get('dashboard', 'DashboardController@index')->middleware('auth')->name('dashboard');
     Route::get('dashboard/drivers', 'User\DriverController@list')->middleware('auth')->name('user.drivers');
+    Route::get('dashboard/admin/drivers/{id}', 'Admin\DriverController@view')->name('admin.driver');
 });
 
