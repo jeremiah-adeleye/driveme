@@ -30,5 +30,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('dashboard', 'DashboardController@index')->middleware('auth')->name('dashboard');
     Route::get('dashboard/drivers', 'User\DriverController@list')->middleware('auth')->name('user.drivers');
     Route::get('dashboard/admin/drivers/{id}', 'Admin\DriverController@view')->name('admin.driver');
+    Route::get('dashboard/admin/drivers/{id}/approve', 'Admin\DriverController@approveDriver')->name('admin.driver.approve');
+    Route::post('dashboard/admin/drivers/{id}/reject', 'Admin\DriverController@rejectApproval')->name('admin.driver.reject');
+    Route::get('dashboard/admin/drivers/{id}/revoke', 'Admin\DriverController@revokeApproval')->name('admin.driver.revoke');
 });
 

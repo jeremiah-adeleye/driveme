@@ -4,6 +4,7 @@
 namespace App\Http\Service;
 
 
+use App\ApprovalRejectionMessage;
 use App\Driver;
 use App\Notification;
 use App\User;
@@ -88,5 +89,44 @@ class DriverService{
         }
 
         return $driver;
+    }
+
+    public function updateApproval(Driver $driver, $approve, $rejectionMessage = null) {
+        $message = $this->getMessage($driver, $approve);
+        if ($approve) {
+            $driver->approval_status = 2;
+        }else {
+            if ($driver->approval_status == 1) {
+                $driver->approval_status = 3;
+            }else {
+                $driver->approval_status = 4;
+            }
+        }
+
+        $driver->save();
+        $this->twilioService->sendMessage($driver->user->phone_number, $message);
+
+        if ($rejectionMessage != null) {
+            $rejectionComment = new ApprovalRejectionMessage();
+            $rejectionComment->message = $rejectionMessage;
+            $rejectionComment->driver_id = $driver->id;
+            $rejectionComment->save();
+        }
+    }
+
+    private function getMessage($driver, $approve) {
+        if ($approve) {
+            if ($driver->approval_status == 1) {
+                return 'Your account has been approved';
+            }else {
+                return 'Your driver privileges have been restored';
+            }
+        }else {
+            if ($driver->approval_status == 1) {
+                return 'Your request to become a driver was rejected';
+            }else {
+                return 'Your driver privileges have been revoked';
+            }
+        }
     }
 }
