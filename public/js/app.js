@@ -19479,14 +19479,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\sass\app.scss */"./resources/sass/app.scss");
-__webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\sass\auth.scss */"./resources/sass/auth.scss");
-__webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\sass\login.scss */"./resources/sass/login.scss");
-__webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\sass\register.scss */"./resources/sass/register.scss");
-__webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\sass\dashboard.scss */"./resources/sass/dashboard.scss");
-__webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\sass\user\dashboard.scss */"./resources/sass/user/dashboard.scss");
-module.exports = __webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\sass\admin\app.scss */"./resources/sass/admin/app.scss");
+__webpack_require__(/*! C:\Users\festu\Documents\Work\Work\driveme\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\festu\Documents\Work\Work\driveme\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\festu\Documents\Work\Work\driveme\resources\sass\auth.scss */"./resources/sass/auth.scss");
+__webpack_require__(/*! C:\Users\festu\Documents\Work\Work\driveme\resources\sass\login.scss */"./resources/sass/login.scss");
+__webpack_require__(/*! C:\Users\festu\Documents\Work\Work\driveme\resources\sass\register.scss */"./resources/sass/register.scss");
+__webpack_require__(/*! C:\Users\festu\Documents\Work\Work\driveme\resources\sass\dashboard.scss */"./resources/sass/dashboard.scss");
+__webpack_require__(/*! C:\Users\festu\Documents\Work\Work\driveme\resources\sass\user\dashboard.scss */"./resources/sass/user/dashboard.scss");
+module.exports = __webpack_require__(/*! C:\Users\festu\Documents\Work\Work\driveme\resources\sass\admin\app.scss */"./resources/sass/admin/app.scss");
 
 
 /***/ })

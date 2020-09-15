@@ -104,7 +104,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\js\register.js */"./resources/js/register.js");
+module.exports = __webpack_require__(/*! C:\Users\festu\Documents\Work\Work\driveme\resources\js\register.js */"./resources/js/register.js");
 
 
 /***/ })

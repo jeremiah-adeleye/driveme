@@ -30,6 +30,11 @@ Route::post('driver/update', 'Driver\AuthController@update')->name('driver.updat
 Route::group(['middleware' => ['auth']], function() {
     Route::get('dashboard', 'DashboardController@index')->middleware('auth')->name('dashboard');
     Route::get('dashboard/drivers', 'User\DriverController@list')->middleware('auth')->name('user.drivers');
+    Route::get('dashboard/drivers', 'User\DriverController@list')->middleware('auth')->name('user.drivers');
+
+    Route::get('dashboard/driver/complete-registration', 'Driver\RegistrationController@completeRegistration')
+        ->middleware('auth')->name('driver.complete-registration');
+
     Route::get('dashboard/admin/drivers/{id}', 'Admin\DriverController@view')->name('admin.driver');
     Route::get('dashboard/admin/drivers/{id}/approve', 'Admin\DriverController@approveDriver')->name('admin.driver.approve');
     Route::post('dashboard/admin/drivers/{id}/reject', 'Admin\DriverController@rejectApproval')->name('admin.driver.reject');

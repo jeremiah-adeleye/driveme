@@ -133,7 +133,7 @@ $("#cv").change(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\festu\Documents\Work\driveme-new\resources\js\preview_file.js */"./resources/js/preview_file.js");
+module.exports = __webpack_require__(/*! C:\Users\festu\Documents\Work\Work\driveme\resources\js\preview_file.js */"./resources/js/preview_file.js");
 
 
 /***/ })
