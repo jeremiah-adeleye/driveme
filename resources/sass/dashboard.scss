@@ -4,7 +4,7 @@ body {
 }
 .sidenav {
     width: 25rem;
-    background: #ffffff;
+    background: #20ADF2;
     height: 100%;
     transition: width .5s;
     position: relative;
@@ -59,7 +59,7 @@ body {
         padding-bottom: 1.5rem;
         display: flex;
         flex-direction: row;
-        border-left: .5rem solid #ffffff;
+        color: #ffffff;
 
         .menu-item-icon {
             height: 1.5rem;
@@ -77,8 +77,8 @@ body {
     }
 
     .menu-item.active {
-        background: rgba(32, 173, 242, 0.04);
-        border-color: #20ADF2;
+        background: #ffffff;
+        color: #20ADF2;
     }
 }
 

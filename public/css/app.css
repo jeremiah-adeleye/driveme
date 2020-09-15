@@ -37,6 +37,8 @@ a:hover {
 .form-group.custom {
   margin-bottom: 2.5rem;
   margin-top: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .form-group.custom label {

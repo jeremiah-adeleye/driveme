@@ -23,8 +23,6 @@ Route::get('driver/register', 'Driver\AuthController@register')->name('driver.re
 Route::post('login', 'AuthController@authenticate')->name('login');
 Route::post('register', 'AuthController@registerUser');
 Route::post('driver/register', 'Driver\AuthController@createDriver')->name('driver.register');
-Route::post('driver/register/complete', 'Driver\AuthController@completeRegistration')->name('driver.register.compete');
-Route::post('driver/register/resubmit', 'Driver\AuthController@resubmitRegistration')->name('driver.register.resubmit');
 Route::post('driver/update', 'Driver\AuthController@update')->name('driver.update');
 
 Route::group(['middleware' => ['auth']], function() {
@@ -34,6 +32,8 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('dashboard/driver/complete-registration', 'Driver\RegistrationController@completeRegistration')
         ->middleware('auth')->name('driver.complete-registration');
+    Route::post('driver/register/complete', 'Driver\RegistrationController@submitRegistration')->name('driver.register.compete');
+    Route::post('driver/register/resubmit', 'Driver\RegistrationController@resubmitRegistration')->name('driver.register.resubmit');
 
     Route::get('dashboard/admin/drivers/{id}', 'Admin\DriverController@view')->name('admin.driver');
     Route::get('dashboard/admin/drivers/{id}/approve', 'Admin\DriverController@approveDriver')->name('admin.driver.approve');

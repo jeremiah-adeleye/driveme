@@ -17,11 +17,11 @@
     <div class="sidenav d-flex flex-column" >
         <div class="close-btn" ><i class="fa fas-tim" ></i></div>
         <div id="logo" >
-            <img src="{{ asset('img/driveme_logo.png') }}" alt="logo" >
+            <img src="{{ asset('img/driveme_logo_white.png') }}" alt="logo" >
         </div>
         <div id="menu-items" class="flex-grow-1" >
             <a class="menu-item @if($active == 'dashboard.home') active @endif" href="{{route('dashboard')}}" >
-                <img src="{{ asset('img/icons/bar_chart.png') }}" class="menu-item-icon" alt="ic" >
+                <img src="{{ asset('img/icons/bar_chart.svg') }}" class="menu-item-icon" alt="ic" >
                 <p>Dashboard</p>
             </a>
             <a class="menu-item @if($active == 'dashboard.employer details') active @endif" >
