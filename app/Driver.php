@@ -45,6 +45,9 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Driver whereApprovalStatus($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\ApprovalRejectionMessage[] $rejectionMessages
  * @property-read int|null $rejection_messages_count
+ * @property string $state
+ * @property-read \App\Guarantor|null $guarantor
+ * @method static Builder|Driver whereState($value)
  */
 class Driver extends Model
 {
@@ -59,5 +62,9 @@ class Driver extends Model
 
     public function rejectionMessages() {
         return $this->hasMany('App\ApprovalRejectionMessage');
+    }
+
+    public function guarantor() {
+        return $this->hasOne('App\Guarantor');
     }
 }

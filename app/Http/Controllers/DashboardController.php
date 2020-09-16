@@ -26,7 +26,22 @@ class DashboardController extends Controller{
                     $registrationComplete = false;
                 }
 
-                array_push($data, 'driver', 'registrationComplete');
+                $percentDone = 25;
+                if ($driver->approval_status != null) {
+                    switch ($driver->approval_status) {
+                        case 1:
+                            $percentDone = 75;
+                            break;
+                        case 2:
+                            $percentDone = 100;
+                            break;
+                        case 3:
+                            $percentDone = 50;
+                            break;
+                    }
+                }
+
+                array_push($data, 'driver', 'registrationComplete', 'percentDone');
                 return view('driver.home', compact($data));
             }else {
                 $notifications = Notification::whereSeen(false)->orderBy('created_at', 'desc')->get();

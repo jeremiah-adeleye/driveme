@@ -108,7 +108,7 @@
                             </div>
 
                             <div class="form-group custom col-md-6" id="licence-number-input" >
-                                <label for="licence-number">Licence Number</label>
+                                <label for="licence-number">Driver License Number</label>
                                 <input type="text" class="form-control input-custom-primary" id="licence-number" name="licence_number" aria-describedby="licenceNumber" value="{{old('licence_number')}}" >
                                 @error('licence_number')
                                 <small class="text-danger" >{{ $message }}</small>
@@ -116,7 +116,7 @@
                             </div>
 
                             <div class="form-group custom col-md-6" id="experience-input" >
-                                <label for="experience">Driver’s Experience Years</label>
+                                <label for="experience">Years of driving experience</label>
                                 <input type="number" class="form-control input-custom-primary" id="experience" name="experience" aria-describedby="experience" value="{{old('experience')}}" >
                                 @error('experience')
                                 <small class="text-danger" >{{ $message }}</small>
@@ -134,7 +134,7 @@
                             </div>
 
                             <div class="form-group custom col-md-6 dv-image-input" id="passport-input" >
-                                <label for="passport">Passport Photography</label><br>
+                                <label for="passport">Upload Your Passport Photograph</label><br>
                                 <label for="passport" class="input-label" data-target="#passport" ></label>
                                 <input type="file" id="passport" name="passport" aria-describedby="passport" value="{{old('passport')}}" >
                                 @error('passport')
@@ -151,7 +151,7 @@
                         <div class="row" >
                             <div class="form-group custom col-md-6" id="first-name-input" >
                                 <label for="guarantor-name">Guarantor Name</label>
-                                <input type="text" class="form-control input-custom-primary" name="guarantor_name" readonly id="guarantor-name" aria-describedby="guarantorName" value="{{old('guarantor_name')}}" >
+                                <input type="text" class="form-control input-custom-primary" name="guarantor_name" id="guarantor-name" aria-describedby="guarantorName" value="{{old('guarantor_name')}}" >
                                 @error('guarantor_name')
                                 <small class="text-danger" >{{ $message }}</small>
                                 @enderror
@@ -159,7 +159,7 @@
 
                             <div class="form-group custom col-md-6" id="first-name-input" >
                                 <label for="guarantor-email">Guarantor Email Address</label>
-                                <input type="text" class="form-control input-custom-primary" name="guarantor_email" readonly id="guarantor-email" aria-describedby="guarantorEmail" value="{{old('guarantor_email')}}" >
+                                <input type="text" class="form-control input-custom-primary" name="guarantor_email" id="guarantor-email" aria-describedby="guarantorEmail" value="{{old('guarantor_email')}}" >
                                 @error('guarantor_email')
                                 <small class="text-danger" >{{ $message }}</small>
                                 @enderror
@@ -167,7 +167,7 @@
 
                             <div class="form-group custom col-md-6" id="first-name-input" >
                                 <label for="guarantor-phone-number">Guarantor Phone Number</label>
-                                <input type="text" class="form-control input-custom-primary" name="guarantor_phone_number" readonly id="guarantor-phone-number" aria-describedby="guarantorPhoneNumber" value="{{old('guarantor_phone_number')}}" >
+                                <input type="text" class="form-control input-custom-primary" name="guarantor_phone_number" id="guarantor-phone-number" aria-describedby="guarantorPhoneNumber" value="{{old('guarantor_phone_number')}}" >
                                 @error('guarantor_phone_number')
                                 <small class="text-danger" >{{ $message }}</small>
                                 @enderror
@@ -175,7 +175,7 @@
 
                             <div class="form-group custom col-md-6" id="first-name-input" >
                                 <label for="guarantor-relationship">Relationship</label>
-                                <input type="text" class="form-control input-custom-primary" name="guarantor_relationship" readonly id="guarantor-relationship" aria-describedby="guarantorRelationship" value="{{old('guarantor_relationship')}}" >
+                                <input type="text" class="form-control input-custom-primary" name="guarantor_relationship" id="guarantor-relationship" aria-describedby="guarantorRelationship" value="{{old('guarantor_relationship')}}" >
                                 @error('guarantor_relationship')
                                 <small class="text-danger" >{{ $message }}</small>
                                 @enderror
@@ -183,7 +183,7 @@
 
                             <div class="form-group custom col-md-6" id="first-name-input" >
                                 <label for="guarantor-residential-address">Guarantor Residential Address</label>
-                                <input type="text" class="form-control input-custom-primary" name="guarantor_residential_address" readonly id="guarantor-residential-address" aria-describedby="guarantorResidentialAddress" value="{{old('guarantor_residential_address')}}" >
+                                <input type="text" class="form-control input-custom-primary" name="guarantor_residential_address" id="guarantor-residential-address" aria-describedby="guarantorResidentialAddress" value="{{old('guarantor_residential_address')}}" >
                                 @error('guarantor_residential_address')
                                 <small class="text-danger" >{{ $message }}</small>
                                 @enderror
@@ -191,7 +191,7 @@
 
                             <div class="form-group custom col-md-6" id="first-name-input" >
                                 <label for="guarantor-state-of-residence">Guarantor State of Residence</label>
-                                <input type="text" class="form-control input-custom-primary" name="guarantor_state_of_residence" readonly id="guarantor-state-of-residence" aria-describedby="guarantorStateOfResidence" value="{{old('guarantor_state_of_residence')}}" >
+                                <input type="text" class="form-control input-custom-primary" name="guarantor_state_of_residence" id="guarantor-state-of-residence" aria-describedby="guarantorStateOfResidence" value="{{old('guarantor_state_of_residence')}}" >
                                 @error('guarantor_state_of_residence')
                                 <small class="text-danger" >{{ $message }}</small>
                                 @enderror
@@ -199,16 +199,16 @@
 
                             <div class="form-group custom col-md-6 mt-0" id="first-name-input" >
                                 <label for="guarantor-work-address">Full Name</label>
-                                <input type="text" class="form-control input-custom-primary" name="guarantor_work_address" readonly id="guarantor-work-address" aria-describedby="guarantorWorkAddress" value="{{old('guarantor_work_address')}}" >
+                                <input type="text" class="form-control input-custom-primary" name="guarantor_work_address" id="guarantor-work-address" aria-describedby="guarantorWorkAddress" value="{{old('guarantor_work_address')}}" >
                                 @error('guarantor_work_address')
                                 <small class="text-danger" >{{ $message }}</small>
                                 @enderror
                             </div>
 
                             <div class="form-group custom col-md-6 dv-image-input" id="passport-input" >
-                                <label for="guarantor-passport">Passport Photography</label><br>
+                                <label for="guarantor-passport">Guarantor Passport Photograph</label><br>
                                 <label for="guarantor-passport" class="input-label" data-target="#passport" ></label>
-                                <input type="file" id=guarantor-"passport" name="guarantor_passport" aria-describedby="guarantor-passport" value="{{old('guarantor_passport')}}" >
+                                <input type="file" id="guarantor-passport" name="guarantor_passport" aria-describedby="guarantor-passport" value="{{old('guarantor_passport')}}" >
                                 @error('guarantor_passport')
                                 <small class="text-danger" >{{ $message }}</small>
                                 @enderror
