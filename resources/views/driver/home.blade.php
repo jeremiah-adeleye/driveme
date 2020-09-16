@@ -69,8 +69,8 @@
                         <a href="{{route('driver.complete-registration')}}" ><button class="btn btn-custom-primary" >APPLY NOW</button></a>
                     @elseif($driver->approval_status == 3)
                         <p id="get-verified-text" >Application rejected</p>
-                        <p >reason</p>
-                        <a href="{{route('driver.complete-registration')}}" ><button class="btn btn-custom-primary" >FIX APPLICATION</button></a>
+                        <p ><strong>Reason: </strong>{{$driver->rejectionMessages->last()->message}}</p>
+                        <a href="{{route('driver.complete-registration')}}" ><button class="btn btn-custom-primary" >APPLY AGAIN</button></a>
                     @endif
                 </div>
             </div>
