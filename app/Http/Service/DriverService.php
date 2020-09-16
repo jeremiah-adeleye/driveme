@@ -27,7 +27,7 @@ class DriverService{
 
         try {
             $to = $user->phone_number;
-            $this->twilioService->sendMessage($to, 'Account registered, Please await approval');
+            $this->twilioService->sendMessage($to, 'Dear candidate, \n Congratulations, your application is successful and a customer care representative would reach out to you shortly');
             $driver = $this->uploadPassportAndCv($driver, $driverRequest);
             $driver->save();
         }catch (\Exception $e) {
@@ -146,7 +146,7 @@ class DriverService{
     private function getMessage($driver, $approve) {
         if ($approve) {
             if ($driver->approval_status == 1) {
-                return 'Your account has been approved';
+                return 'Dear candidate, \n Congratulations, your on-board process is successful. \nYou will be merged with a client as soon as possible.\n Welcome to DriveMe fleet services';
             }else {
                 return 'Your driver privileges have been restored';
             }
