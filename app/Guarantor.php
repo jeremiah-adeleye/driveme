@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Guarantor newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Guarantor query()
  * @mixin \Eloquent
+ * @property mixed name
  */
 class Guarantor extends Model
 {

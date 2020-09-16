@@ -34,9 +34,10 @@ class RegistrationController extends Controller{
             $driver = Driver::whereUserId($user->id)->first();
             if ($driver == null) {
 
-                $driverRequest = $request->only('dob', 'location', 'salary_range', 'address', 'licence_number', 'experience', 'vehicle_type', 'cv', 'passport');
+                $driverRequest = $request->only('dob', 'state', 'salary_range', 'address', 'licence_number', 'experience', 'vehicle_type', 'cv', 'passport');
+                $guarantor_request = $request->only('guarantor_name', 'guarantor_email', 'guarantor_phone_number', 'guarantor_relationship', 'guarantor_residential_address', 'guarantor_state_of_residence', 'guarantor_work_address', 'guarantor_passport');
                 $driverRequest['user_id'] = auth()->id();
-                $this->driverService->make($driverRequest);
+                $this->driverService->make($driverRequest, $guarantor_request);
 
                 return redirect()->route('dashboard')->with('success', 'Registration complete, Please await approval');
             } else return redirect()->route('dashboard')->with('error', 'Registration completed already');

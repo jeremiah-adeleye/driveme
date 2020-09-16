@@ -16,7 +16,6 @@ class CreateGuarantorsTable extends Migration
         Schema::create('guarantors', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('email');
             $table->string('phone_number');
@@ -24,7 +23,7 @@ class CreateGuarantorsTable extends Migration
             $table->string('residential_address');
             $table->string('state_of_residence');
             $table->string('work_address');
-            $table->string('passport');
+            $table->string('passport')->nullable();
             $table->unsignedBigInteger('driver_id');
         });
     }

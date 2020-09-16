@@ -6,6 +6,7 @@ namespace App\Http\Service;
 
 use App\ApprovalRejectionMessage;
 use App\Driver;
+use App\Guarantor;
 use App\Notification;
 use App\User;
 use Illuminate\Http\Client\Request;
@@ -20,7 +21,7 @@ class DriverService{
         $this->twilioService = new TwilioService();
     }
 
-    public function make(Array $driverRequest) {
+    public function make(Array $driverRequest, $guarantorRequest) {
         $driver = Driver::create($driverRequest);
         $user = auth()->user();
 
@@ -29,16 +30,15 @@ class DriverService{
             $this->twilioService->sendMessage($to, 'Account registered, Please await approval');
             $driver = $this->uploadPassportAndCv($driver, $driverRequest);
             $driver->save();
-
-            $notification = new Notification();
-            $fullName = ucfirst($user->first_name .' '. $user->last_name);
-            $notification->notification = "$fullName has submitted application to be a driver";
-            $notification->link = getenv('APP_URL') .'/dashboard/admin/drivers/'.$driver->id;
-            $notification->save();
-
         }catch (\Exception $e) {
-            return false;
         }
+
+        $notification = new Notification();
+        $fullName = ucfirst($user->first_name .' '. $user->last_name);
+        $notification->notification = "$fullName has submitted application to be a driver";
+        $notification->link = getenv('APP_URL') .'/dashboard/admin/drivers/'.$driver->id;
+        $notification->save();
+        $this->saveGuarantor($guarantorRequest, $driver->id);
 
         return $driver;
     }
@@ -156,6 +156,28 @@ class DriverService{
             }else {
                 return 'Your driver privileges have been revoked';
             }
+        }
+    }
+
+    private function saveGuarantor($guarantorRequest, $driverId){
+        $guarantor = new Guarantor();
+        $guarantor->name = $guarantorRequest['guarantor_name'];
+        $guarantor->email = $guarantorRequest['guarantor_email'];
+        $guarantor->phone_number = $guarantorRequest['guarantor_phone_number'];
+        $guarantor->relationship = $guarantorRequest['guarantor_relationship'];
+        $guarantor->residential_address = $guarantorRequest['guarantor_residential_address'];
+        $guarantor->state_of_residence = $guarantorRequest['guarantor_state_of_residence'];
+        $guarantor->work_address = $guarantorRequest['guarantor_work_address'];
+        $guarantor->driver_id = $driverId;
+        $guarantor->save();
+
+        try {
+            if (array_key_exists('guarantor_passport', $guarantorRequest) && is_file($guarantorRequest['guarantor_passport'])) {
+                $passportResponse = $this->fileUploadService->cloudinaryUpload($guarantorRequest['guarantor_passport']);
+                $guarantor->passport = $passportResponse;
+                $guarantor->save();
+            }
+        }catch (\Exception $e) {
         }
     }
 }

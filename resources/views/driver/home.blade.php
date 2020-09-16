@@ -18,6 +18,14 @@
         .progress {
             height: 0.5rem;
         }
+
+        .passport {
+            overflow: hidden;
+        }
+        .passport img {
+            height: 100%;
+            max-width: 100%;
+        }
     </style>
 @endsection
 
@@ -27,11 +35,11 @@
             <div id="details" class="content" >
                 <div class="passport" >
                     @if(!empty($driver->passport))
-                        <img src="" alt="passport" >
+                        <img src="{{$driver->passport}}" alt="passport" >
                     @endif
                 </div>
                 <p id="name" >{{ucwords($user->first_name.' '.$user->last_name)}}</p>
-                <p id="location" class="text-muted" >@if($driver->approval_status != null) {{$driver->address}}, {{$driver->state_of_residence}} @endif</p>
+                <p id="location" class="text-muted" >@if($driver->approval_status != null) {{$driver->address}}, {{$driver->state}} @endif</p>
                 <hr class="dashboard-divider" >
                 <div id="rating" >
                     <p class="title" >Employer rating</p>
@@ -42,13 +50,27 @@
                     <div class="progress my-2">
                         <div class="progress-bar bg-success w-{{$percentDone}}" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <p id="registration-status" class="text-left" >{{$percentDone}}%</p>
+                    <p id="registration-status" class="text-left" >{{$percentDone}}%
+                        @if($driver->approval_status == 1)
+                            <span class="badge badge-warning" >Pending approval</span>
+                        @elseif($driver->approval_status == 2)
+                            <span class="badge badge-success" >Approved</span>
+                        @elseif($driver->approval_status == 3)
+                            <span class="badge badge-danger" >Approval denied</span>
+                        @elseif($driver->approval_status == 4)
+                            <span class="badge badge-danger" >Approval revoked</span>
+                        @else
+                            <span class="badge badge-warning" >Incomplete registration</span>
+                        @endif
+                    </p>
 
-                    @if($driver->approval_status == 1 || $driver->approval_status == null)
+                    @if($driver->approval_status == null)
                         <p id="get-verified-text" >Apply to become a driver to get verified</p>
                         <a href="{{route('driver.complete-registration')}}" ><button class="btn btn-custom-primary" >APPLY NOW</button></a>
-                    @else
-
+                    @elseif($driver->approval_status == 3)
+                        <p id="get-verified-text" >Application rejected</p>
+                        <p >reason</p>
+                        <a href="{{route('driver.complete-registration')}}" ><button class="btn btn-custom-primary" >FIX APPLICATION</button></a>
                     @endif
                 </div>
             </div>

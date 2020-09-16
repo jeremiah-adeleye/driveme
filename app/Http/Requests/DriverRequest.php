@@ -35,7 +35,7 @@ class DriverRequest extends FormRequest
             'vehicle_type' => 'required',
             'cv' => 'mimetypes:application/pdf|required',
             'passport' => 'image|required',
-            'guarantor_name' => 'string|required',
+            'guarantor_name' => 'required',
             'guarantor_email' => 'email|required',
             'guarantor_phone_number' => 'string|required',
             'guarantor_relationship' => 'string|required',
@@ -48,7 +48,8 @@ class DriverRequest extends FormRequest
 
     public function messages(){
         return [
-            'password.regex' => 'Password must contain at least an uppercase, lowercase, number and special character'
+            'password.regex' => 'Password must contain at least an uppercase, lowercase, number and special character',
+            'string' => 'Field is required'
         ];
     }
 }

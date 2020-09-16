@@ -120,6 +120,9 @@ function showFileName(input, parentSelector) {
 $("#passport").change(function () {
   readURL(this, '#passport-input');
 });
+$("#guarantor-passport").change(function () {
+  readURL(this, '#guarantor-passport-input');
+});
 $("#cv").change(function () {
   showFileName(this, '#cv-input');
 });
