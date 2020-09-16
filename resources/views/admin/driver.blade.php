@@ -35,13 +35,24 @@
                 <p><strong>Email</strong>: {{$driver->user->email}}</p>
                 <p><strong>Phone number</strong>: {{$driver->user->phone_number}}</p>
                 <p><strong>Date of birth</strong>: {{$driver->dob}}</p>
-                <p><strong>Location</strong>: {{$driver->location}}</p>
+                <p><strong>State of Residence</strong>: {{$driver->location}}</p>
                 <p><strong>Salary range</strong>: {{$driver->salary_range}}</p>
                 <p><strong>Residential address</strong>: {{$driver->address}}</p>
                 <p><strong>Licence number</strong>: {{$driver->licence_number}}</p>
                 <p><strong>Experience Years</strong>: {{$driver->experience}}</p>
                 <p><strong>Vehicle type</strong>: {{$driver->vehicle_type}}</p>
                 <p><strong>CV</strong>: <a href="{{$driver->cv}}" >Click to download</a></p>
+            </div>
+
+            <div id="details" >
+                <p class="h4" >Guarantor: {{$driver->guarantor->relationship}}</p>
+                <img src="{{$driver->guarantor->passport}}" width="100px" height="auto" alt="passport" >
+                <p><strong>Name</strong>: {{$driver->guarantor->name}}</p>
+                <p><strong>Email</strong>: {{$driver->guarantor->email}}</p>
+                <p><strong>Phone number</strong>: {{$driver->guarantor->phone_number}}</p>
+                <p><strong>Residential address</strong>: {{$driver->guarantor->residential_address}}</p>
+                <p><strong>State of Residence</strong>: {{$driver->guarantor->state_of_residence}}</p>
+                <p><strong>Work Address</strong>: {{$driver->guarantor->work_address}}</p>
             </div>
         </div>
 
