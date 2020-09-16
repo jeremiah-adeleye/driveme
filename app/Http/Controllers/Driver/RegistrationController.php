@@ -49,7 +49,7 @@ class RegistrationController extends Controller{
         $user = auth()->user();
         if ($user-> role == 2) {
             $driver = Driver::whereUserId($user->id)->first();
-            if ($driver != null) {
+            if ($driver != null && $driver->approval_status == 3) {
                 $userRequest = $request->only('first_name', 'last_name', 'phone_number', 'email', 'password');
                 $driverRequest = $request->only('dob', 'location', 'salary_range', 'address', 'licence_number', 'experience', 'vehicle_type', 'cv', 'passport');
                 $driverRequest['user_id'] = auth()->id();
