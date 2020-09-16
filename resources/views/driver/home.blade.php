@@ -23,8 +23,7 @@
             overflow: hidden;
         }
         .passport img {
-            height: 100%;
-            max-width: 100%;
+            width: 100%;
         }
     </style>
 @endsection
@@ -36,6 +35,8 @@
                 <div class="passport" >
                     @if(!empty($driver->passport))
                         <img src="{{$driver->passport}}" alt="passport" >
+                    @else
+                        <img src="{{asset('img/icons/user_icon.png')}}" alt="passport" >
                     @endif
                 </div>
                 <p id="name" >{{ucwords($user->first_name.' '.$user->last_name)}}</p>
