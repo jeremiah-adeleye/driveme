@@ -28,13 +28,14 @@ class DriverRequest extends FormRequest
             'phone_number' => 'required|string|max:11|unique:users,phone_number,'.auth()->id().'',
             'dob' => 'required|date',
             'state' => 'required|string',
-            'salary_range' => 'required',
             'address' => 'required|string',
             'licence_number' => 'required|string',
             'experience' => 'required|numeric',
             'vehicle_type' => 'required',
-            'cv' => 'mimetypes:application/pdf|required',
-            'passport' => 'image|required',
+            'cv' => 'mimetypes:application/pdf',
+            'old_cv' => '',
+            'passport' => 'image',
+            'old_passport' => '',
             'guarantor_name' => 'required',
             'guarantor_email' => 'email|required',
             'guarantor_phone_number' => 'string|required',
@@ -42,7 +43,8 @@ class DriverRequest extends FormRequest
             'guarantor_residential_address' => 'string|required',
             'guarantor_state_of_residence' => 'string|required',
             'guarantor_work_address' => 'string|required',
-            'guarantor_passport' => 'image|required'
+            'guarantor_passport' => 'image',
+            'old_guarantor_passport' => '',
         ];
     }
 

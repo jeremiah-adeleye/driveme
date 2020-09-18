@@ -35,8 +35,7 @@
                 <p><strong>Email</strong>: {{$driver->user->email}}</p>
                 <p><strong>Phone number</strong>: {{$driver->user->phone_number}}</p>
                 <p><strong>Date of birth</strong>: {{$driver->dob}}</p>
-                <p><strong>State of Residence</strong>: {{$driver->location}}</p>
-                <p><strong>Salary range</strong>: {{$driver->salary_range}}</p>
+                <p><strong>State of Residence</strong>: {{$driver->state}}</p>
                 <p><strong>Residential address</strong>: {{$driver->address}}</p>
                 <p><strong>Licence number</strong>: {{$driver->licence_number}}</p>
                 <p><strong>Experience Years</strong>: {{$driver->experience}}</p>

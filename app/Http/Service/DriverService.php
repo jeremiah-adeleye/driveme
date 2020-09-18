@@ -38,18 +38,19 @@ class DriverService{
         $notification->notification = "$fullName has submitted application to be a driver";
         $notification->link = getenv('APP_URL') .'/dashboard/admin/drivers/'.$driver->id;
         $notification->save();
-        $this->saveGuarantor($guarantorRequest, $driver->id);
+        $this->saveGuarantor(new Guarantor(), $guarantorRequest, $driver->id);
 
         return $driver;
     }
 
-    public function resubmitRequest($driverRequest) {
+    public function resubmitRequest($driverRequest, $guarantor_request) {
         $user = auth()->user();
         $driver = Driver::whereUserId($user->id)->first();
-        $driver->dob = $driverRequest['dob'];
         $driver->approval_status = 1;
         $driver->save();
         $this->updateDetails($driverRequest);
+        $driver = $this->uploadPassportAndCv($driver, $driverRequest);
+        $this->saveGuarantor($driver->guarantor, $guarantor_request, $driver->id);
 
         $fullName = ucfirst($user->first_name .' '. $user->last_name);
         $this->saveNotification(
@@ -87,12 +88,12 @@ class DriverService{
 
     private function updateDetails($driverRequest) {
         $driver = Driver::whereUserId(auth()->id())->first();
-        $driver->location = $driverRequest['location'];
-        $driver->salary_range = $driverRequest['salary_range'];
+        $driver->state = $driverRequest['state'];
         $driver->address = $driverRequest['address'];
         $driver->licence_number = $driverRequest['licence_number'];
         $driver->experience = $driverRequest['experience'];
         $driver->vehicle_type = $driverRequest['vehicle_type'];
+        $driver->dob = $driverRequest['dob'];
         $driver->save();
     }
 
@@ -117,6 +118,7 @@ class DriverService{
             $driver->cv = $cvResponse;
         }
 
+        $driver->save();
         return $driver;
     }
 
@@ -159,8 +161,7 @@ class DriverService{
         }
     }
 
-    private function saveGuarantor($guarantorRequest, $driverId){
-        $guarantor = new Guarantor();
+    private function saveGuarantor($guarantor, $guarantorRequest, $driverId){
         $guarantor->name = $guarantorRequest['guarantor_name'];
         $guarantor->email = $guarantorRequest['guarantor_email'];
         $guarantor->phone_number = $guarantorRequest['guarantor_phone_number'];

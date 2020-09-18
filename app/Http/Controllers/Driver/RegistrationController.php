@@ -31,13 +31,13 @@ class RegistrationController extends Controller{
     }
 
     public function submitRegistration(DriverRequest $request) {
+        $driverRequest = $request->only('dob', 'state', 'salary_range', 'address', 'licence_number', 'experience', 'vehicle_type', 'cv', 'passport');
+        $guarantor_request = $request->only('guarantor_name', 'guarantor_email', 'guarantor_phone_number', 'guarantor_relationship', 'guarantor_residential_address', 'guarantor_state_of_residence', 'guarantor_work_address', 'guarantor_passport');
+
         $user = auth()->user();
         if ($user-> role == 2) {
             $driver = Driver::whereUserId($user->id)->first();
             if ($driver == null) {
-
-                $driverRequest = $request->only('dob', 'state', 'salary_range', 'address', 'licence_number', 'experience', 'vehicle_type', 'cv', 'passport');
-                $guarantor_request = $request->only('guarantor_name', 'guarantor_email', 'guarantor_phone_number', 'guarantor_relationship', 'guarantor_residential_address', 'guarantor_state_of_residence', 'guarantor_work_address', 'guarantor_passport');
                 $driverRequest['user_id'] = auth()->id();
                 $this->driverService->make($driverRequest, $guarantor_request);
 
@@ -52,11 +52,15 @@ class RegistrationController extends Controller{
         if ($user-> role == 2) {
             $driver = Driver::whereUserId($user->id)->first();
             if ($driver != null && $driver->approval_status == 3) {
-                $userRequest = $request->only('first_name', 'last_name', 'phone_number', 'email', 'password');
-                $driverRequest = $request->only('dob', 'location', 'salary_range', 'address', 'licence_number', 'experience', 'vehicle_type', 'cv', 'passport');
+                if (!($request->has('passport'))) $request['passport'] = $request->get('old_passport');
+                if (!($request->has('cv'))) $request['cv'] = $request->get('old_cv');
+                if (!($request->has('guarantor_passport'))) $request['guarantor_passport'] = $request->get('old_guarantor_passport');
+
+                $driverRequest = $request->only('dob', 'state', 'salary_range', 'address', 'licence_number', 'experience', 'vehicle_type', 'cv', 'passport');
+                $guarantor_request = $request->only('guarantor_name', 'guarantor_email', 'guarantor_phone_number', 'guarantor_relationship', 'guarantor_residential_address', 'guarantor_state_of_residence', 'guarantor_work_address', 'guarantor_passport');
+
                 $driverRequest['user_id'] = auth()->id();
-                $this->driverService->resubmitRequest($driverRequest);
-                $this->userService->update($userRequest, true);
+                $this->driverService->resubmitRequest($driverRequest, $guarantor_request);
 
                 return redirect()->route('dashboard')->with('success', 'Request re-submitted, Please await approval');
             } else return redirect()->route('dashboard')->with('error', 'An error occurred');
