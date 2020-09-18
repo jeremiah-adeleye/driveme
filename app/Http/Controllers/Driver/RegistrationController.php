@@ -23,7 +23,9 @@ class RegistrationController extends Controller{
     public function completeRegistration() {
         $user = auth()->user();
         $active = 'dashboard.home';
-        $data = compact('user', 'active');
+        $driver = Driver::whereUserId($user->id)->first();
+        if ($driver == null) $driver = new Driver();
+        $data = compact('user', 'active', 'driver');
 
         return view('driver.complete-registration', $data);
     }

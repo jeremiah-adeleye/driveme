@@ -21,9 +21,22 @@
 
         .passport {
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+        .passport i {
+            width: 50%;
+            height: 50%;
+        }
+
         .passport img {
             width: 100%;
+        }
+
+        .passport i {
+            color: #000000;
+            font-size: 7rem;
         }
     </style>
 @endsection
@@ -36,11 +49,11 @@
                     @if(!empty($driver->passport))
                         <img src="{{$driver->passport}}" alt="passport" >
                     @else
-                        <img src="{{asset('img/icons/user_icon.png')}}" alt="passport" >
+                        <i class="far fa-user"></i>
                     @endif
                 </div>
                 <p id="name" >{{ucwords($user->first_name.' '.$user->last_name)}}</p>
-                <p id="location" class="text-muted" >@if($driver->approval_status != null) {{$driver->address}}, {{$driver->state}} @endif</p>
+                <p id="location" class="text-muted" >@if($driver->approval_status != null) <span><i class="fas fa-map-marker-alt mr-1"></i></span> {{$driver->address}}, {{$driver->state}} @endif</p>
                 <hr class="dashboard-divider" >
                 <div id="rating" >
                     <p class="title" >Employer rating</p>
