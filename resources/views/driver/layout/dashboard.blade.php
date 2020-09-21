@@ -28,13 +28,9 @@
                 <img src="{{ asset('img/icons/user_icon.png') }}" class="menu-item-icon" alt="ic" >
                 <p>Employer Details</p>
             </a>
-            <a class="menu-item @if($active == 'dashboard.onlineDriving') active @endif">
+            <a class="menu-item @if($active == 'dashboard.profile') active @endif">
                 <img src="{{ asset('img/icons/online_driving.png') }}" class="menu-item-icon" alt="ic" >
-                <p>History</p>
-            </a>
-            <a class="menu-item @if($active == 'dashboard.driverTraining') active @endif">
-                <img src="{{ asset('img/icons/driver_training.png') }}" class="menu-item-icon" alt="ic" >
-                <p>Driver Training</p>
+                <p>Update profile</p>
             </a>
         </div>
     </div>

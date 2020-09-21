@@ -40,6 +40,7 @@ class DriverRequest extends FormRequest
             'guarantor_email' => 'email|required',
             'guarantor_phone_number' => 'string|required',
             'guarantor_relationship' => 'string|required',
+            'guarantor_occupation' => 'string|required',
             'guarantor_residential_address' => 'string|required',
             'guarantor_state_of_residence' => 'string|required',
             'guarantor_work_address' => 'string|required',

@@ -32,7 +32,7 @@ class RegistrationController extends Controller{
 
     public function submitRegistration(DriverRequest $request) {
         $driverRequest = $request->only('dob', 'state', 'salary_range', 'address', 'licence_number', 'experience', 'vehicle_type', 'cv', 'passport');
-        $guarantor_request = $request->only('guarantor_name', 'guarantor_email', 'guarantor_phone_number', 'guarantor_relationship', 'guarantor_residential_address', 'guarantor_state_of_residence', 'guarantor_work_address', 'guarantor_passport');
+        $guarantor_request = $request->only('guarantor_name', 'guarantor_email', 'guarantor_phone_number', 'guarantor_relationship', 'guarantor_occupation', 'guarantor_residential_address', 'guarantor_state_of_residence', 'guarantor_work_address', 'guarantor_passport');
 
         $user = auth()->user();
         if ($user-> role == 2) {
@@ -57,7 +57,7 @@ class RegistrationController extends Controller{
                 if (!($request->has('guarantor_passport'))) $request['guarantor_passport'] = $request->get('old_guarantor_passport');
 
                 $driverRequest = $request->only('dob', 'state', 'salary_range', 'address', 'licence_number', 'experience', 'vehicle_type', 'cv', 'passport');
-                $guarantor_request = $request->only('guarantor_name', 'guarantor_email', 'guarantor_phone_number', 'guarantor_relationship', 'guarantor_residential_address', 'guarantor_state_of_residence', 'guarantor_work_address', 'guarantor_passport');
+                $guarantor_request = $request->only('guarantor_name', 'guarantor_email', 'guarantor_phone_number', 'guarantor_relationship', 'guarantor_occupation', 'guarantor_residential_address', 'guarantor_state_of_residence', 'guarantor_work_address', 'guarantor_passport');
 
                 $driverRequest['user_id'] = auth()->id();
                 $this->driverService->resubmitRequest($driverRequest, $guarantor_request);

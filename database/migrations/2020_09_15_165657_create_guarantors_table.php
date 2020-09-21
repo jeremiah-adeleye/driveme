@@ -20,6 +20,7 @@ class CreateGuarantorsTable extends Migration
             $table->string('email');
             $table->string('phone_number');
             $table->string('relationship');
+            $table->string('occupation');
             $table->string('residential_address');
             $table->string('state_of_residence');
             $table->string('work_address');

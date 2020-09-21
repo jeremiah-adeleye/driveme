@@ -166,6 +166,7 @@ class DriverService{
         $guarantor->email = $guarantorRequest['guarantor_email'];
         $guarantor->phone_number = $guarantorRequest['guarantor_phone_number'];
         $guarantor->relationship = $guarantorRequest['guarantor_relationship'];
+        $guarantor->occupation = $guarantorRequest['guarantor_occupation'];
         $guarantor->residential_address = $guarantorRequest['guarantor_residential_address'];
         $guarantor->state_of_residence = $guarantorRequest['guarantor_state_of_residence'];
         $guarantor->work_address = $guarantorRequest['guarantor_work_address'];
