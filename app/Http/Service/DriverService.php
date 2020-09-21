@@ -27,7 +27,7 @@ class DriverService{
 
         try {
             $to = $user->phone_number;
-            $this->twilioService->sendMessage($to, 'Dear candidate, \n Congratulations, your application is successful and a customer care representative would reach out to you shortly');
+            $this->twilioService->sendMessage($to, "Dear candidate, \n\nCongratulations, your application is successful and a customer care representative would reach out to you shortly");
             $driver = $this->uploadPassportAndCv($driver, $driverRequest);
             $driver->save();
         }catch (\Exception $e) {
@@ -148,15 +148,15 @@ class DriverService{
     private function getMessage($driver, $approve) {
         if ($approve) {
             if ($driver->approval_status == 1) {
-                return 'Dear candidate, \n Congratulations, your on-board process is successful. \nYou will be merged with a client as soon as possible.\n Welcome to DriveMe fleet services';
+                return "Dear candidate, \n\nCongratulations, your on-board process is successful. \n\nYou will be merged with a client as soon as possible. \n\nWelcome to DriveMe fleet services";
             }else {
-                return 'Your driver privileges have been restored';
+                return "Your driver privileges have been restored";
             }
         }else {
             if ($driver->approval_status == 1) {
-                return 'Your request to become a driver was rejected';
+                return "Your request to become a driver was rejected";
             }else {
-                return 'Your driver privileges have been revoked';
+                return "Your driver privileges have been revoked";
             }
         }
     }
