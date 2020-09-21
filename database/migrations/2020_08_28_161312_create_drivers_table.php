@@ -17,7 +17,6 @@ class CreateDriversTable extends Migration
             $table->id();
             $table->date('dob');
             $table->string('state');
-            $table->string('salary_range');
             $table->string('address');
             $table->string('licence_number');
             $table->integer('experience');

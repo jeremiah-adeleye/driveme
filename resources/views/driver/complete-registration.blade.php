@@ -248,6 +248,7 @@
         let error = false;
 
         saveAndContinueBtn.on('click', function () {
+            error = false;
             let dateOfBirth = $('#dob');
             let address = $('#address');
             let state = $('#state');

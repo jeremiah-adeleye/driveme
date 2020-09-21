@@ -51,6 +51,7 @@
                 <p><strong>Phone number</strong>: {{$driver->guarantor->phone_number}}</p>
                 <p><strong>Residential address</strong>: {{$driver->guarantor->residential_address}}</p>
                 <p><strong>State of Residence</strong>: {{$driver->guarantor->state_of_residence}}</p>
+                <p><strong>Occupation</strong>: {{$driver->guarantor->occupation}}</p>
                 <p><strong>Work Address</strong>: {{$driver->guarantor->work_address}}</p>
             </div>
         </div>
