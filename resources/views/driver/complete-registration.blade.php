@@ -198,6 +198,14 @@
                             </div>
 
                             <div class="form-group custom col-md-6 mt-0" id="guarantor-work-address-input" >
+                                <label for="guarantor-occupation">Guarantor Occupation</label>
+                                <input type="text" class="form-control input-custom-primary" name="guarantor_occupation" id="guarantor-occupation" aria-describedby="guarantorOccupation" value="{{old('guarantor_occupation') ?? $driver->guarantor->occupation ?? ''}}" >
+                                @error('guarantor_occupation')
+                                <small class="text-danger" >{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            <div class="form-group custom col-md-6 mt-0" id="guarantor-work-address-input" >
                                 <label for="guarantor-work-address">Guarantor Work Address</label>
                                 <input type="text" class="form-control input-custom-primary" name="guarantor_work_address" id="guarantor-work-address" aria-describedby="guarantorWorkAddress" value="{{old('guarantor_work_address') ?? $driver->guarantor->work_address ?? ''}}" >
                                 @error('guarantor_work_address')
@@ -237,9 +245,36 @@
     <script src="{{asset('js/preview_file.js')}}" ></script>
     <script>
         let saveAndContinueBtn = $('#save-and-continue')
+        let error = false;
+
         saveAndContinueBtn.on('click', function () {
-            $('#driver-details').css('display', 'none')
-            $('#guarantor-details').css('display', 'block')
+            let dateOfBirth = $('#dob');
+            let address = $('#address');
+            let state = $('#state');
+            let vehicleType = $('#vehicle-type');
+            let licenceNumber = $('#licence-number');
+            let experience = $('#experience');
+            let cv = $('#cv');
+            let passport = $('#passport');
+
+            if (dateOfBirth.val() === '') addError(dateOfBirth, 'Date of birth is required')
+            if (address.val() === '') addError(address, 'Residential address is required')
+            if (state.val() === '') addError(state, 'State of residence is required')
+            if (vehicleType.val() === '') addError(vehicleType, 'Vehicle type is required')
+            if (licenceNumber.val() === '') addError(licenceNumber, 'Licence number is required')
+            if (experience.val() === '') addError(experience, 'Experience is required')
+            /*if (cv.val().empty() || cv.val() === '') addError(cv, 'Address is required')
+            if (passport.val().empty() || passport.val() === '') addError(passport, 'Address is required')*/
+
+            if (!error) {
+                $('#driver-details').css('display', 'none')
+                $('#guarantor-details').css('display', 'block')
+            }
         })
+
+        let addError = function (inp, message) {
+            error = true
+            inp.after(`<small class="text-danger" >${message}</small>`)
+        }
     </script>
 @endsection
