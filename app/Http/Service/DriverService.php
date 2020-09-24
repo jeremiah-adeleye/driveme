@@ -24,7 +24,8 @@ class DriverService{
     public function userGetDriver($id) {
         $driver = Driver::find($id);
         if ($driver != null) {
-            return $driver->with('user')->get();
+            $driver->user;
+            return $driver;
         }else return null;
     }
 
