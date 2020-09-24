@@ -86,9 +86,13 @@
             background: #74D19B40;
             color: #2BAB7B;
         }
+
+        .filters {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
     </style>
     <script>
-        const drivers = @json($drivers);
     </script>
 @endsection
 
@@ -99,7 +103,7 @@
 
         <div class="mx-auto" >
             <div class="dv-custom-select mx-1" >
-                <input class="input-value" name="visibility" title="visibility" >
+                <input class="input-value" name="visibility" title="visibility" id="driver-availability" >
                 <div class="dropdown">
                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                         Showing all registered drivers <i class="fas fa-chevron-down caret"></i>
@@ -131,14 +135,88 @@
             <div id="filters" >
                 <div id="location-filter" class="filter-section" >
                     <p>Location</p>
+                    <div class="filters" >
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="all" name="location-filter" >
+                            <label class="custom-control-label" for="all">All</label>
+                        </div>
+                        @foreach($locations as $location)
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="{{$location}}" name="location-filter" >
+                                <label class="custom-control-label" for="{{$location}}">{{ucfirst($location)}}</label>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
 
                 <div id="experience-filter" class="filter-section" >
                     <p>Experience</p>
+                    <div class="filters" >
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="1" name="experience-filter" >
+                            <label class="custom-control-label" for="1">1</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="2" name="experience-filter" >
+                            <label class="custom-control-label" for="2">2</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="3" name="experience-filter" >
+                            <label class="custom-control-label" for="3">3</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="4" name="experience-filter" >
+                            <label class="custom-control-label" for="4">4</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="5" name="experience-filter" >
+                            <label class="custom-control-label" for="5">5</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="6" name="experience-filter" >
+                            <label class="custom-control-label" for="6">6 Years and above</label>
+                        </div>
+                    </div>
                 </div>
 
                 <div id="age-filter" class="filter-section" >
                     <p>Age</p>
+                    <div class="filters" >
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="18-25" name="age-filter" >
+                            <label class="custom-control-label" for="18-25">18 - 25</label>
+                        </div>
+                    </div>
+                    <div class="filters" >
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="25-35" name="age-filter" >
+                            <label class="custom-control-label" for="25-35">25 - 35</label>
+                        </div>
+                    </div>
+                    <div class="filters" >
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="35-45" name="age-filter" >
+                            <label class="custom-control-label" for="35-45">35 - 45</label>
+                        </div>
+                    </div>
+                    <div class="filters" >
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="45-55" name="age-filter" >
+                            <label class="custom-control-label" for="45-55">45 - 55</label>
+                        </div>
+                    </div>
+                    <div class="filters" >
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="55-60" name="age-filter" >
+                            <label class="custom-control-label" for="55-60">55 - 60</label>
+                        </div>
+                    </div>
+                    <div class="filters" >
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="60-200" name="age-filter" >
+                            <label class="custom-control-label" for="60-200">60 Years and above</label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -161,25 +239,45 @@
 
 @section('scripts')
     <script>
-        $('.driver').on('click', function () {
+        let drivers = @json($drivers);
+
+        $(document).on('click', '.driver', function () {
             window.location.href = `{{env('APP_URL')}}/dashboard/drivers/${$(this).attr('data-id')}`
         });
+
+        $('#search').change(function () {
+            let name = $(this).val();
+            console.log(name)
+
+            let res = drivers.filter((driver) => {
+                let driverName = driver.user.first_name + ' ' + driver.user.last_name
+                return driverName.search(name) >= 0 ? true : name.search(driverName) >= 0
+            })
+
+            renderTable(res)
+        })
 
         renderTable(drivers)
 
         function renderTable(data) {
+            let tableBody = $('#drivers')
+            tableBody.html('');
+
             data.forEach(driver => {
-                let status = ''
+                let createdDate = new Date(driver.created_at);
+                console.log(createdDate)
+
+                let status = '';
                 if (driver.available) {
                     status = `<td class="status" ><span class="badge-pill badge-warning" ><i class="fas fa-circle"></i> AVAILABLE</span></td>`;
                 }else { status = `<td class="status" ><span class="badge-pill badge-success" ><i class="fas fa-circle"></i> HIRED</span></td>`; }
 
-                $('#drivers').append(`
+                tableBody.append(`
                     <tr class="driver" data-id="${driver.id}" >
                         <td class="image" ><img src="${driver.passport}" alt="passport" ></td>
                         <td class="name" >${driver.user.first_name} ${driver.user.last_name}</td>
                         ${status}
-                        <td class="date" >02/10/2018</td>
+                        <td class="date" >${createdDate.getDate()}/${createdDate.getMonth() + 1}/${createdDate.getFullYear()}</td>
                     </tr>
                 `)
             })

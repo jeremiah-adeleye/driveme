@@ -20,7 +20,8 @@ class DriverController extends Controller
     public function list() {
         $active = 'dashboard.hireDriver';
         $drivers = Driver::with('user')->get();
-        $data = compact('active', 'drivers');
+        $locations = ['ikeja', 'amuwo-odofin', 'lekki', 'oshodi', 'ajah'];
+        $data = compact('active', 'drivers', 'locations');
 
         return view('user.drivers', $data);
     }
