@@ -26,9 +26,9 @@ Route::post('driver/register', 'Driver\AuthController@createDriver')->name('driv
 Route::post('driver/update', 'Driver\AuthController@update')->name('driver.update');
 
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('dashboard', 'DashboardController@index')->middleware('auth')->name('dashboard');
-    Route::get('dashboard/drivers', 'User\DriverController@list')->middleware('auth')->name('user.drivers');
-    Route::get('dashboard/drivers', 'User\DriverController@list')->middleware('auth')->name('user.drivers');
+    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::get('dashboard/drivers', 'User\DriverController@list')->name('user.drivers');
+    Route::get('dashboard/drivers/{id}', 'User\DriverController@showDriver')->name('user.driver');
 
     Route::get('dashboard/driver/complete-registration', 'Driver\RegistrationController@completeRegistration')
         ->middleware('auth')->name('driver.complete-registration');

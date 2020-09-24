@@ -21,6 +21,13 @@ class DriverService{
         $this->twilioService = new TwilioService();
     }
 
+    public function userGetDriver($id) {
+        $driver = Driver::find($id);
+        if ($driver != null) {
+            return $driver->with('user')->get();
+        }else return null;
+    }
+
     public function make(Array $driverRequest, $guarantorRequest) {
         $driver = Driver::create($driverRequest);
         $user = auth()->user();
