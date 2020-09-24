@@ -154,23 +154,23 @@
                     <div class="filters" >
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="1" name="experience-filter" >
-                            <label class="custom-control-label" for="1">1</label>
+                            <label class="custom-control-label" for="1">1 Year</label>
                         </div>
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="2" name="experience-filter" >
-                            <label class="custom-control-label" for="2">2</label>
+                            <label class="custom-control-label" for="2">2 Years</label>
                         </div>
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="3" name="experience-filter" >
-                            <label class="custom-control-label" for="3">3</label>
+                            <label class="custom-control-label" for="3">3 Years</label>
                         </div>
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="4" name="experience-filter" >
-                            <label class="custom-control-label" for="4">4</label>
+                            <label class="custom-control-label" for="4">4 Years</label>
                         </div>
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="5" name="experience-filter" >
-                            <label class="custom-control-label" for="5">5</label>
+                            <label class="custom-control-label" for="5">5 Years</label>
                         </div>
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="6" name="experience-filter" >

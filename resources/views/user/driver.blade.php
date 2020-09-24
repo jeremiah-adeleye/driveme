@@ -98,7 +98,7 @@
                     <p class="text-primary detail-sec-title" >Comments</p>
                 </div>
 
-                <a href="{{route('user.hire-driver')}}" >
+                <a href="{{route('user.hire-driver', ['id' => $driver->id])}}" >
                     <button class="btn btn-custom-primary" >HIRE DRIVER</button>
                 </a>
             </div>
