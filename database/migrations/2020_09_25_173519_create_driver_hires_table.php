@@ -16,6 +16,13 @@ class CreateDriverHiresTable extends Migration
         Schema::create('driver_hires', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('type');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('driver_id');
+            $table->timestamp('start_date');
+            $table->timestamp('end_date')->nullable();
+            $table->boolean('approved')->default(false);
+            $table->boolean('paid')->default(false);
         });
     }
 
