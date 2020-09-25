@@ -52,6 +52,24 @@
 @section('content')
     <p class="text-primary page-title" >Hire a Driver</p>
     <p>Choose the option that suits you best</p>
+
+    @if(session()->has('error'))
+        <div class="alert alert-danger alert-dismissible fade show">
+            {{ session('error') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+    @if(session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
     <div id="hire-types" >
         <div class="hire-type mr-2 active" id="full_term" >
             <div class="user-icon" >

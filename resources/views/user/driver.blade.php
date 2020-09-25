@@ -60,6 +60,24 @@
             <div id="driver-details" >
                 <div id="information" >
                     <p class="text-primary detail-sec-title" >Driver Information</p>
+
+                    @if(session()->has('error'))
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            {{ session('error') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+                    @if(session()->has('success'))
+                        <div class="alert alert-success alert-dismissible fade show">
+                            {{ session('success') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+
                     <div class="row" >
                         <div class="col-md-4" id="detail-value-cover" >
                             <p class="detail-label text-muted" >Name of driver</p>
