@@ -69,12 +69,12 @@
     <div id="dates" >
         <div class="form-group" id="start-date-input" >
             <label for="start-date">Start Date</label>
-            <input type="date" class="form-control input-custom-primary" id="start-date" name="start_date" aria-describedby="startDate" >
+            <input type="date" class="form-control input-custom-primary" id="start-date" name="start_date" aria-describedby="startDate" min="{{date_format(now(), 'Y-m-d')}}" >
             <small class="text-danger" id="start-date-error" ></small>
         </div>
         <div class="form-group" id="end-date-input" >
             <label for="end-date">End Date</label>
-            <input type="date" class="form-control input-custom-primary" id="end-date" name="end_date" aria-describedby="endDate" >
+            <input type="date" class="form-control input-custom-primary" id="end-date" name="end_date" aria-describedby="endDate" min="{{(new DateTime())->modify('+1 day')->format('Y-m-d')}}" >
             <small class="text-danger" id="end-date-error" ></small>
         </div>
     </div>
@@ -110,6 +110,7 @@
                 'type': hireType,
                 'start_date': startDateInput.val(),
                 'end_date': endDateInput.val(),
+                'driver_id': {{$driver->id}},
                 'reference': ''
             };
 
@@ -138,7 +139,7 @@
                     callback: function(response){
                         data.reference = response.reference
                         console.log(data)
-                        /*post()*/
+                        post("{{route('user.hire-driver-payment')}}", data)
                     }
                 });
                 handler.openIframe();
@@ -162,6 +163,12 @@
                     form.appendChild(hiddenField);
                 }
             }
+
+            const hiddenField = document.createElement('input');
+            hiddenField.type = 'hidden';
+            hiddenField.name = '_token';
+            hiddenField.value = "{{csrf_token()}}";
+            form.appendChild(hiddenField)
 
             document.body.appendChild(form);
             form.submit();

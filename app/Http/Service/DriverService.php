@@ -6,8 +6,10 @@ namespace App\Http\Service;
 
 use App\ApprovalRejectionMessage;
 use App\Driver;
+use App\DriverHire;
 use App\Guarantor;
 use App\Notification;
+use App\Transaction;
 use App\User;
 use Illuminate\Http\Client\Request;
 
@@ -189,5 +191,89 @@ class DriverService{
             }
         }catch (\Exception $e) {
         }
+    }
+
+    public function hireDriverPayment($hireRequest) {
+        $hireRequest['user_id'] = auth()->id();
+
+        if (!$this->validateTransaction($hireRequest['reference'])) {
+            return [
+                'status' => false,
+                'message' => 'Invalid reference number'
+            ];
+        }
+
+        $paystackResponse = $this->getTransactionDetails($hireRequest['reference']);
+        if ($paystackResponse) {
+            if ($paystackResponse['status']) {
+                $data = $paystackResponse['data'];
+                if ($data['status'] == 'success') {
+                    $this->saveDriverHire($hireRequest);
+                    return [
+                        'status' => true,
+                        'message' => 'Payment successful'
+                    ];
+                }else $message = $data['gateway_response'];
+            }else $message = $paystackResponse['message'];
+        }else $message = 'An error occurred';
+
+        $this->saveTransaction($hireRequest['reference'], false);
+        return [
+            'status' => false,
+            'message' => $message
+        ];
+    }
+
+    public function validateTransaction($reference) {
+        $transaction = Transaction::whereReference($reference)->first();
+        return $transaction == null;
+    }
+
+    public function getTransactionDetails($reference) {
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.paystack.co/transaction/verify/".$reference,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: Bearer sk_test_3b2ff018bb00c85bbf3bd3ed91d830947218f098",
+                "Cache-Control: no-cache",
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+            return false;
+        } else {
+            return json_decode($response, true);
+        }
+    }
+
+    private function saveDriverHire($hireRequest){
+        $driver = Driver::find($hireRequest['driver_id']);
+        $user = auth()->user();
+
+        if ($driver && $user) {
+            $driverHire = DriverHire::make($hireRequest);
+            $driverHire->save();
+            $this->saveTransaction($hireRequest['reference'], true);
+        }
+    }
+
+    private function saveTransaction($reference, bool $status){
+        $transaction = Transaction::make([
+            'reference' => $reference,
+            'status' => $status ? 'success' : 'failed'
+        ]);
+        $transaction->save();
     }
 }

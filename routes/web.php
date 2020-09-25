@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('dashboard/drivers', 'User\DriverController@list')->name('user.drivers');
     Route::get('dashboard/drivers/{id}', 'User\DriverController@showDriver')->name('user.driver');
     Route::get('dashboard/drivers/{id}/hire', 'User\DriverController@hireDriver')->name('user.hire-driver');
+    Route::post('dashboard/drivers/hire', 'User\DriverController@hireDriverPayment')->name('user.hire-driver-payment');
 
     Route::get('dashboard/driver/complete-registration', 'Driver\RegistrationController@completeRegistration')
         ->middleware('auth')->name('driver.complete-registration');

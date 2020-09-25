@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Driver;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\HireDriverRequest;
 use App\Http\Service\DriverService;
 use App\User;
 use Illuminate\Http\Request;
@@ -44,5 +45,14 @@ class DriverController extends Controller
         if ($driver != null) {
             return view('user.hire-driver', $data);
         }else return redirect()->route('user.drivers');
+    }
+
+    public function hireDriverPayment(HireDriverRequest $request) {
+        $hireRequest = $request->only('driver_id', 'type', 'start_date', 'end_date', 'reference');
+        $response = $this->driverService->hireDriverPayment($hireRequest);
+
+        if ($response['status']) {
+            return redirect()->intended(route('user.driver', ['id' => $hireRequest['driver_id']]))->with('success', $response['message']);
+        }else return redirect()->intended(route('user.hire-driver', ['id' => $hireRequest['driver_id']]))->with('error', $response['message']);
     }
 }
