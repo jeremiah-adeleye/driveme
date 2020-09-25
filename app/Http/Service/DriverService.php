@@ -233,7 +233,7 @@ class DriverService{
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-                "Authorization: Bearer sk_test_3b2ff018bb00c85bbf3bd3ed91d830947218f098",
+                "Authorization: Bearer ".env('PAYSTACK_SECRET_KEY'),
                 "Cache-Control: no-cache",
             ),
         ));
