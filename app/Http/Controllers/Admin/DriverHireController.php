@@ -49,7 +49,7 @@ class DriverHireController extends Controller{
     public function terminateEmployment($id) {
         $hireRequest = DriverHire::find($id);
         if ($hireRequest) {
-            if (!$hireRequest->approved) {
+            if ($hireRequest->approved && $hireRequest->active) {
                 $hireRequest->active = false;
                 $hireRequest->save();
             }
