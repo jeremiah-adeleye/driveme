@@ -76,4 +76,8 @@ class User extends Authenticatable
     public function notifications(){
         return $this->hasMany('App\Notification');
     }
+
+    public function driverHire() {
+        return $this->hasMany('App\DriverHire');
+    }
 }

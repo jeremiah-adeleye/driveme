@@ -67,4 +67,8 @@ class Driver extends Model
     public function guarantor() {
         return $this->hasOne('App\Guarantor');
     }
+
+    public function hires() {
+        return $this->hasMany('App\DriverHire');
+    }
 }

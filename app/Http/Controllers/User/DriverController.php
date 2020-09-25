@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Driver;
+use App\DriverHire;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\HireDriverRequest;
 use App\Http\Service\DriverService;
@@ -30,7 +31,11 @@ class DriverController extends Controller
     public function showDriver($id) {
         $active = 'dashboard.hireDriver';
         $driver = $this->driverService->userGetDriver($id);
-        $data = compact('active', 'driver');
+        $hireDriver = auth()->user()->driverHire()->where([['approved', false], ['driver_id', $driver->id]])->first();
+        if ($hireDriver == null) {
+            $pendingRequest = false;
+        }else $pendingRequest = true;
+        $data = compact('active', 'driver', 'pendingRequest');
 
         if ($driver != null) {
             return view('user.driver', $data);

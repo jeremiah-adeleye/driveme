@@ -116,9 +116,13 @@
                     <p class="text-primary detail-sec-title" >Comments</p>
                 </div>
 
-                <a href="{{route('user.hire-driver', ['id' => $driver->id])}}" >
-                    <button class="btn btn-custom-primary" >HIRE DRIVER</button>
-                </a>
+                @if($pendingRequest)
+                    <button class="btn btn-custom-warning" >PENDING REQUEST</button>
+                @else
+                    <a href="{{route('user.hire-driver', ['id' => $driver->id])}}" >
+                        <button class="btn btn-custom-primary" >HIRE DRIVER</button>
+                    </a>
+                @endif
             </div>
         </div>
     </div>

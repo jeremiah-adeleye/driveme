@@ -23,6 +23,7 @@ class CreateDriverHiresTable extends Migration
             $table->timestamp('end_date')->nullable();
             $table->boolean('approved')->default(false);
             $table->string('reference');
+            $table->string('active')->default(false);
         });
     }
 
