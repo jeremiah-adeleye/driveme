@@ -17,10 +17,12 @@ class DriverService{
 
     private $fileUploadService;
     private $twilioService;
+    private $notificationService;
 
     public function __construct(){
         $this->fileUploadService = new FileUploadService();
         $this->twilioService = new TwilioService();
+        $this->notificationService = new NotificationService();
     }
 
     public function userGetDriver($id) {
@@ -43,11 +45,10 @@ class DriverService{
         }catch (\Exception $e) {
         }
 
-        $notification = new Notification();
         $fullName = ucfirst($user->first_name .' '. $user->last_name);
-        $notification->notification = "$fullName has submitted application to be a driver";
-        $notification->link = getenv('APP_URL') .'/dashboard/admin/drivers/'.$driver->id;
-        $notification->save();
+        $notification = "$fullName has submitted application to be a driver";
+        $link = getenv('APP_URL') .'/dashboard/admin/drivers/'.$driver->id;
+        $this->notificationService->newNotification($notification, $link);
         $this->saveGuarantor(new Guarantor(), $guarantorRequest, $driver->id);
 
         return $driver;
@@ -63,7 +64,7 @@ class DriverService{
         $this->saveGuarantor($driver->guarantor, $guarantor_request, $driver->id);
 
         $fullName = ucfirst($user->first_name .' '. $user->last_name);
-        $this->saveNotification(
+        $this->notificationService->newNotification(
             "$fullName has re-submitted his/her profile for registration",
             getenv('APP_URL') .'/dashboard/admin/drivers/'.$driver->id
         );
@@ -78,7 +79,7 @@ class DriverService{
             $this->updateDetails($driverRequest);
 
             $fullName = ucfirst($user->first_name .' '. $user->last_name);
-            $this->saveNotification(
+            $this->notificationService->newNotification(
                 "$fullName has updated his/her profile",
                 getenv('APP_URL') .'/dashboard/admin/drivers/'.$driver->id
             );
@@ -105,15 +106,6 @@ class DriverService{
         $driver->vehicle_type = $driverRequest['vehicle_type'];
         $driver->dob = $driverRequest['dob'];
         $driver->save();
-    }
-
-    private function saveNotification($message, $link, $userId = 1) {
-        $notification = new Notification();
-
-        $notification->notification = $message;
-        $notification->link = $link;
-        $notification->user_id = $userId;
-        $notification->save();
     }
 
     private function uploadPassportAndCv(Driver $driver, $driverRequest) {
@@ -265,6 +257,11 @@ class DriverService{
         if ($driver && $user) {
             $driverHire = DriverHire::make($hireRequest);
             $driverHire->save();
+
+            $notification = ucfirst($user->first_name. ' '. $user->last_name). ' has requested to Hire A driver';
+            $link = env('APP_URL').'/dashboard/admin/hire-request/'.$driverHire->id;
+
+            $this->notificationService->newNotification($notification, $link);
             $this->saveTransaction($hireRequest['reference'], true);
         }
     }
