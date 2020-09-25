@@ -31,12 +31,10 @@ class DriverController extends Controller
     public function showDriver($id) {
         $active = 'dashboard.hireDriver';
         $driver = $this->driverService->userGetDriver($id);
-        $hireDriver = auth()->user()->driverHire()->where([['approved', false], ['driver_id', $driver->id]])->first();
-        if ($hireDriver == null) {
-            $pendingRequest = false;
-        }else $pendingRequest = true;
-        $data = compact('active', 'driver', 'pendingRequest');
+        $pendingRequest = $this->driverService->userPendingEmploymentRequest($id);
+        $activeEmployment = $this->driverService->userActiveEmployment($id);
 
+        $data = compact('active', 'driver', 'pendingRequest', 'activeEmployment');
         if ($driver != null) {
             return view('user.driver', $data);
         }else return redirect()->route('user.drivers');
@@ -48,6 +46,10 @@ class DriverController extends Controller
         $data = compact('active', 'driver');
 
         if ($driver != null) {
+            $pendingRequest = $this->driverService->userPendingEmploymentRequest($id);
+            $activeEmployment = $this->driverService->userActiveEmployment($id);
+            if ($pendingRequest || $activeEmployment) return redirect()->route('user.driver', ['id' => $driver->id]);
+
             return view('user.hire-driver', $data);
         }else return redirect()->route('user.drivers');
     }

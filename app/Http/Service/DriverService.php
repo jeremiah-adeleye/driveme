@@ -276,4 +276,18 @@ class DriverService{
         ]);
         $transaction->save();
     }
+
+    public function userActiveEmployment($driverId) {
+        $hireDriver = auth()->user()->driverHire()->where([['active', true], ['approved', true], ['driver_id', $driverId]])->first();
+        if ($hireDriver == null) {
+            return false;
+        }else return true;
+    }
+
+    public function userPendingEmploymentRequest($driverId) {
+        $hireDriver = auth()->user()->driverHire()->where([['approved', false], ['driver_id', $driverId]])->first();
+        if ($hireDriver == null) {
+            return false;
+        }else return true;
+    }
 }

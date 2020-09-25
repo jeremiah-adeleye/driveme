@@ -116,7 +116,9 @@
                     <p class="text-primary detail-sec-title" >Comments</p>
                 </div>
 
-                @if($pendingRequest)
+                @if($activeEmployment)
+                    <button class="btn btn-custom-success" >ACTIVE EMPLOYMENT</button>
+                @elseif($pendingRequest)
                     <button class="btn btn-custom-warning" >PENDING REQUEST</button>
                 @else
                     <a href="{{route('user.hire-driver', ['id' => $driver->id])}}" >
