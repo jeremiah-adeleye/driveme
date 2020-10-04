@@ -128,7 +128,7 @@
                 'type': hireType,
                 'start_date': startDateInput.val(),
                 'end_date': endDateInput.val(),
-                'driver_id': [{{$driver->id}}],
+                'driver_id': ['{{$driver->id}}'],
                 'reference': ''
             };
 
@@ -156,7 +156,6 @@
 
                     callback: function(response){
                         data.reference = response.reference
-                        console.log(data)
                         post("{{route('user.hire-driver-payment')}}", data)
                     }
                 });

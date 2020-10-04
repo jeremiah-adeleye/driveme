@@ -251,15 +251,21 @@ class DriverService{
     }
 
     private function saveDriverHire($hireRequest){
-        $driver = Driver::whereIdIn($hireRequest['driver_ids']);
+        $driverIds = explode(',', $hireRequest['driver_id']);
+        $drivers = Driver::whereIn('id', $driverIds)->get();
+
+        unset($hireRequest['driver_id']);
         $user = auth()->user();
 
-        if ($driver && $user) {
+        if ($drivers != null  && $user) {
             $driverHire = DriverHire::make($hireRequest);
             $driverHire->save();
 
-            dd($driverHire);
+            foreach ($drivers as $driver) {
+                $driverHire->drivers()->attach($driver);
+            }
 
+            $driverHire->save();
             $notification = ucfirst($user->first_name. ' '. $user->last_name). ' has requested to Hire A driver';
             $link = env('APP_URL').'/dashboard/admin/hire-request/'.$driverHire->id;
 

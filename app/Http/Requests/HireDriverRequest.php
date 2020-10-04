@@ -24,7 +24,7 @@ class HireDriverRequest extends FormRequest
     public function rules()
     {
         return [
-            'driver_id' => 'required|integer',
+            'driver_id' => 'required|string',
             'type' => 'required|string',
             'start_date' => 'date|required',
             'end_date' => 'date|nullable',
