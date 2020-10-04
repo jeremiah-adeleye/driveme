@@ -128,7 +128,7 @@
                 'type': hireType,
                 'start_date': startDateInput.val(),
                 'end_date': endDateInput.val(),
-                'driver_id': {{$driver->id}},
+                'driver_id': [{{$driver->id}}],
                 'reference': ''
             };
 

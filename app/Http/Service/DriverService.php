@@ -251,12 +251,14 @@ class DriverService{
     }
 
     private function saveDriverHire($hireRequest){
-        $driver = Driver::find($hireRequest['driver_id']);
+        $driver = Driver::whereIdIn($hireRequest['driver_ids']);
         $user = auth()->user();
 
         if ($driver && $user) {
             $driverHire = DriverHire::make($hireRequest);
             $driverHire->save();
+
+            dd($driverHire);
 
             $notification = ucfirst($user->first_name. ' '. $user->last_name). ' has requested to Hire A driver';
             $link = env('APP_URL').'/dashboard/admin/hire-request/'.$driverHire->id;
@@ -282,9 +284,13 @@ class DriverService{
     }
 
     public function userPendingEmploymentRequest($driverId) {
-        $hireDriver = auth()->user()->driverHire()->where([['approved', false], ['driver_id', $driverId]])->first();
-        if ($hireDriver == null) {
-            return false;
-        }else return true;
+        $driver = Driver::find($driverId);
+
+        if ($driver != null) {
+            $hireDriver = $driver->hires()->where([['approved', false], ['user_id', auth()->id()]])->first();
+            if ($hireDriver == null) {
+                return false;
+            }else return true;
+        }else return false;
     }
 }

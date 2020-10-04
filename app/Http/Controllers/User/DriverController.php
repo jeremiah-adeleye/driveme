@@ -55,7 +55,7 @@ class DriverController extends Controller
     }
 
     public function hireDriverPayment(HireDriverRequest $request) {
-        $hireRequest = $request->only('driver_id', 'type', 'start_date', 'end_date', 'reference');
+        $hireRequest = $request->only('driver_ids', 'type', 'start_date', 'end_date', 'reference');
         $response = $this->driverService->hireDriverPayment($hireRequest);
 
         if ($response['status']) {
