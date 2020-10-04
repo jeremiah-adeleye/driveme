@@ -277,10 +277,14 @@ class DriverService{
     }
 
     public function userActiveEmployment($driverId) {
-        $hireDriver = auth()->user()->driverHire()->where([['active', true], ['approved', true], ['driver_id', $driverId]])->first();
-        if ($hireDriver == null) {
-            return false;
-        }else return true;
+        $driver = Driver::find($driverId);
+
+        if ($driver != null) {
+            $hireDriver = $driver->hires()->where([['active', true], ['approved', true], ['user_id', auth()->id()]])->first();
+            if ($hireDriver == null) {
+                return false;
+            }else return true;
+        }else return false;
     }
 
     public function userPendingEmploymentRequest($driverId) {
