@@ -305,19 +305,31 @@ class DriverService{
         }else return false;
     }
 
+    public function inCart($id){
+        $user = auth()->user();
+
+        if ($user != null) {
+            $inCart = $user->cart()->where('driver_id', $id)->first();
+            if ($inCart == null) {
+                return false;
+            }else return true;
+        }else return false;
+    }
+
     public function addToCart(Driver $driver){
         $user = auth()->user();
         if ($user != null) {
-            $driverCartItem = DriverCart::where([['user_id', $user->id], ['driver_id', $driver->id]]);
-            if ($driverCartItem != null) {
-                DriverCart::make([$user->id, $driver->id]);
+            $driverCartItem = DriverCart::where([['user_id', $user->id], ['driver_id', $driver->id]])->first();
+            if ($driverCartItem == null) {
+                $driverCartItem = DriverCart::make(['user_id' => $user->id, 'driver_id' => $driver->id]);
+                $driverCartItem->save();
             }
         }
     }
 
     public function removeFromCart(Driver $driver){
         $user = auth()->user();
-        $driverCartItem = DriverCart::where([['user_id', $user->id], ['driver_id', $driver->id]]);
+        $driverCartItem = DriverCart::where([['user_id', $user->id], ['driver_id', $driver->id]])->first();
 
         if ($driverCartItem != null) {
             try {

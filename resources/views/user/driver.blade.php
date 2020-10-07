@@ -120,9 +120,13 @@
                     <button class="btn btn-custom-success" >ACTIVE EMPLOYMENT</button>
                 @elseif($pendingRequest)
                     <button class="btn btn-custom-warning" >PENDING REQUEST</button>
+                @elseif(!$inCart)
+                    <a href="{{route('user.cart.add', ['id' => $driver->id])}}" >
+                        <button class="btn btn-custom-primary" >ADD TO LIST</button>
+                    </a>
                 @else
-                    <a href="{{route('user.hire-driver', ['id' => $driver->id])}}" >
-                        <button class="btn btn-custom-primary" >HIRE DRIVER</button>
+                    <a href="{{route('user.cart.remove', ['id' => $driver->id])}}" >
+                        <button class="btn btn-custom-primary" >REMOVE FROM LIST</button>
                     </a>
                 @endif
             </div>

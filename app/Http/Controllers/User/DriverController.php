@@ -33,8 +33,9 @@ class DriverController extends Controller
         $driver = $this->driverService->userGetDriver($id);
         $pendingRequest = $this->driverService->userPendingEmploymentRequest($id);
         $activeEmployment = $this->driverService->userActiveEmployment($id);
+        $inCart = $this->driverService->inCart($id);
 
-        $data = compact('active', 'driver', 'pendingRequest', 'activeEmployment');
+        $data = compact('active', 'driver', 'pendingRequest', 'activeEmployment', 'inCart');
         if ($driver != null) {
             return view('user.driver', $data);
         }else return redirect()->route('user.drivers');
@@ -65,24 +66,24 @@ class DriverController extends Controller
 
     public function viewCart() {
         $user = auth()->user();
-        dd($user->cart());
+        dd($user->cart()->get());
     }
 
-    public function addToCart($driverId) {
-        $driver = Driver::find($driverId);
+    public function addToCart($id) {
+        $driver = Driver::find($id);
 
         if ($driver != null) {
             $this->driverService->addToCart($driver);
-            return redirect()->intended()->with('success', 'driver added to cart');
+            return redirect()->back()->with('success', 'driver added to cart');
         }else return redirect()->route('user.drivers')->with('error', 'Invalid driver id');
     }
 
-    public function removeFromCart($driverId) {
-        $driver = Driver::find($driverId);
+    public function removeFromCart($id) {
+        $driver = Driver::find($id);
 
         if ($driver != null) {
             $this->driverService->removeFromCart($driver);
-            return redirect()->intended()->with('success', 'driver removed from cart');
+            return redirect()->back()->with('success', 'driver removed from cart');
         }else return redirect()->route('user.drivers')->with('error', 'invalid driver id');
     }
 }
