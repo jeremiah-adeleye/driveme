@@ -41,8 +41,9 @@ class DriverController extends Controller
         }else return redirect()->route('user.drivers');
     }
 
-    public function hireDriver($id) {
+    public function hireDriver() {
         $active = 'dashboard.hireDriver';
+        $id = 2;
         $driver = $this->driverService->userGetDriver($id);
         $data = compact('active', 'driver');
 

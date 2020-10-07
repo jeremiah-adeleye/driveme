@@ -91,8 +91,8 @@
             </tbody>
         </table>
     </div>
-    <div id="proceed-button" >
-        <a href="{{route('user.hire-driver')}}" ><button type="button" class="btn btn-custom-primary">VIEW LIST</button></a>
+    <div id="proceed-button"  >
+        <a href="{{route('user.hire-driver')}}"><button type="button" class="btn btn-custom-primary mt-5" >PROCEED</button></a>
     </div>
 @endsection
 
