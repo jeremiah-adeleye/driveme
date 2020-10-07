@@ -81,4 +81,48 @@ class PaymentService{
         $transaction = Transaction::make(['reference' => $reference]);
         $transaction->save();
     }
+
+    public function validateTransaction($reference) {
+        $transaction = Transaction::whereReference($reference)->first();
+        if ($transaction != null) {
+            if (!$transaction->used) return true;
+        }
+
+        return false;
+    }
+
+    public function getTransactionDetails($reference) {
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.paystack.co/transaction/verify/".$reference,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: Bearer ".env('PAYSTACK_SECRET_KEY'),
+                "Cache-Control: no-cache",
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+            return false;
+        } else {
+            return json_decode($response, true);
+        }
+    }
+
+    public function updateTransaction($reference, bool $status) {
+        $transaction = Transaction::whereReference($reference)->first();
+        $transaction->status = $status ? 'success' : 'failed';
+        $transaction->save();
+    }
 }

@@ -19,11 +19,13 @@ class DriverService{
     private $fileUploadService;
     private $twilioService;
     private $notificationService;
+    private $paymentService;
 
     public function __construct(){
         $this->fileUploadService = new FileUploadService();
         $this->twilioService = new TwilioService();
         $this->notificationService = new NotificationService();
+        $this->paymentService = new PaymentService();
     }
 
     public function userGetDriver($id) {
@@ -189,14 +191,14 @@ class DriverService{
     public function hireDriverPayment($hireRequest) {
         $hireRequest['user_id'] = auth()->id();
 
-        if (!$this->validateTransaction($hireRequest['reference'])) {
+        if (!$this->paymentService->validateTransaction($hireRequest['reference'])) {
             return [
                 'status' => false,
                 'message' => 'Invalid reference number'
             ];
         }
 
-        $paystackResponse = $this->getTransactionDetails($hireRequest['reference']);
+        $paystackResponse = $this->paymentService->getTransactionDetails($hireRequest['reference']);
         if ($paystackResponse) {
             if ($paystackResponse['status']) {
                 $data = $paystackResponse['data'];
@@ -210,45 +212,11 @@ class DriverService{
             }else $message = $paystackResponse['message'];
         }else $message = 'An error occurred';
 
-        $this->saveTransaction($hireRequest['reference'], false);
+        $this->paymentService->updateTransaction($hireRequest['reference'], false);
         return [
             'status' => false,
             'message' => $message
         ];
-    }
-
-    public function validateTransaction($reference) {
-        $transaction = Transaction::whereReference($reference)->first();
-        return $transaction == null;
-    }
-
-    public function getTransactionDetails($reference) {
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.paystack.co/transaction/verify/".$reference,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_HTTPHEADER => array(
-                "Authorization: Bearer ".env('PAYSTACK_SECRET_KEY'),
-                "Cache-Control: no-cache",
-            ),
-        ));
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-        curl_close($curl);
-
-        if ($err) {
-            echo "cURL Error #:" . $err;
-            return false;
-        } else {
-            return json_decode($response, true);
-        }
     }
 
     private function saveDriverHire($hireRequest){
@@ -271,16 +239,8 @@ class DriverService{
             $link = env('APP_URL').'/dashboard/admin/hire-request/'.$driverHire->id;
 
             $this->notificationService->newNotification($notification, $link);
-            $this->saveTransaction($hireRequest['reference'], true);
+            $this->paymentService->updateTransaction($hireRequest['reference'], true);
         }
-    }
-
-    private function saveTransaction($reference, bool $status){
-        $transaction = Transaction::make([
-            'reference' => $reference,
-            'status' => $status ? 'success' : 'failed'
-        ]);
-        $transaction->save();
     }
 
     public function userActiveEmployment($driverId) {

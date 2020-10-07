@@ -73,7 +73,7 @@ class DriverController extends Controller
         $response = $this->driverService->hireDriverPayment($hireRequest);
 
         if ($response['status']) {
-            return redirect()->intended(route('user.driver', ['id' => $hireRequest['driver_id']]))->with('success', $response['message']);
+            return redirect()->intended(route('user.drivers'))->with('success', $response['message']);
         }else return redirect()->intended(route('user.hire-driver', ['id' => $hireRequest['driver_id']]))->with('error', $response['message']);
     }
 

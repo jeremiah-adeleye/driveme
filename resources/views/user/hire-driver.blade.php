@@ -164,12 +164,12 @@
                     let body = await response.json()
 
                     let handler = PaystackPop.setup({
+                        ref: body.reference,
                         key: 'pk_test_87b43cb03070ea4c4f584656222db9aa18ff7472', // Replace with your public key
                         email: user.email,
                         amount: body.amount * 100,
                         firstname: user.first_name,
                         lastname: user.last_name,
-                        reference: body.reference,
 
                         onClose: function(){
 
