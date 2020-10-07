@@ -31,9 +31,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('dashboard/drivers/{id}', 'User\DriverController@showDriver')->name('user.driver');
     Route::get('dashboard/drivers/{id}/hire', 'User\DriverController@hireDriver')->name('user.hire-driver');
     Route::post('dashboard/drivers/hire', 'User\DriverController@hireDriverPayment')->name('user.hire-driver-payment');
-    Route::get('dashboard/cart/add', 'User\DriverController@addToCart')->name('user.cart.add');
-    Route::get('dashboard/cart/remove', 'User\DriverController@removeFromCart')->name('user.cart.remove');
-    Route::get('dashboard/cart', 'User\DriverController@viewCart')->name('user.cart');
+    Route::get('cart/add', 'User\DriverController@addToCart')->name('user.cart.add');
+    Route::get('cart/remove', 'User\DriverController@removeFromCart')->name('user.cart.remove');
+    Route::get('cart', 'User\DriverController@viewCart')->name('user.cart');
 
     Route::get('dashboard/driver/complete-registration', 'Driver\RegistrationController@completeRegistration')
         ->middleware('auth')->name('driver.complete-registration');
