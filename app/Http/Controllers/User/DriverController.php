@@ -43,6 +43,13 @@ class DriverController extends Controller
 
     public function hireDriver() {
         $active = 'dashboard.hireDriver';
+        $user = auth()->user();
+        $cartItems = $user->cart();
+        $drivers = Driver::whereIn('id', $cartItems->pluck('driver_id'))->get();
+        if (sizeof($drivers) % 2 != 0) {
+            return redirect()->route('user.drivers')->with('error', 'You must select double the number of drivers you wish to hire');
+        }
+
         $id = 2;
         $driver = $this->driverService->userGetDriver($id);
         $data = compact('active', 'driver');

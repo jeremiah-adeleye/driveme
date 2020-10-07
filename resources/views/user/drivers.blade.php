@@ -137,6 +137,25 @@
         </div>
     </div>
 
+    @if(session()->has('error'))
+        <div class="alert alert-danger alert-dismissible fade show">
+            {{ session('error') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+    @if(session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+
+    <p>NB: Select double the number of drivers you wish to hire</p>
+
     <div class="row" >
         <div class="col-lg-3" id="filters-cover" >
             <p class="text-primary" id="filters-title" >FILTERS DRIVERS LIST BY</p>
