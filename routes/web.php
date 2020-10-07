@@ -24,6 +24,7 @@ Route::post('login', 'AuthController@authenticate')->name('login');
 Route::post('register', 'AuthController@registerUser');
 Route::post('driver/register', 'Driver\AuthController@createDriver')->name('driver.register');
 Route::post('driver/update', 'Driver\AuthController@update')->name('driver.update');
+Route::get('corporate/register', 'Corporate\AuthController@register')->name('corporate.register');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
