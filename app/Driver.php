@@ -48,6 +48,10 @@ use Illuminate\Support\Carbon;
  * @property string $state
  * @property-read \App\Guarantor|null $guarantor
  * @method static Builder|Driver whereState($value)
+ * @property int $available
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\DriverHire[] $hires
+ * @property-read int|null $hires_count
+ * @method static Builder|Driver whereAvailable($value)
  */
 class Driver extends Model
 {

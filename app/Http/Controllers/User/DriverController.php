@@ -62,4 +62,27 @@ class DriverController extends Controller
             return redirect()->intended(route('user.driver', ['id' => $hireRequest['driver_id']]))->with('success', $response['message']);
         }else return redirect()->intended(route('user.hire-driver', ['id' => $hireRequest['driver_id']]))->with('error', $response['message']);
     }
+
+    public function viewCart() {
+        $user = auth()->user();
+        dd($user->cart());
+    }
+
+    public function addToCart($driverId) {
+        $driver = Driver::find($driverId);
+
+        if ($driver != null) {
+            $this->driverService->addToCart($driver);
+            return redirect()->intended()->with('success', 'driver added to cart');
+        }else return redirect()->route('user.drivers')->with('error', 'Invalid driver id');
+    }
+
+    public function removeFromCart($driverId) {
+        $driver = Driver::find($driverId);
+
+        if ($driver != null) {
+            $this->driverService->removeFromCart($driver);
+            return redirect()->intended()->with('success', 'driver removed from cart');
+        }else return redirect()->route('user.drivers')->with('error', 'invalid driver id');
+    }
 }

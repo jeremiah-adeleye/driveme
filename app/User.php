@@ -80,4 +80,8 @@ class User extends Authenticatable
     public function driverHire() {
         return $this->hasMany('App\DriverHire');
     }
+
+    public function cart() {
+        return $this->hasMany('App\DriverCart');
+    }
 }

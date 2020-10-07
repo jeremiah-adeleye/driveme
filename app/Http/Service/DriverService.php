@@ -6,6 +6,7 @@ namespace App\Http\Service;
 
 use App\ApprovalRejectionMessage;
 use App\Driver;
+use App\DriverCart;
 use App\DriverHire;
 use App\Guarantor;
 use App\Notification;
@@ -302,5 +303,27 @@ class DriverService{
                 return false;
             }else return true;
         }else return false;
+    }
+
+    public function addToCart(Driver $driver){
+        $user = auth()->user();
+        if ($user != null) {
+            $driverCartItem = DriverCart::where([['user_id', $user->id], ['driver_id', $driver->id]]);
+            if ($driverCartItem != null) {
+                DriverCart::make([$user->id, $driver->id]);
+            }
+        }
+    }
+
+    public function removeFromCart(Driver $driver){
+        $user = auth()->user();
+        $driverCartItem = DriverCart::where([['user_id', $user->id], ['driver_id', $driver->id]]);
+
+        if ($driverCartItem != null) {
+            try {
+                $driverCartItem->delete();
+            } catch (\Exception $e) {
+            }
+        }
     }
 }
