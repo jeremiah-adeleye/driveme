@@ -4,6 +4,7 @@
 namespace App\Http\Service;
 
 
+use App\Transaction;
 use App\User;
 use Carbon\Traits\Date;
 
@@ -19,6 +20,7 @@ class PaymentService{
                 $reference = $this->generateTransaction($amount, $user->email);
                 if ($reference['status'] == true) {
                     $transactionData = $reference['data'];
+                    $this->createTransaction($transactionData['reference']);
                     return [
                         'reference' => $transactionData['reference'],
                         'amount' => $amount
@@ -71,6 +73,12 @@ class PaymentService{
         curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
 
         //execute post
+
         return json_decode(curl_exec($ch), true);
+    }
+
+    public function createTransaction($reference) {
+        $transaction = Transaction::make(['reference' => $reference]);
+        $transaction->save();
     }
 }

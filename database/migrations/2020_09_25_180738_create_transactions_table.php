@@ -17,7 +17,8 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('reference');
-            $table->string('status');
+            $table->string('status')->default('pending');
+            $table->boolean('used')->default(false);
         });
     }
 
