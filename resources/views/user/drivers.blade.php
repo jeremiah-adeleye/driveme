@@ -91,6 +91,14 @@
             padding-left: 0.5rem;
             padding-right: 0.5rem;
         }
+
+        #search-result {
+            height: 80vh;
+        }
+
+        #view-list-button {
+            text-align: right;
+        }
     </style>
     <script>
     </script>
@@ -220,7 +228,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-9" id="search_result" >
+        <div class="col-lg-9" id="search-result" >
             <table class="table table-striped table-borderless">
                 <thead>
                 <tr>
@@ -234,6 +242,9 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div id="view-list-button" >
+        <a href="{{route('user.cart')}}" ><button type="button" class="btn btn-custom-primary">VIEW LIST</button></a>
     </div>
 @endsection
 

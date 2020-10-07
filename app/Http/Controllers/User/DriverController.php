@@ -65,8 +65,13 @@ class DriverController extends Controller
     }
 
     public function viewCart() {
+        $active = 'dashboard.hireDriver';
         $user = auth()->user();
-        dd($user->cart()->get());
+        $cartItems = $user->cart();
+        $drivers = Driver::whereIn('id', $cartItems->pluck('driver_id'))->get();
+        $data = compact('active', 'drivers');
+
+        return view('user.cart', $data);
     }
 
     public function addToCart($id) {
