@@ -7,16 +7,20 @@ use App\DriverHire;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\HireDriverRequest;
 use App\Http\Service\DriverService;
+use App\Http\Service\PaymentService;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 
 class DriverController extends Controller
 {
 
     private $driverService;
+    private $paymentService;
 
     public function __construct(){
         $this->driverService = new DriverService();
+        $this->paymentService = new PaymentService();
     }
 
     public function list() {
@@ -99,5 +103,31 @@ class DriverController extends Controller
             $this->driverService->removeFromCart($driver);
             return redirect()->back()->with('success', 'driver removed from cart');
         }else return redirect()->route('user.drivers')->with('error', 'invalid driver id');
+    }
+
+    public function getHireDriverReference(Request $request) {
+        $data = $request->only('start_date', 'end_date', 'type', 'user_id', 'driver_id');
+
+        if ($request->has('start_date') && $data['start_date'] != null) {
+            $startDate = Date::parse($data['start_date']);
+            if ($startDate <= Date::now()) {
+                return response('Bad request', 400);
+            }else {
+                $data['start_date'] = $startDate;
+                if ($data['type'] == 'short_term') {
+                    if ($request->has('end_date') && $data['end_date'] != null) {
+                        $endDate = Date::parse($data['end_date']);
+                        if ($endDate <= $startDate) {
+                            return response('Bad request', 400);
+                        }else $data['end_date'] = $endDate;
+                    }else return response('Bad request', 400);
+                }
+            }
+        }else return response('Bad request', 400);
+
+        $reference = $this->paymentService->initHireRequestPayment($data);
+        if ($reference != null) {
+            return response()->json($reference);
+        }else return response('Error occurred',500);
     }
 }

@@ -110,8 +110,6 @@
         let user = @json(auth()->user());
         let error = false;
 
-        console.log(drivers)
-
         $('.hire-type').on('click', function () {
             $('.hire-type').removeClass('active');
             $(this).addClass('active');
@@ -123,7 +121,8 @@
             }else endDate.css('display', 'block');
         });
 
-        let hireDriver = () => {
+        let hireDriver = async () => {
+
             error = false
 
             let data = {
@@ -131,6 +130,7 @@
                 'start_date': startDateInput.val(),
                 'end_date': endDateInput.val(),
                 'driver_id': {{$driverIds}},
+                'user_id': {{auth()->id()}},
                 'reference': ''
             };
 
@@ -144,8 +144,26 @@
                 error = true;
             }
 
-            if (!error) {
-                let handler = PaystackPop.setup({
+
+            if (true) {
+
+                console.log("{{route('user.hire-driver.get-reference')}}")
+                console.log(data)
+
+                let response = await fetch("{{route('user.hire-driver.get-reference')}}", {
+                    headers : {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                })
+
+                let res = await response.json()
+                console.log(res)
+
+
+                /*let handler = PaystackPop.setup({
                     key: 'pk_test_87b43cb03070ea4c4f584656222db9aa18ff7472', // Replace with your public key
                     email: user.email,
                     amount: 2000 * 100,
@@ -161,7 +179,7 @@
                         post("{{route('user.hire-driver-payment')}}", data)
                     }
                 });
-                handler.openIframe();
+                handler.openIframe();*/
             }
         }
 
