@@ -145,7 +145,7 @@
             }
 
 
-            if (true) {
+            if (!error) {
 
                 console.log("{{route('user.hire-driver.get-reference')}}")
                 console.log(data)
@@ -159,27 +159,31 @@
                     body: JSON.stringify(data)
                 })
 
-                let res = await response.json()
-                console.log(res)
+                let res = await response
+                if (res.status === 200) {
+                    let body = await response.json()
 
+                    let handler = PaystackPop.setup({
+                        key: 'pk_test_87b43cb03070ea4c4f584656222db9aa18ff7472', // Replace with your public key
+                        email: user.email,
+                        amount: body.amount * 100,
+                        firstname: user.first_name,
+                        lastname: user.last_name,
+                        reference: body.reference,
 
-                /*let handler = PaystackPop.setup({
-                    key: 'pk_test_87b43cb03070ea4c4f584656222db9aa18ff7472', // Replace with your public key
-                    email: user.email,
-                    amount: 2000 * 100,
-                    firstname: user.first_name,
-                    lastname: user.last_name,
+                        onClose: function(){
 
-                    onClose: function(){
+                        },
 
-                    },
-
-                    callback: function(response){
-                        data.reference = response.reference
-                        post("{{route('user.hire-driver-payment')}}", data)
-                    }
-                });
-                handler.openIframe();*/
+                        callback: function(response){
+                            data.reference = response.reference
+                            post("{{route('user.hire-driver-payment')}}", data)
+                        }
+                    });
+                    handler.openIframe();
+                }else {
+                    console.log(res.statusText)
+                }
             }
         }
 
