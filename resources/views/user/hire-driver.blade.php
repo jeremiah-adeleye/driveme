@@ -110,6 +110,8 @@
         let user = @json(auth()->user());
         let error = false;
 
+        console.log(drivers)
+
         $('.hire-type').on('click', function () {
             $('.hire-type').removeClass('active');
             $(this).addClass('active');
@@ -128,7 +130,7 @@
                 'type': hireType,
                 'start_date': startDateInput.val(),
                 'end_date': endDateInput.val(),
-                'driver_id': ['{{$driver->id}}'],
+                'driver_id': {{$driverIds}},
                 'reference': ''
             };
 
@@ -189,6 +191,10 @@
 
             document.body.appendChild(form);
             form.submit();
+        }
+
+        function getAmount() {
+
         }
 
     </script>
