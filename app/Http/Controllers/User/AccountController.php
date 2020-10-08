@@ -23,6 +23,6 @@ class AccountController extends Controller{
     }
 
     public function submitCompleteRegistration(UserCompleteRegistrationRequest $request) {
-
+        dd($request);
     }
 }

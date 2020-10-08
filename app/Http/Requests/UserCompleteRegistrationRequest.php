@@ -24,14 +24,14 @@ class UserCompleteRegistrationRequest extends FormRequest
     public function rules()
     {
         return [
-            'car_make' => 'string|required',
-            'car_model' => 'string|required',
-            'address' => 'string|required',
-            'working_hour' => 'string|required',
-            'occupation' => 'string|required',
-            'insurance_policy' => 'string|required',
-            'preferred' => 'string|required',
-            'preferred_driving_city' => 'string|required',
+            'car_make' => 'required|string',
+            'car_model' => 'required|string',
+            'address' => 'required|string',
+            'working_hour' => 'required|string',
+            'occupation' => 'required|string',
+            'insurance_policy' => 'required|string',
+            'preferred_driving_city' => 'required|string',
+            'driver_class_type' => 'required|string',
         ];
     }
 }

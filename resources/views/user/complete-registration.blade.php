@@ -6,17 +6,17 @@
 
         <div class="row my-auto" >
             <div class=" col-lg-10">
-                <form class="p-5" id="complete-registration-form" method="post" action="@if($driver->approval_status == null) {{route('driver.register.compete')}} @else {{route('driver.register.resubmit')}} @endif" enctype="multipart/form-data" >
+                <form class="p-5" id="complete-registration-form" method="post" action="{{route('user.submit-complete-registration')}}" enctype="multipart/form-data" >
                     @if(session()->has('error'))
                         <div class="alert alert-danger alert-dismissible fade show mb-4">
-                            {{ session()->get('error') }}
+                            {{ session('error') }}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                     @elseif(session()->has('success'))
                         <div class="alert alert-success alert-dismissible fade show mb-4">
-                            {{ session()->get('success') }}
+                            {{ session('success') }}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -113,7 +113,7 @@
                             <div class="form-group custom col-md-6" id="driver-class-type-input" >
                                 <label for="driver-class-type">Driver class type</label>
                                 <select class="custom-select input-custom-primary" id="driver-class-type" name="driver_class_type" >
-                                    <option hidden >Select Driver Type</option>
+                                    <option hidden value="" >Select Driver Type</option>
                                     <option @if(old('driver_class_type') == 'a' || $customer->driver_class_type == 'a') selected @endif value="'7am - 5pm'">Class A Driver</option>
                                     <option @if(old('driver_class_type') == 'b' || $customer->driver_class_type == 'b') selected @endif value="6:30am - 6pm'">Class B Driver</option>
                                     <option @if(old('driver_class_type') == 'c' || $customer->driver_class_type == 'c') selected @endif value="'7:30am - 7pm'">Class C Driver</option>
@@ -124,7 +124,7 @@
                             </div>
 
                             <div class="form-group custom col-12" >
-                                <button type="button" class="btn btn-custom-primary" id="save-and-continue" >COMPLETE REGISTRATION</button>
+                                <button type="submit" class="btn btn-custom-primary" id="save-and-continue" >COMPLETE REGISTRATION</button>
                             </div>
                         </div>
                     </div>
