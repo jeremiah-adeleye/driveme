@@ -2,7 +2,7 @@
 
 @section('content')
     <section id="dashboard-section" class="d-flex flex-column" >
-        <p class="font-weight-bold px-4 text-primary" >Driver Application</p>
+        <p class="font-weight-bold px-4 text-primary" >Update Profile</p>
 
         <div class="row my-auto" >
             <div class=" col-lg-10">
