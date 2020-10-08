@@ -33,7 +33,6 @@ class DriverHireController extends Controller{
     }
 
     public function declineRequest($id) {
-        dd($id);
         $hireRequest = DriverHire::find($id);
         if ($hireRequest) {
             if (!$hireRequest->approved) {
