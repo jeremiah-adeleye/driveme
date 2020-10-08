@@ -272,7 +272,7 @@
         let drivers = @json($drivers);
 
         $(document).on('click', '.driver', function () {
-            window.location.href = `{{env('APP_URL')}}/dashboard/drivers/${$(this).attr('data-id')}`
+            window.location.href = `{{env('APP_URL')}}/dashboard/{{$hireType}}/drivers/${$(this).attr('data-id')}`
         });
 
         $('#search').change(function () {

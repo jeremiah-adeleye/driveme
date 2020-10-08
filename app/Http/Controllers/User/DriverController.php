@@ -30,29 +30,29 @@ class DriverController extends Controller
         return view('user.select-hire-type', $data);
     }
 
-    public function list() {
+    public function list($hireType) {
         $active = 'dashboard.hireDriver';
         $drivers = Driver::with('user')->get();
         $locations = ['ikeja', 'amuwo-odofin', 'lekki', 'oshodi', 'ajah'];
-        $data = compact('active', 'drivers', 'locations');
+        $data = compact('active', 'drivers', 'locations', 'hireType');
 
         return view('user.drivers', $data);
     }
 
-    public function showDriver($id) {
+    public function showDriver($hireType, $id) {
         $active = 'dashboard.hireDriver';
         $driver = $this->driverService->userGetDriver($id);
         $pendingRequest = $this->driverService->userPendingEmploymentRequest($id);
         $activeEmployment = $this->driverService->userActiveEmployment($id);
         $inCart = $this->driverService->inCart($id);
 
-        $data = compact('active', 'driver', 'pendingRequest', 'activeEmployment', 'inCart');
+        $data = compact('active', 'driver', 'pendingRequest', 'activeEmployment', 'inCart', 'hireType');
         if ($driver != null) {
             return view('user.driver', $data);
         }else return redirect()->route('user.drivers');
     }
 
-    public function hireDriver() {
+    public function hireDriver($hireType) {
         $active = 'dashboard.hireDriver';
         $user = auth()->user();
         $cartItems = $user->cart();
@@ -64,7 +64,7 @@ class DriverController extends Controller
 
         $id = 2;
         $driver = $this->driverService->userGetDriver($id);
-        $data = compact('active', 'drivers', 'driverIds');
+        $data = compact('active', 'drivers', 'driverIds', 'hireType');
 
         if ($driver != null) {
             $pendingRequest = $this->driverService->userPendingEmploymentRequest($id);

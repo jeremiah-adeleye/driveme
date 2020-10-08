@@ -48,7 +48,7 @@
 
 @section('content')
     <div id="back" >
-        <a class="h6 mb-5" href="{{route('user.drivers')}}" >Back to Driver list</a>
+        <a class="h6 mb-5" href="{{route('user.drivers', ['hireType' => $hireType])}}" >Back to Driver list</a>
     </div>
     <div class="row" >
         <div class="col-lg-2" >
