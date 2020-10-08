@@ -33,7 +33,7 @@ class AuthController extends Controller
     }
 
     public function login() {
-        $title = 'driver.login';
+        $title = 'login';
         $data = compact('title');
 
         return view('login', $data);

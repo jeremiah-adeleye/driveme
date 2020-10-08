@@ -17,7 +17,6 @@ Route::get('/', 'AppController@index')->name('home');
 Route::get('login', 'AuthController@login')->name('login');
 Route::get('logout', 'AuthController@logout')->name('logout');
 Route::get('register', 'AuthController@register')->name('register');
-Route::get('driver/login', 'Driver\AuthController@login')->name('driver.login');
 Route::get('driver/register', 'Driver\AuthController@register')->name('driver.register');
 
 Route::post('login', 'AuthController@authenticate')->name('login');

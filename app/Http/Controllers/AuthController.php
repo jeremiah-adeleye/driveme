@@ -18,7 +18,7 @@ class AuthController extends Controller
     }
 
     public function login() {
-        $title = 'user.login';
+        $title = 'login';
         $data = compact('title');
 
         return view('login', $data);

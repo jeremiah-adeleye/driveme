@@ -30,53 +30,31 @@
         <div class="col-md-6 offset-md-6 px-5 d-flex flex-column">
             <ul class="nav justify-content-end">
                 @if(auth()->guest())
-                    @if($title == 'user.login' || $title == 'user.register')
+                    @if($title != 'driver.register')
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('driver.register')}}">
                                 <button type="button" class="btn btn-custom-primary-outline">Become a Driver</button>
                             </a>
                         </li>
                     @endif
-                    @if($title == 'driver.login' || $title == 'driver.register')
+                    @if($title != 'corporate.register')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('login')}}">
-                                <button type="button" class="btn btn-custom-primary-outline">Login as User</button>
+                            <a class="nav-link" href="{{route('corporate.register')}}">
+                                <button type="button" class="btn btn-custom-primary-outline">Register as Corporate</button>
                             </a>
                         </li>
                     @endif
-                    @if($title == 'user.login')
+                    @if($title != 'user.register')
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('register')}}">
-                                <button type="button" class="btn btn-custom-primary-outline">Register</button>
+                                <button type="button" class="btn btn-custom-primary-outline">Register as User</button>
                             </a>
                         </li>
-                    @elseif($title == 'user.register')
+                    @endif
+                    @if($title != 'login')
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('login')}}">
                                 <button type="button" class="btn btn-custom-primary-outline">Login</button>
-                            </a>
-                        </li>
-                    @elseif($title == 'driver.login')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('driver.register')}}">
-                                <button type="button" class="btn btn-custom-primary-outline">Register</button>
-                            </a>
-                        </li>
-                    @elseif($title == 'driver.register')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('driver.login')}}">
-                                <button type="button" class="btn btn-custom-primary-outline">Login</button>
-                            </a>
-                        </li>
-                    @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('login')}}">
-                                <button type="button" class="btn btn-custom-primary-outline">Login</button>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('register')}}">
-                                <button type="button" class="btn btn-custom-primary-outline">Register</button>
                             </a>
                         </li>
                     @endif
