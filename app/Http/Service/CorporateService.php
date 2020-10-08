@@ -8,18 +8,30 @@ use App\Corporate;
 
 class CorporateService{
 
+    private $notificationService;
+
+    public function __construct(){
+        $this->notificationService = new NotificationService();
+    }
+
     public function saveCorporateDetails($customerRequest) {
         $user = auth()->user();
+        $new = false;
         $corporate = Corporate::whereUserId($user->id)->first();
+
         if ($corporate == null) {
+            $new = true;
             $corporate = $this->createNewCorporate();
-        }else if ($corporate->approved == 0 || $corporate->approved == 3) return false;
+        }else if ($corporate->approved != 2) return false;
 
         $corporate->name = $customerRequest['company_name'];
         $corporate->registration_number = $customerRequest['registration_number'];
         $corporate->address = $customerRequest['address'];
+        $corporate->approved = 0;
 
         $corporate->save();
+        $this->notifyAdmin($corporate, $new);
+
         return true;
     }
 
@@ -29,5 +41,12 @@ class CorporateService{
         $corporate->user_id = $user->id;
 
         return $corporate;
+    }
+
+    public function notifyAdmin(Corporate $corporate, bool $new = true) {
+        $message = $new ? $corporate->name .' has submitted application for corporate approval' : $corporate->name .' has re-submitted application for corporate approval';
+        $link = env('APP_URL').'/dashboard/admin/corporate/'.$corporate->id;
+
+        $this->notificationService->newNotification($message, $link);
     }
 }

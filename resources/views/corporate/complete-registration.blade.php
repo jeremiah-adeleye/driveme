@@ -75,7 +75,15 @@
                             </div>
 
                             <div class="form-group custom col-12" >
-                                <button type="submit" class="btn btn-custom-primary" id="save-and-continue" >COMPLETE REGISTRATION</button>
+                                @if($corporate->id == null)
+                                    <button type="submit" class="btn btn-custom-primary" id="save-and-continue" >COMPLETE REGISTRATION</button>
+                                @elseif($corporate->approved == 0)
+                                    <button type="button" class="btn btn-custom-warning" id="save-and-continue" >PENDING</button>
+                                @elseif($corporate->approved == 2)
+                                    <button type="submit" class="btn btn-custom-primary" id="save-and-continue" >RESUBMIT</button>
+                                @elseif($corporate->approved == 3)
+                                    <button type="submit" class="btn btn-custom-primary" id="save-and-continue" >APPROVAL REVOKED</button>
+                                @endif
                             </div>
                         </div>
                     </div>
