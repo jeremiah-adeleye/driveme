@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Driver;
-use App\DriverHire;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\HireDriverRequest;
 use App\Http\Service\DriverService;
 use App\Http\Service\PaymentService;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 

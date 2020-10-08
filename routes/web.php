@@ -30,14 +30,16 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('dashboard/user/complete-registration', 'User\AccountController@completeRegistration')->name('user.complete-registration');
     Route::post('dashboard/user/complete-registration', 'User\AccountController@submitCompleteRegistration')->name('user.submit-complete-registration');
-    Route::get('dashboard/hire/select-type', 'User\DriverController@selectHireType')->name('user.hire-type');
-    Route::get('dashboard/{hireType}/drivers', 'User\DriverController@list')->name('user.drivers');
-    Route::get('dashboard/{hireType}/drivers/hire', 'User\DriverController@hireDriver')->name('user.hire-driver');
-    Route::post('dashboard/drivers/hire', 'User\DriverController@hireDriverPayment')->name('user.hire-driver-payment');
-    Route::get('dashboard/{hireType}/drivers/{id}', 'User\DriverController@showDriver')->name('user.driver');
-    Route::get('cart/{id}/add', 'User\DriverController@addToCart')->name('user.cart.add');
-    Route::get('cart/{id}/remove', 'User\DriverController@removeFromCart')->name('user.cart.remove');
-    Route::get('dashboard/{hireType}/cart', 'User\DriverController@viewCart')->name('user.cart');
+
+    //hire driver
+    Route::get('dashboard/hire/select-type', 'DriverController@selectHireType')->name('user.hire-type');
+    Route::get('dashboard/{hireType}/drivers', 'DriverController@list')->name('user.drivers');
+    Route::get('dashboard/{hireType}/drivers/hire', 'DriverController@hireDriver')->name('user.hire-driver');
+    Route::post('dashboard/drivers/hire', 'DriverController@hireDriverPayment')->name('user.hire-driver-payment');
+    Route::get('dashboard/{hireType}/drivers/{id}', 'DriverController@showDriver')->name('user.driver');
+    Route::get('cart/{id}/add', 'DriverController@addToCart')->name('user.cart.add');
+    Route::get('cart/{id}/remove', 'DriverController@removeFromCart')->name('user.cart.remove');
+    Route::get('dashboard/{hireType}/cart', 'DriverController@viewCart')->name('user.cart');
 
     Route::get('dashboard/driver/complete-registration', 'Driver\RegistrationController@completeRegistration')->name('driver.complete-registration');
     Route::post('driver/driver/register/complete', 'Driver\RegistrationController@submitRegistration')->name('driver.register.compete');
