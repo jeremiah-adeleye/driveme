@@ -34,6 +34,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Customer wherePreferredDrivingCity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Customer whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Customer whereWorkingHour($value)
+ * @property int $user_id
+ * @method static \Illuminate\Database\Eloquent\Builder|Customer whereUserId($value)
  */
 class Customer extends Model{
 

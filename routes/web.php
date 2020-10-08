@@ -28,6 +28,8 @@ Route::get('corporate/register', 'Corporate\AuthController@register')->name('cor
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::get('dashboard/user/complete-registration', 'User\AccountController@completeRegistration')->name('user.complete-registration');
+    Route::post('dashboard/user/complete-registration', 'User\AccountController@submitCompleteRegistration')->name('user.submit-complete-registration');
     Route::get('dashboard/hire/select-type', 'User\DriverController@selectHireType')->name('user.hire-type');
     Route::get('dashboard/{hireType}/drivers', 'User\DriverController@list')->name('user.drivers');
     Route::get('dashboard/{hireType}/drivers/hire', 'User\DriverController@hireDriver')->name('user.hire-driver');

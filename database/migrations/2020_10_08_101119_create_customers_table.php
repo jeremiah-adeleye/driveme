@@ -24,6 +24,7 @@ class CreateCustomersTable extends Migration
             $table->string('insurance_policy');
             $table->string('preferred_driving_city');
             $table->string('driver_class_type');
+            $table->unsignedBigInteger('user_id');
         });
     }
 

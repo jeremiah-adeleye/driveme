@@ -20,6 +20,7 @@ class CreateCorporatesTable extends Migration
             $table->string('address');
             $table->string('registration_number');
             $table->boolean('approved')->default(false);
+            $table->unsignedBigInteger('user_id');
         });
     }
 
