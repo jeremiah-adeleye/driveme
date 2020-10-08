@@ -24,12 +24,15 @@ Route::post('register', 'AuthController@registerUser');
 Route::post('driver/register', 'Driver\AuthController@createDriver')->name('driver.register');
 Route::post('driver/update', 'Driver\AuthController@update')->name('driver.update');
 Route::get('corporate/register', 'Corporate\AuthController@register')->name('corporate.register');
-Route::get('corporate/post', 'Corporate\AuthController@saveCorporateUser')->name('corporate.register');
+Route::post('corporate/register', 'Corporate\AuthController@saveCorporateUser')->name('corporate.register');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('dashboard/user/complete-registration', 'User\AccountController@completeRegistration')->name('user.complete-registration');
     Route::post('dashboard/user/complete-registration', 'User\AccountController@submitCompleteRegistration')->name('user.submit-complete-registration');
+
+    Route::get('dashboard/corporate/complete-registration', 'Corporate\AccountController@completeRegistration')->name('corporate.complete-registration');
+    Route::post('dashboard/corporate/complete-registration', 'Corporate\AccountController@submitCompleteRegistration')->name('corporate.submit-complete-registration');
 
     //hire driver
     Route::get('dashboard/hire/select-type', 'DriverController@selectHireType')->name('user.hire-type');

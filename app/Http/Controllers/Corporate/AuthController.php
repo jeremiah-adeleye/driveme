@@ -12,7 +12,7 @@ class AuthController extends Controller{
     private $userService;
 
     public function __construct(){
-        $userService = new UserService();
+        $this->userService = new UserService();
     }
 
     public function register() {

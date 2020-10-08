@@ -20,7 +20,7 @@
             <img src="{{ asset('img/driveme_logo_white.png') }}" alt="logo" >
         </div>
         <div id="menu-items" class="flex-grow-1" >
-            <a class="menu-item @if($active == 'dashboard.complete-registration') active @endif" href="{{route('user.complete-registration')}}" >
+            <a class="menu-item @if($active == 'dashboard.complete-registration') active @endif" href="@if(auth()->user()->role == 1) {{route('user.complete-registration')}} @else {{route('corporate.complete-registration')}} @endif" >
                 <img src="{{ asset('img/icons/bar_chart.png') }}" class="menu-item-icon" alt="ic" >
                 <p>Update profile</p>
             </a>

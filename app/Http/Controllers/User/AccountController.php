@@ -25,8 +25,7 @@ class AccountController extends Controller{
         $customer = Customer::whereUserId(auth()->id())->first();
         if ($customer == null) $customer = new Customer();
 
-        $driver = new Driver();
-        $data = compact('active', 'driver', 'user', 'customer');
+        $data = compact('active', 'user', 'customer');
 
         return view('user.complete-registration', $data);
     }

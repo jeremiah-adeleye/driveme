@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Corporate;
 use App\Customer;
 use App\Driver;
 use App\Http\Requests\HireDriverRequest;
@@ -53,10 +54,9 @@ class DriverController extends Controller
     public function hireDriver($hireType) {
         $active = 'dashboard.hireDriver';
         $user = auth()->user();
-        $customer = Customer::whereUserId($user->id)->first();
 
-        if ($customer == null) {
-            return redirect()->route('user.complete-registration')->with('error', 'You need to complete registration');
+        if (!$this->verifyRegistration()) {
+            return redirect()->route($this->getRedirectUrlOnRegFail())->with('error', 'You need to complete registration');
         }
 
         $cartItems = $user->cart();
@@ -83,16 +83,36 @@ class DriverController extends Controller
     public function hireDriverPayment(HireDriverRequest $request) {
         $hireRequest = $request->only('driver_id', 'type', 'start_date', 'end_date', 'reference');
         $response = $this->driverService->hireDriverPayment($hireRequest);
-        $user = auth()->user();
-        $customer = Customer::whereUserId($user->id)->first();
 
-        if ($customer == null) {
-            redirect()->route('user.complete-registration')->with('error', 'You need to complete registration');
+        if (!$this->verifyRegistration()) {
+            return redirect()->route($this->getRedirectUrlOnRegFail())->with('error', 'You need to complete registration');
         }
 
         if ($response['status']) {
             return redirect()->intended(route('user.drivers'))->with('success', $response['message']);
         }else return redirect()->intended(route('user.hire-driver', ['id' => $hireRequest['driver_id']]))->with('error', $response['message']);
+    }
+
+    private function verifyRegistration() {
+        $user = auth()->user();
+        if ($user->role == 1) {
+            $customer = Customer::whereUserId($user->id)->first();
+            if ($customer != null) return true;
+        }elseif ($user->role == 3) {
+            $corporate = Corporate::whereUserId($user->id)->first();
+            if ($corporate != null) return true;
+        }
+
+        return false;
+    }
+
+    private function getRedirectUrlOnRegFail() {
+        $user = auth()->user();
+        if ($user->role == 1) {
+            return 'user.complete-registration';
+        }elseif ($user->role == 3) {
+            return 'corporate.complete-registration';
+        }else return 'login';
     }
 
     public function viewCart($hireType) {

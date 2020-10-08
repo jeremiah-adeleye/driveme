@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Corporate;
 use App\Driver;
 use App\Notification;
 use App\User;
@@ -44,8 +45,11 @@ class DashboardController extends Controller{
                 array_push($data, 'driver', 'registrationComplete', 'percentDone');
                 return view('driver.home', compact($data));
             }elseif ($user->role == 3) {
+                $corporate = Corporate::whereUserId($userId);
+                if ($corporate == null) $corporate = new Corporate();
+                array_push($data, 'corporate');
 
-                return view('driver.home', compact($data));
+                return view('corporate.home', compact($data));
             }else {
                 $notifications = Notification::whereSeen(false)->orderBy('created_at', 'desc')->get();
                 array_push($data, 'notifications');
