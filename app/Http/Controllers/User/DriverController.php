@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Customer;
 use App\Driver;
 use App\DriverHire;
 use App\Http\Controllers\Controller;
@@ -55,9 +56,16 @@ class DriverController extends Controller
     public function hireDriver($hireType) {
         $active = 'dashboard.hireDriver';
         $user = auth()->user();
+        $customer = Customer::whereUserId($user->id)->first();
+
+        if ($customer == null) {
+            return redirect()->route('user.complete-registration')->with('error', 'You need to complete registration');
+        }
+
         $cartItems = $user->cart();
         $driverIds = $cartItems->pluck('driver_id');
         $drivers = Driver::whereIn('id', $driverIds)->get();
+
         if (sizeof($drivers) % 2 != 0) {
             return redirect()->route('user.drivers')->with('error', 'You must select double the number of drivers you wish to hire');
         }
@@ -78,6 +86,12 @@ class DriverController extends Controller
     public function hireDriverPayment(HireDriverRequest $request) {
         $hireRequest = $request->only('driver_id', 'type', 'start_date', 'end_date', 'reference');
         $response = $this->driverService->hireDriverPayment($hireRequest);
+        $user = auth()->user();
+        $customer = Customer::whereUserId($user->id)->first();
+
+        if ($customer == null) {
+            redirect()->route('user.complete-registration')->with('error', 'You need to complete registration');
+        }
 
         if ($response['status']) {
             return redirect()->intended(route('user.drivers'))->with('success', $response['message']);
