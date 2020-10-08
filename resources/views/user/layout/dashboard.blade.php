@@ -22,7 +22,7 @@
         <div id="menu-items" class="flex-grow-1" >
             <a class="menu-item @if($active == 'dashboard.complete-registration') active @endif" href="{{route('user.complete-registration')}}" >
                 <img src="{{ asset('img/icons/bar_chart.png') }}" class="menu-item-icon" alt="ic" >
-                    <p>Complete Registration</p>
+                <p>Update profile</p>
             </a>
             <a class="menu-item @if($active == 'dashboard.home') active @endif" href="{{route('dashboard')}}" >
                 <img src="{{ asset('img/icons/bar_chart.png') }}" class="menu-item-icon" alt="ic" >
