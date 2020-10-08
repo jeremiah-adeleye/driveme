@@ -18,4 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/hire_driver/get_reference', 'User\DriverController@getHireDriverReference')->name('user.hire-driver.get-reference');
+Route::post('/hire_driver/get_reference', 'DriverController@getHireDriverReference')->name('user.hire-driver.get-reference');

@@ -12,8 +12,8 @@ class DriverHireController extends Controller{
         $active = 'dashboard.drivers';
         $hireRequest = DriverHire::find($id);
         if ($hireRequest != null) {
-            $user = $hireRequest->user;
-            $data = compact('active', 'user', 'hireRequest');
+            $drivers = $hireRequest->drivers;
+            $data = compact('active', 'drivers', 'hireRequest');
 
             return view('admin.driver-hire', $data);
         }return redirect()->route('dashboard');

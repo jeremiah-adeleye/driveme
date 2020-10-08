@@ -235,7 +235,7 @@ class DriverService{
             }
 
             $driverHire->save();
-            $notification = ucfirst($user->first_name. ' '. $user->last_name). ' has requested to Hire A driver';
+            $notification = ucfirst($user->first_name. ' '. $user->last_name). ' has requested to Hire driver(s)';
             $link = env('APP_URL').'/dashboard/admin/hire-request/'.$driverHire->id;
 
             $this->notificationService->newNotification($notification, $link);
