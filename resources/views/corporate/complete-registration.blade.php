@@ -6,7 +6,7 @@
 
         <div class="row my-auto" >
             <div class=" col-lg-10">
-                <form class="p-5" id="complete-registration-form" method="post" action="{{route('user.submit-complete-registration')}}" enctype="multipart/form-data" >
+                <form class="p-5" id="complete-registration-form" method="post" action="{{route('corporate.submit-complete-registration')}}" enctype="multipart/form-data" >
                     @if(session()->has('error'))
                         <div class="alert alert-danger alert-dismissible fade show mb-4">
                             {{ session('error') }}
@@ -52,7 +52,7 @@
 
                             <div class="form-group custom col-md-6" id="company-name-input" >
                                 <label for="company-name">Company name</label>
-                                <input type="text" class="form-control input-custom-primary" id="company-name" name="company_name" aria-describedby="companyName" value="{{old('company_name') ?? $corporate->company_name}}" >
+                                <input type="text" class="form-control input-custom-primary" id="company-name" name="company_name" aria-describedby="companyName" value="{{old('company_name') ?? $corporate->name}}" >
                                 @error('company_name')
                                 <small class="text-danger" >{{ $message }}</small>
                                 @enderror

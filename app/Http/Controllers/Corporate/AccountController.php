@@ -5,9 +5,16 @@ namespace App\Http\Controllers\Corporate;
 use App\Corporate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CorporateCompleteRegistrationRequset;
+use App\Http\Service\CorporateService;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller{
+
+    private $corporateService;
+
+    public function __construct(){
+        $this->corporateService = new CorporateService();
+    }
 
     public function completeRegistration() {
         $active = 'dashboard.complete-registration';
@@ -20,6 +27,11 @@ class AccountController extends Controller{
     }
 
     public function submitCompleteRegistration(CorporateCompleteRegistrationRequset $request) {
+        $corporateRequest = $request->only('company_name', 'registration_number', 'address');
+        $saveCorporate = $this->corporateService->saveCorporateDetails($corporateRequest);
 
+        if ($saveCorporate) {
+            return redirect()->back()->with('success', 'Profile updated successfully');
+        }else return redirect()->back()->with('error', 'An error occurred');
     }
 }
