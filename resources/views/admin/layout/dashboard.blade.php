@@ -28,6 +28,10 @@
                 <img src="{{ asset('img/icons/user_icon.png') }}" class="menu-item-icon" alt="ic" >
                 <p>Drivers</p>
             </a>
+            <a class="menu-item @if($active == 'dashboard.corporate') active @endif" >
+                <img src="{{ asset('img/icons/user_icon.png') }}" class="menu-item-icon" alt="ic" >
+                <p>Corporates</p>
+            </a>
             <a class="menu-item @if($active == 'dashboard.users') active @endif">
                 <img src="{{ asset('img/icons/online_driving.png') }}" class="menu-item-icon" alt="ic" >
                 <p>Users</p>

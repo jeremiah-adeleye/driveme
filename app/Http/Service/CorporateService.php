@@ -49,4 +49,18 @@ class CorporateService{
 
         $this->notificationService->newNotification($message, $link);
     }
+
+    public function updateApproval(Corporate $corporate, bool $approve){
+        if ($approve) {
+            $corporate->approved = 1;
+        }else {
+            if ($corporate->approved == 0) {
+                $corporate->approved = 2;
+            }else {
+                $corporate->approved = 3;
+            }
+        }
+
+        $corporate->save();
+    }
 }
