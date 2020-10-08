@@ -22,11 +22,11 @@ class CustomerService{
         $customer->preferred_driving_city = $customerRequest['preferred_driving_city'];
         $customer->driver_class_type = $customerRequest['driver_class_type'];
 
-        if (!in_array($customer->driver_class_type, ['a', 'b', 'b'])) {
+        if (!in_array($customer->driver_class_type, ['a', 'b', 'c'])) {
             return false;
         }
 
-        if (!in_array($customer->driver_class_type, ['7am - 5pm', '6:30am - 6pm', '7:30am - 7pm'])) {
+        if (!in_array($customer->working_hour, ['7am - 5pm', '6:30am - 6pm', '7:30am - 7pm'])) {
             return false;
         }
 
