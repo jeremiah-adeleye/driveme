@@ -77,7 +77,7 @@
                         <td class="status" ><span class="badge-pill badge-success" ><i class="fas fa-circle"></i> HIRED</span></td>
                     @endif
                     <td class="image" >
-                        <a href="{{route('user.driver', ['id' => $driver->id])}}" >
+                        <a href="{{route('user.driver', ['id' => $driver->id, 'hireType' => $hireType])}}" >
                             <button class="btn btn-custom-primary-outline" >VIEW</button>
                         </a>
                     </td>
@@ -92,7 +92,7 @@
         </table>
     </div>
     <div id="proceed-button"  >
-        <a href="{{route('user.hire-driver')}}"><button type="button" class="btn btn-custom-primary mt-5" >PROCEED</button></a>
+        <a href="{{route('user.hire-driver', ['hireType' => $hireType])}}"><button type="button" class="btn btn-custom-primary mt-5" >PROCEED</button></a>
     </div>
 @endsection
 

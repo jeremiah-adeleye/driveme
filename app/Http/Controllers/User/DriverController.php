@@ -84,12 +84,12 @@ class DriverController extends Controller
         }else return redirect()->intended(route('user.hire-driver', ['id' => $hireRequest['driver_id']]))->with('error', $response['message']);
     }
 
-    public function viewCart() {
+    public function viewCart($hireType) {
         $active = 'dashboard.hireDriver';
         $user = auth()->user();
         $cartItems = $user->cart();
         $drivers = Driver::whereIn('id', $cartItems->pluck('driver_id'))->get();
-        $data = compact('active', 'drivers');
+        $data = compact('active', 'drivers', 'hireType');
 
         return view('user.cart', $data);
     }

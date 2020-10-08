@@ -263,7 +263,7 @@
         </div>
     </div>
     <div id="view-list-button" >
-        <a href="{{route('user.cart')}}" ><button type="button" class="btn btn-custom-primary">VIEW LIST</button></a>
+        <a href="{{route('user.cart', ['hireType' => $hireType])}}" ><button type="button" class="btn btn-custom-primary">VIEW LIST</button></a>
     </div>
 @endsection
 
