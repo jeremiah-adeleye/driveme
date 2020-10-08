@@ -77,9 +77,9 @@
                             <div class="form-group custom col-md-6" id="working-hour-input" >
                                 <label for="working-hour">Working hours</label>
                                 <select class="custom-select input-custom-primary" id="working-hour" name="working_hour" >
-                                    <option @if(old('working_hour') == '7am - 5pm' || $customer->working_hour == '7am - 5pm') selected @endif value="'7am - 5pm'">7am - 5pm</option>
-                                    <option @if(old('working_hour') == '6:30am - 6pm' || $customer->working_hour == '6:30am - 6pm') selected @endif value="6:30am - 6pm'">6:30am - 6pm</option>
-                                    <option @if(old('working_hour') == '7:30am - 7pm' || $customer->working_hour == '7:30am - 7pm') selected @endif value="'7:30am - 7pm'">7:30am - 7pm</option>
+                                    <option @if(old('working_hour') == '7am - 5pm' || $customer->working_hour == '7am - 5pm') selected @endif value="7am - 5pm">7am - 5pm</option>
+                                    <option @if(old('working_hour') == '6:30am - 6pm' || $customer->working_hour == '6:30am - 6pm') selected @endif value="6:30am - 6pm">6:30am - 6pm</option>
+                                    <option @if(old('working_hour') == '7:30am - 7pm' || $customer->working_hour == '7:30am - 7pm') selected @endif value="7:30am - 7pm">7:30am - 7pm</option>
                                 </select>
                                 @error('working_hour')
                                 <small class="text-danger" >{{ $message }}</small>
@@ -114,9 +114,9 @@
                                 <label for="driver-class-type">Driver class type</label>
                                 <select class="custom-select input-custom-primary" id="driver-class-type" name="driver_class_type" >
                                     <option hidden value="" >Select Driver Type</option>
-                                    <option @if(old('driver_class_type') == 'a' || $customer->driver_class_type == 'a') selected @endif value="'7am - 5pm'">Class A Driver</option>
-                                    <option @if(old('driver_class_type') == 'b' || $customer->driver_class_type == 'b') selected @endif value="6:30am - 6pm'">Class B Driver</option>
-                                    <option @if(old('driver_class_type') == 'c' || $customer->driver_class_type == 'c') selected @endif value="'7:30am - 7pm'">Class C Driver</option>
+                                    <option @if(old('driver_class_type') == 'a' || $customer->driver_class_type == 'a') selected @endif value="a">Class A Driver</option>
+                                    <option @if(old('driver_class_type') == 'b' || $customer->driver_class_type == 'b') selected @endif value="b">Class B Driver</option>
+                                    <option @if(old('driver_class_type') == 'c' || $customer->driver_class_type == 'c') selected @endif value="c">Class C Driver</option>
                                 </select>
                                 @error('driver_class_type')
                                 <small class="text-danger" >{{ $message }}</small>
