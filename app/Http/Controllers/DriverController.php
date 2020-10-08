@@ -89,7 +89,8 @@ class DriverController extends Controller
         }
 
         if ($response['status']) {
-            return redirect()->intended(route('user.drivers'))->with('success', $response['message']);
+            $hireType = $hireRequest['type'] == 'short_term' ? 'short-term' : 'full-term';
+            return redirect()->intended(route('user.drivers', ['hireType' => $hireType]))->with('success', $response['message']);
         }else return redirect()->intended(route('user.hire-driver', ['id' => $hireRequest['driver_id']]))->with('error', $response['message']);
     }
 
