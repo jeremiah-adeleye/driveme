@@ -1,4 +1,4 @@
-@extends('user.layout.dashboard')
+@extends('layout.dashboard')
 
 @section('content')
     <section id="dashboard-section" class="d-flex flex-column" >

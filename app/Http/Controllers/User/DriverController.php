@@ -28,7 +28,7 @@ class DriverController extends Controller
         $active = 'dashboard.hireDriver';
         $data = compact('active');
 
-        return view('user.select-hire-type', $data);
+        return view('select-hire-type', $data);
     }
 
     public function list($hireType) {
@@ -37,7 +37,7 @@ class DriverController extends Controller
         $locations = ['ikeja', 'amuwo-odofin', 'lekki', 'oshodi', 'ajah'];
         $data = compact('active', 'drivers', 'locations', 'hireType');
 
-        return view('user.drivers', $data);
+        return view('drivers', $data);
     }
 
     public function showDriver($hireType, $id) {
@@ -49,7 +49,7 @@ class DriverController extends Controller
 
         $data = compact('active', 'driver', 'pendingRequest', 'activeEmployment', 'inCart', 'hireType');
         if ($driver != null) {
-            return view('user.driver', $data);
+            return view('driver', $data);
         }else return redirect()->route('user.drivers');
     }
 
@@ -79,7 +79,7 @@ class DriverController extends Controller
             $activeEmployment = $this->driverService->userActiveEmployment($id);
             if ($pendingRequest || $activeEmployment) return redirect()->route('user.driver', ['id' => $driver->id]);
 
-            return view('user.hire-driver', $data);
+            return view('hire-driver', $data);
         }else return redirect()->route('user.drivers');
     }
 
@@ -105,7 +105,7 @@ class DriverController extends Controller
         $drivers = Driver::whereIn('id', $cartItems->pluck('driver_id'))->get();
         $data = compact('active', 'drivers', 'hireType');
 
-        return view('user.cart', $data);
+        return view('cart', $data);
     }
 
     public function addToCart($id) {

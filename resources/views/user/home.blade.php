@@ -1,4 +1,4 @@
-@extends('user.layout.dashboard')
+@extends('layout.dashboard')
 
 @section('head')
     <link rel="stylesheet" href="{{asset('css/calender.css')}}" >

@@ -13,19 +13,12 @@
 @section('content')
     <div class="my-auto" >
         <div id="form-into" class="col-lg-12" >
-            <h1>Create an account</h1>
-            <p>Sign up with your email and password to create an account</p>
+            <h1>Create corporate account</h1>
+            <p>Sign up with your organisation email and password to create an account</p>
         </div>
 
         <form class="col-lg-9" method="post" >
             {{csrf_field()}}
-            <div class="form-group custom" id="first-name-input" >
-                <label for="company-name">Company Name</label>
-                <input type="text" class="form-control input-custom-primary" id="company-name" name="company_name" aria-describedby="companyName" value="{{  old('company_name') }}">
-                @error('company_name')
-                <small class="text-danger" >{{ $message }}</small>
-                @enderror
-            </div>
 
             <div class="form-group custom" id="first-name-input" >
                 <label for="first-name">First Name</label>

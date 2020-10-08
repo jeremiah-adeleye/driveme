@@ -45,7 +45,7 @@ class AuthController extends Controller
         $user = $this->userService->make($userRequest);
 
         if ($user) {
-            return redirect()->route('driver.login')->with('success', 'Account registered, Please login to complete registration');
+            return redirect()->route('login')->with('success', 'Account registered, Please login to complete registration');
         } else return redirect()->back()->with('error', 'An error occurred');
     }
 

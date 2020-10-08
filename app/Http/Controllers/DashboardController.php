@@ -43,6 +43,9 @@ class DashboardController extends Controller{
 
                 array_push($data, 'driver', 'registrationComplete', 'percentDone');
                 return view('driver.home', compact($data));
+            }elseif ($user->role == 3) {
+
+                return view('driver.home', compact($data));
             }else {
                 $notifications = Notification::whereSeen(false)->orderBy('created_at', 'desc')->get();
                 array_push($data, 'notifications');
