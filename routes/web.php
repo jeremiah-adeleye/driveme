@@ -37,10 +37,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('cart/{id}/remove', 'User\DriverController@removeFromCart')->name('user.cart.remove');
     Route::get('dashboard/{hireType}/cart', 'User\DriverController@viewCart')->name('user.cart');
 
-    Route::get('dashboard/driver/complete-registration', 'Driver\RegistrationController@completeRegistration')
-        ->middleware('auth')->name('driver.complete-registration');
-    Route::post('driver/register/complete', 'Driver\RegistrationController@submitRegistration')->name('driver.register.compete');
-    Route::post('driver/register/resubmit', 'Driver\RegistrationController@resubmitRegistration')->name('driver.register.resubmit');
+    Route::get('dashboard/driver/complete-registration', 'Driver\RegistrationController@completeRegistration')->name('driver.complete-registration');
+    Route::post('driver/driver/register/complete', 'Driver\RegistrationController@submitRegistration')->name('driver.register.compete');
+    Route::post('driver/driver/register/resubmit', 'Driver\RegistrationController@resubmitRegistration')->name('driver.register.resubmit');
 
     Route::get('dashboard/admin/drivers/{id}', 'Admin\DriverController@view')->name('admin.driver');
     Route::get('dashboard/admin/drivers/{id}/approve', 'Admin\DriverController@approveDriver')->name('admin.driver.approve');
