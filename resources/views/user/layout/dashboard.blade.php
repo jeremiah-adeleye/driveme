@@ -24,7 +24,7 @@
                 <img src="{{ asset('img/icons/bar_chart.png') }}" class="menu-item-icon" alt="ic" >
                 <p>Dashboard</p>
             </a>
-            <a class="menu-item @if($active == 'dashboard.hireDriver') active @endif" href="{{ route('user.drivers') }}" >
+            <a class="menu-item @if($active == 'dashboard.hireDriver') active @endif" href="{{ route('user.hire-type') }}" >
                 <img src="{{ asset('img/icons/user_icon.png') }}" class="menu-item-icon" alt="ic" >
                 <p>Hire a Driver</p>
             </a>

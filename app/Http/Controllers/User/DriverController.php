@@ -23,6 +23,13 @@ class DriverController extends Controller
         $this->paymentService = new PaymentService();
     }
 
+    public function selectHireType() {
+        $active = 'dashboard.hireDriver';
+        $data = compact('active');
+
+        return view('user.select-hire-type', $data);
+    }
+
     public function list() {
         $active = 'dashboard.hireDriver';
         $drivers = Driver::with('user')->get();
