@@ -9,9 +9,11 @@ use App\Corporate;
 class CorporateService{
 
     private $notificationService;
+    private $twilioService;
 
     public function __construct(){
         $this->notificationService = new NotificationService();
+        $this->twilioService = new TwilioService();
     }
 
     public function saveCorporateDetails($customerRequest) {
@@ -53,11 +55,14 @@ class CorporateService{
     public function updateApproval(Corporate $corporate, bool $approve){
         if ($approve) {
             $corporate->approved = 1;
+            $this->twilioService->sendMessage($corporate->user->phone_number, "Account approved");
         }else {
             if ($corporate->approved == 0) {
                 $corporate->approved = 2;
+                $this->twilioService->sendMessage($corporate->user->phone_number, "Approval request rejected");
             }else {
                 $corporate->approved = 3;
+                $this->twilioService->sendMessage($corporate->user->phone_number, "Account approval has been revoked");
             }
         }
 
