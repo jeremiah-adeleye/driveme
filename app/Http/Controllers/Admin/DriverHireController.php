@@ -29,7 +29,7 @@ class DriverHireController extends Controller{
                 $hireRequestDriver->active = true;
                 $hireRequestDriver->save();
 
-                $approved = $hireRequest->drivers->where('active', true);
+                $approved = $hireRequest->driverHire->where('active', true);
                 if (sizeof($approved) == (sizeof($hireRequest->drivers) / 2)) {
                     $this->rejectOutstandingRequest($hireRequest);
                 }
@@ -42,7 +42,7 @@ class DriverHireController extends Controller{
     }
 
     private function rejectOutstandingRequest(DriverHire $driverHire) {
-        $driversHireRequest = $driverHire->drivers->where('approved', false);
+        $driversHireRequest = $driverHire->driverHire->where('approved', false);
         foreach ($driversHireRequest as $driverHireRequest) {
             $driverHireRequest->approved = true;
             $driverHireRequest->active = false;
@@ -54,7 +54,7 @@ class DriverHireController extends Controller{
         $hireRequest = DriverHire::find($id);
 
         if ($hireRequest != null) {
-            $hireRequestDriver = $hireRequest->drivers->where('id', $driverId);
+            $hireRequestDriver = $hireRequest->driverHire->where('id', $driverId);
 
             if ($hireRequestDriver != null && !$hireRequestDriver->approved) {
                 $hireRequestDriver->approved = true;
@@ -72,7 +72,7 @@ class DriverHireController extends Controller{
         $hireRequest = DriverHire::find($id);
 
         if ($hireRequest != null) {
-            $hireRequestDriver = $hireRequest->drivers->where('id', $driverId);
+            $hireRequestDriver = $hireRequest->driverHire->where('id', $driverId);
 
             if ($hireRequestDriver != null && !$hireRequestDriver->approved && $hireRequest->active) {
                 $hireRequestDriver->active = false;
