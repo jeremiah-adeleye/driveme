@@ -26,7 +26,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|DriverHireDrivers whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class DriverHireDrivers extends Model
-{
+class DriverHireDrivers extends Model{
 
+    public function driver() {
+        return $this->belongsTo('App\Driver');
+    }
 }
