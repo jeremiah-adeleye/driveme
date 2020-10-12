@@ -48,19 +48,19 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('driver/driver/register/complete', 'Driver\RegistrationController@submitRegistration')->name('driver.register.compete');
     Route::post('driver/driver/register/resubmit', 'Driver\RegistrationController@resubmitRegistration')->name('driver.register.resubmit');
 
-    Route::get('dashboard/admin/drivers/{id}', 'Admin\DriverController@view')->name('admin.driver');
-    Route::get('dashboard/admin/drivers/{id}/approve', 'Admin\DriverController@approveDriver')->name('admin.driver.approve');
-    Route::post('dashboard/admin/drivers/{id}/reject', 'Admin\DriverController@rejectApproval')->name('admin.driver.reject');
-    Route::get('dashboard/admin/drivers/{id}/revoke', 'Admin\DriverController@revokeApproval')->name('admin.driver.revoke');
+    Route::get('admin/dashboard/drivers/{id}', 'Admin\DriverController@view')->name('admin.driver');
+    Route::get('admin/dashboard/drivers/{id}/approve', 'Admin\DriverController@approveDriver')->name('admin.driver.approve');
+    Route::post('admin/dashboard/drivers/{id}/reject', 'Admin\DriverController@rejectApproval')->name('admin.driver.reject');
+    Route::get('admin/dashboard/drivers/{id}/revoke', 'Admin\DriverController@revokeApproval')->name('admin.driver.revoke');
 
-    Route::get('dashboard/admin/corporate/{id}', 'Admin\CorporateController@view')->name('admin.corporate');
-    Route::get('dashboard/admin/corporate/{id}/approve', 'Admin\CorporateController@approve')->name('admin.corporate.approve');
-    Route::get('dashboard/admin/corporate/{id}/reject', 'Admin\CorporateController@rejectApproval')->name('admin.corporate.reject');
-    Route::get('dashboard/admin/corporate/{id}/revoke', 'Admin\CorporateController@revokeApproval')->name('admin.corporate.revoke');
+    Route::get('admin/dashboard/corporate/{id}', 'Admin\CorporateController@view')->name('admin.corporate');
+    Route::get('admin/dashboard/corporate/{id}/approve', 'Admin\CorporateController@approve')->name('admin.corporate.approve');
+    Route::get('admin/dashboard/corporate/{id}/reject', 'Admin\CorporateController@rejectApproval')->name('admin.corporate.reject');
+    Route::get('admin/dashboard/corporate/{id}/revoke', 'Admin\CorporateController@revokeApproval')->name('admin.corporate.revoke');
 
-    Route::get('dashboard/admin/hire-request/{id}', 'Admin\DriverHireController@hireRequest')->name('admin.hire-request');
-    Route::get('dashboard/admin/hire-request/{id}/{driverId}/approve', 'Admin\DriverHireController@approveRequest')->name('admin.hire-request.approve');
-    Route::get('dashboard/admin/hire-request/{id}/{driverId}/decline', 'Admin\DriverHireController@declineRequest')->name('admin.hire-request.decline');
-    Route::get('dashboard/admin/hire-request/{id}/{driverId}/terminate', 'Admin\DriverHireController@terminateEmployment')->name('admin.hire-request.terminate');
+    Route::get('admin/dashboard/hire-request/{id}', 'Admin\DriverHireController@hireRequest')->name('admin.hire-request');
+    Route::get('admin/dashboard/hire-request/{id}/{driverId}/approve', 'Admin\DriverHireController@approveRequest')->name('admin.hire-request.approve');
+    Route::get('admin/dashboard/hire-request/{id}/{driverId}/decline', 'Admin\DriverHireController@declineRequest')->name('admin.hire-request.decline');
+    Route::get('admin/dashboard/hire-request/{id}/{driverId}/terminate', 'Admin\DriverHireController@terminateEmployment')->name('admin.hire-request.terminate');
 });
 

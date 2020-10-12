@@ -50,7 +50,7 @@ class DriverService{
 
         $fullName = ucfirst($user->first_name .' '. $user->last_name);
         $notification = "$fullName has submitted application to be a driver";
-        $link = getenv('APP_URL') .'/dashboard/admin/drivers/'.$driver->id;
+        $link = route('admin.driver', ['id' => $driver->id]);
         $this->notificationService->newNotification($notification, $link);
         $this->saveGuarantor(new Guarantor(), $guarantorRequest, $driver->id);
 
@@ -69,7 +69,7 @@ class DriverService{
         $fullName = ucfirst($user->first_name .' '. $user->last_name);
         $this->notificationService->newNotification(
             "$fullName has re-submitted his/her profile for registration",
-            getenv('APP_URL') .'/dashboard/admin/drivers/'.$driver->id
+            route('admin.driver', ['id' => $driver->id])
         );
     }
 
