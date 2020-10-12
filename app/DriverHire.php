@@ -45,6 +45,10 @@ class DriverHire extends Model
         return $this->belongsToMany('App\Driver', 'driver_hire_drivers');
     }
 
+    public function driverHire() {
+        return $this->hasMany('App\DriverHireDrivers');
+    }
+
     public function user() {
         return $this->belongsTo('App\User');
     }

@@ -21,7 +21,7 @@ class DriverHireController extends Controller{
 
     public function approveRequest($id, $driverId) {
         $hireRequest = DriverHire::find($id);
-        $hireRequestDriver = $hireRequest->drivers->where('id', $driverId);
+        $hireRequestDriver = $hireRequest->driverHire->where('id', $driverId)->first();
 
         if ($hireRequest != null) {
             if (!$hireRequestDriver->approved) {
