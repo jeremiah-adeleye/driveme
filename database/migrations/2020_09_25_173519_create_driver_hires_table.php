@@ -20,9 +20,7 @@ class CreateDriverHiresTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->timestamp('start_date');
             $table->timestamp('end_date')->nullable();
-            $table->boolean('approved')->default(false);
             $table->string('reference');
-            $table->string('active')->default(false);
         });
     }
 

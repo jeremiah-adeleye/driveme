@@ -19,41 +19,55 @@ class DriverHireController extends Controller{
         }return redirect()->route('dashboard');
     }
 
-    public function approveRequest($id) {
+    public function approveRequest($id, $driverId) {
         $hireRequest = DriverHire::find($id);
-        if ($hireRequest) {
-            if (!$hireRequest->approved) {
-                $hireRequest->approved = true;
-                $hireRequest->active = true;
-                $hireRequest->save();
-            }
+        $hireRequestDriver = $hireRequest->drivers->where('id', $driverId);
 
-            return redirect()->intended(route('admin.hire-request', ['id' => $id]))->with('success', 'Request Approved');
-        }else return redirect()->intended(route('dashboard'))->with('error', 'Invalid request');
+        if ($hireRequest != null) {
+            if (!$hireRequestDriver->approved) {
+                $hireRequestDriver->approved = true;
+                $hireRequestDriver->active = true;
+                $hireRequestDriver->save();
+
+                return redirect()->intended(route('admin.hire-request', ['id' => $id]))->with('success', 'Request Approved');
+            }
+        }
+
+        return redirect()->intended(route('dashboard'))->with('error', 'Invalid request');
     }
 
-    public function declineRequest($id) {
+    public function declineRequest($id, $driverId) {
         $hireRequest = DriverHire::find($id);
-        if ($hireRequest) {
-            if (!$hireRequest->approved) {
-                $hireRequest->approved = true;
-                $hireRequest->active = false;
-                $hireRequest->save();
-            }
 
-            return redirect()->intended(route('admin.hire-request', ['id' => $id]))->with('success', 'Request Declined');
-        }else return redirect()->intended(route('dashboard'))->with('error', 'Invalid request');
+        if ($hireRequest != null) {
+            $hireRequestDriver = $hireRequest->drivers->where('id', $driverId);
+
+            if ($hireRequestDriver != null && !$hireRequestDriver->approved) {
+                $hireRequestDriver->approved = true;
+                $hireRequestDriver->active = false;
+                $hireRequestDriver->save();
+
+                return redirect()->intended(route('admin.hire-request', ['id' => $id]))->with('success', 'Request Declined');
+            }
+        }
+
+        return redirect()->intended(route('dashboard'))->with('error', 'Invalid request');
     }
 
-    public function terminateEmployment($id) {
+    public function terminateEmployment($id, $driverId) {
         $hireRequest = DriverHire::find($id);
-        if ($hireRequest) {
-            if ($hireRequest->approved && $hireRequest->active) {
-                $hireRequest->active = false;
-                $hireRequest->save();
-            }
 
-            return redirect()->intended(route('admin.hire-request', ['id' => $id]))->with('success', 'Request Approved');
-        }else return redirect()->intended(route('dashboard'))->with('error', 'Invalid request');
+        if ($hireRequest != null) {
+            $hireRequestDriver = $hireRequest->drivers->where('id', $driverId);
+
+            if ($hireRequestDriver != null && !$hireRequestDriver->approved && $hireRequest->active) {
+                $hireRequestDriver->active = false;
+                $hireRequestDriver->save();
+
+                return redirect()->intended(route('admin.hire-request', ['id' => $id]))->with('success', 'Employment terminated');
+            }
+        }
+
+        return redirect()->intended(route('dashboard'))->with('error', 'Invalid request');
     }
 }

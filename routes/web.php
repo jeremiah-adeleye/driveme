@@ -59,8 +59,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('dashboard/admin/corporate/{id}/revoke', 'Admin\CorporateController@revokeApproval')->name('admin.corporate.revoke');
 
     Route::get('dashboard/admin/hire-request/{id}', 'Admin\DriverHireController@hireRequest')->name('admin.hire-request');
-    Route::get('dashboard/admin/hire-request/{id}/approve', 'Admin\DriverHireController@approveRequest')->name('admin.hire-request.approve');
-    Route::get('dashboard/admin/hire-request/{id}/decline', 'Admin\DriverHireController@declineRequest')->name('admin.hire-request.decline');
-    Route::get('dashboard/admin/hire-request/{id}/terminate', 'Admin\DriverHireController@terminateEmployment')->name('admin.hire-request.terminate');
+    Route::get('dashboard/admin/hire-request/{id}/{driverId}/approve', 'Admin\DriverHireController@approveRequest')->name('admin.hire-request.approve');
+    Route::get('dashboard/admin/hire-request/{id}/{driverId}/decline', 'Admin\DriverHireController@declineRequest')->name('admin.hire-request.decline');
+    Route::get('dashboard/admin/hire-request/{id}/{driverId}/terminate', 'Admin\DriverHireController@terminateEmployment')->name('admin.hire-request.terminate');
 });
 
