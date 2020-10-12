@@ -27,7 +27,7 @@ class HireDriverRequest extends FormRequest
             'driver_id' => 'required|string',
             'type' => 'required|string',
             'start_date' => 'date|required',
-            'end_date' => 'date|nullable',
+            'end_date' => 'nullable|date',
             'reference' => 'string|required'
         ];
     }

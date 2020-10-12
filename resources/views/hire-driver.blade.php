@@ -20,6 +20,8 @@
 @section('content')
     <p class="text-primary page-title" >Hire a Driver</p>
 
+    {{$errors}}
+
     @if(session()->has('error'))
         <div class="alert alert-danger alert-dismissible fade show">
             {{ session('error') }}
@@ -94,10 +96,6 @@
 
 
             if (!error) {
-
-                console.log("{{route('user.hire-driver.get-reference')}}")
-                console.log(data)
-
                 let response = await fetch("{{route('user.hire-driver.get-reference')}}", {
                     headers : {
                         'Content-Type': 'application/json',
@@ -110,6 +108,8 @@
                 let res = await response
                 if (res.status === 200) {
                     let body = await response.json()
+                    data.reference = body.reference
+                    if (data.type === 'full_term') data.end_date = null
 
                     let handler = PaystackPop.setup({
                         ref: body.reference,
