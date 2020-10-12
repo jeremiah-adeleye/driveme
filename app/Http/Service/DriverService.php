@@ -236,7 +236,7 @@ class DriverService{
 
             $driverHire->save();
             $notification = ucfirst($user->first_name. ' '. $user->last_name). ' has requested to Hire driver(s)';
-            $link = env('APP_URL').'/dashboard/admin/hire-request/'.$driverHire->id;
+            $link = route('admin.hire-request', ['id' => $driverHire->id]);
 
             $this->notificationService->newNotification($notification, $link);
             $this->paymentService->updateTransaction($hireRequest['reference'], true);
