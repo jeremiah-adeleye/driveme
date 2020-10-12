@@ -29,11 +29,25 @@ class DriverHireController extends Controller{
                 $hireRequestDriver->active = true;
                 $hireRequestDriver->save();
 
+                $approved = $hireRequest->drivers->where('active', true);
+                if (sizeof($approved) == (sizeof($hireRequest->drivers) / 2)) {
+                    $this->rejectOutstandingRequest($hireRequest);
+                }
+
                 return redirect()->intended(route('admin.hire-request', ['id' => $id]))->with('success', 'Request Approved');
             }
         }
 
         return redirect()->intended(route('dashboard'))->with('error', 'Invalid request');
+    }
+
+    private function rejectOutstandingRequest(DriverHire $driverHire) {
+        $driversHireRequest = $driverHire->drivers->where('approved', false);
+        foreach ($driversHireRequest as $driverHireRequest) {
+            $driverHireRequest->approved = true;
+            $driverHireRequest->active = false;
+            $driverHireRequest->save();
+        }
     }
 
     public function declineRequest($id, $driverId) {
