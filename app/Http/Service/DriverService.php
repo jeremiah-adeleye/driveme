@@ -84,7 +84,7 @@ class DriverService{
             $fullName = ucfirst($user->first_name .' '. $user->last_name);
             $this->notificationService->newNotification(
                 "$fullName has updated his/her profile",
-                getenv('APP_URL') .'/dashboard/admin/drivers/'.$driver->id
+                route('admin.driver', ['id' => $driver->id])
             );
 
             try {
