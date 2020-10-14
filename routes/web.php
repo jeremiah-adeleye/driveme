@@ -51,6 +51,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('dashboard/online-driving', 'OnlineDrivingController@index')->name('online-driving');
     Route::get('dashboard/course/{id}', 'OnlineDrivingController@course')->name('course');
     Route::get('dashboard/course/{id}/video/{videoId}', 'OnlineDrivingController@courseVideo')->name('course.video');
+    Route::get('dashboard/course/{id}/test/{testId}', 'OnlineDrivingController@courseTest')->name('course.test');
 
     Route::get('admin/dashboard/drivers/{id}', 'Admin\DriverController@view')->name('admin.driver');
     Route::get('admin/dashboard/drivers/{id}/approve', 'Admin\DriverController@approveDriver')->name('admin.driver.approve');

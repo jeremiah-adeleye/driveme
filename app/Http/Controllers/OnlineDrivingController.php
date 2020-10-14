@@ -26,4 +26,12 @@ class OnlineDrivingController extends Controller{
 
         return view('course-video', $data);
     }
+
+    public function courseTest($id, $testId) {
+        $active = 'dashboard.onlineDriving';
+        $options = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+        $data = compact('active', 'options');
+
+        return view('course-test', $data);
+    }
 }

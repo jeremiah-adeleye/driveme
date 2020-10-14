@@ -43,7 +43,7 @@
                 <p class="description" >2 Hour per class for 7 weeks. This class is specifically for busy executives and other career professionals who do not have the luxury of time for our weekly classes.</p>
                 <p class="no-of-lessons" >Total lessons - 7</p>
                 <p class="price h3" >N40,000</p>
-                <button class="submit btn btn-outline-light" >CHOOSE PLAN</button>
+                <a class="submit btn btn-outline-light" href="{{route('course', ['id' => 1])}}" >CHOOSE PLAN</a>
             </div>
         </div>
         <div class="col-md-6" >
@@ -52,7 +52,7 @@
                 <p class="description" >30 Minutes per class @ N2,000 per class, a minimum of 5 classes</p>
                 <p class="no-of-lessons" >Total lessons - 26</p>
                 <p class="price h3" >N2000</p>
-                <button class="submit btn btn-outline-light" >CHOOSE PLAN</button>
+                <a class="submit btn btn-outline-light" href="{{route('course', ['id' => 1])}}" >CHOOSE PLAN</a>
             </div>
         </div>
         <div class="col-md-6" >
@@ -61,7 +61,7 @@
                 <p class="description" >1 Hour per class. This is a refresher class for learner drivers who already have some knowledge of driving. </p>
                 <p class="no-of-lessons" >Total lessons - 10</p>
                 <p class="price h3" >N20,000</p>
-                <button class="submit btn btn-outline-light" >CHOOSE PLAN</button>
+                <a class="submit btn btn-outline-light" href="{{route('course', ['id' => 1])}}" >CHOOSE PLAN</a>
             </div>
         </div>
     </div>
