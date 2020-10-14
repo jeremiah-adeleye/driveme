@@ -19,9 +19,6 @@
 
 @section('content')
     <p class="text-primary page-title" >Hire a Driver</p>
-
-    {{$errors}}
-
     @if(session()->has('error'))
         <div class="alert alert-danger alert-dismissible fade show">
             {{ session('error') }}
