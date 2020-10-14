@@ -47,7 +47,7 @@ class CorporateService{
 
     public function notifyAdmin(Corporate $corporate, bool $new = true) {
         $message = $new ? $corporate->name .' has submitted application for corporate approval' : $corporate->name .' has re-submitted application for corporate approval';
-        $link = env('APP_URL').'/dashboard/admin/corporate/'.$corporate->id;
+        $link = route('admin.corporate', ['id' => $corporate->id]);
 
         $this->notificationService->newNotification($message, $link);
     }
