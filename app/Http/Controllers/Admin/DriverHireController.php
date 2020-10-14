@@ -55,7 +55,7 @@ class DriverHireController extends Controller{
         $hireRequest = DriverHire::find($id);
 
         if ($hireRequest != null) {
-            $hireRequestDriver = $hireRequest->driverHire->where('id', $driverId);
+            $hireRequestDriver = $hireRequest->driverHire->where('driver_id', $driverId);
 
             if ($hireRequestDriver != null && !$hireRequestDriver->approved) {
                 $hireRequestDriver->approved = true;
@@ -73,7 +73,7 @@ class DriverHireController extends Controller{
         $hireRequest = DriverHire::find($id);
 
         if ($hireRequest != null) {
-            $hireRequestDriver = $hireRequest->driverHire->where('id', $driverId);
+            $hireRequestDriver = $hireRequest->driverHire->where('driver_id', $driverId);
 
             if ($hireRequestDriver != null && !$hireRequestDriver->approved && $hireRequest->active) {
                 $hireRequestDriver->active = false;
