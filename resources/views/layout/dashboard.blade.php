@@ -32,7 +32,7 @@
                 <img src="{{ asset('img/icons/user_icon.png') }}" class="menu-item-icon" alt="ic" >
                 <p>Hire a Driver</p>
             </a>
-            <a class="menu-item @if($active == 'dashboard.onlineDriving') active @endif">
+            <a class="menu-item @if($active == 'dashboard.onlineDriving') active @endif" href="{{route('online-driving')}}" >
                 <img src="{{ asset('img/icons/online_driving.png') }}" class="menu-item-icon" alt="ic" >
                 <p>Online Driving </p>
             </a>

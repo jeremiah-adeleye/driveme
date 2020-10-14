@@ -48,6 +48,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('driver/driver/register/complete', 'Driver\RegistrationController@submitRegistration')->name('driver.register.compete');
     Route::post('driver/driver/register/resubmit', 'Driver\RegistrationController@resubmitRegistration')->name('driver.register.resubmit');
 
+    Route::get('dashboard/online-driving', 'OnlineDrivingController@index')->name('online-driving');
+
     Route::get('admin/dashboard/drivers/{id}', 'Admin\DriverController@view')->name('admin.driver');
     Route::get('admin/dashboard/drivers/{id}/approve', 'Admin\DriverController@approveDriver')->name('admin.driver.approve');
     Route::post('admin/dashboard/drivers/{id}/reject', 'Admin\DriverController@rejectApproval')->name('admin.driver.reject');
