@@ -34,7 +34,7 @@
                 <p class="description" >Four weeks of driving Lesson (Beginner) 1 Hour per class - Weekdays only</p>
                 <p class="no-of-lessons" >Total lessons - 26</p>
                 <p class="price h3" >N45,000</p>
-                <button class="submit btn btn-outline-light" >CHOOSE PLAN</button>
+                <a class="submit btn btn-outline-light" href="{{route('course', ['id' => 1])}}" >CHOOSE PLAN</a>
             </div>
         </div>
         <div class="col-md-6" >

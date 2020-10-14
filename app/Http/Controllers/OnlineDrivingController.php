@@ -12,4 +12,18 @@ class OnlineDrivingController extends Controller{
 
         return view('online-driving', $data);
     }
+
+    public function course($id) {
+        $active = 'dashboard.onlineDriving';
+        $data = compact('active');
+
+        return view('course', $data);
+    }
+
+    public function courseVideo($id, $videoId) {
+        $active = 'dashboard.onlineDriving';
+        $data = compact('active');
+
+        return view('course-video', $data);
+    }
 }
