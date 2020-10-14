@@ -50,7 +50,7 @@ class DriverService{
 
         $fullName = ucfirst($user->first_name .' '. $user->last_name);
         $notification = "$fullName has submitted application to be a driver";
-        $link = getenv('APP_URL') .'/dashboard/admin/drivers/'.$driver->id;
+        $link = route('admin.driver', ['id' => $driver->id]);
         $this->notificationService->newNotification($notification, $link);
         $this->saveGuarantor(new Guarantor(), $guarantorRequest, $driver->id);
 
@@ -69,7 +69,7 @@ class DriverService{
         $fullName = ucfirst($user->first_name .' '. $user->last_name);
         $this->notificationService->newNotification(
             "$fullName has re-submitted his/her profile for registration",
-            getenv('APP_URL') .'/dashboard/admin/drivers/'.$driver->id
+            route('admin.driver', ['id' => $driver->id])
         );
     }
 
@@ -84,7 +84,7 @@ class DriverService{
             $fullName = ucfirst($user->first_name .' '. $user->last_name);
             $this->notificationService->newNotification(
                 "$fullName has updated his/her profile",
-                getenv('APP_URL') .'/dashboard/admin/drivers/'.$driver->id
+                route('admin.driver', ['id' => $driver->id])
             );
 
             try {
@@ -236,7 +236,7 @@ class DriverService{
 
             $driverHire->save();
             $notification = ucfirst($user->first_name. ' '. $user->last_name). ' has requested to Hire driver(s)';
-            $link = env('APP_URL').'/dashboard/admin/hire-request/'.$driverHire->id;
+            $link = route('admin.hire-request', ['id' => $driverHire->id]);
 
             $this->notificationService->newNotification($notification, $link);
             $this->paymentService->updateTransaction($hireRequest['reference'], true);

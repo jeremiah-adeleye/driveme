@@ -18,6 +18,8 @@ class CreateDriverHireDriversTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('driver_hire_id');
             $table->unsignedBigInteger('driver_id');
+            $table->boolean('approved')->default(false);
+            $table->string('active')->default(false);
         });
     }
 

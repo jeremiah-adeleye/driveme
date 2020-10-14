@@ -34,6 +34,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|DriverHire whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DriverHire whereUserId($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\DriverHireDrivers[] $driverHire
+ * @property-read int|null $driver_hire_count
  */
 class DriverHire extends Model
 {
@@ -43,6 +45,10 @@ class DriverHire extends Model
 
     public function drivers() {
         return $this->belongsToMany('App\Driver', 'driver_hire_drivers');
+    }
+
+    public function driverHire() {
+        return $this->hasMany('App\DriverHireDrivers');
     }
 
     public function user() {

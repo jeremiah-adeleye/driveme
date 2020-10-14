@@ -32,14 +32,17 @@
                 <img src="{{ asset('img/icons/user_icon.png') }}" class="menu-item-icon" alt="ic" >
                 <p>Hire a Driver</p>
             </a>
-            <a class="menu-item @if($active == 'dashboard.onlineDriving') active @endif">
-                <img src="{{ asset('img/icons/online_driving.png') }}" class="menu-item-icon" alt="ic" >
-                <p>Online Driving </p>
-            </a>
-            <a class="menu-item @if($active == 'dashboard.driverTraining') active @endif">
-                <img src="{{ asset('img/icons/driver_training.png') }}" class="menu-item-icon" alt="ic" >
-                <p>Driver Training</p>
-            </a>
+            @if(auth()->user()->role == 1)
+                <a class="menu-item @if($active == 'dashboard.onlineDriving') active @endif" href="{{route('online-driving')}}" >
+                    <img src="{{ asset('img/icons/online_driving.png') }}" class="menu-item-icon" alt="ic" >
+                    <p>Online Driving </p>
+                </a>
+            @else
+                <a class="menu-item @if($active == 'dashboard.driverTraining') active @endif">
+                    <img src="{{ asset('img/icons/driver_training.png') }}" class="menu-item-icon" alt="ic" >
+                    <p>Driver Training</p>
+                </a>
+            @endif
             <a class="menu-item @if($active == 'dashboard.rentVehicle') active @endif">
                 <img src="{{ asset('img/icons/hire_vehicle.png') }}" class="menu-item-icon" alt="ic" >
                 <p>Hire/Rent a vehicle</p>
