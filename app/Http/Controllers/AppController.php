@@ -10,6 +10,6 @@ class AppController extends Controller
        
         if (auth()->id() != null) {
             return redirect()->route('dashboard');
-        }else return redirect()->route('home');
+        }else return redirect()->route('login');
     }
 }

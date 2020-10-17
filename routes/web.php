@@ -26,13 +26,32 @@ Route::post('driver/update', 'Driver\AuthController@update')->name('driver.updat
 Route::get('corporate/register', 'Corporate\AuthController@register')->name('corporate.register');
 Route::post('corporate/register', 'Corporate\AuthController@saveCorporateUser')->name('corporate.register');
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('dashboard/user/complete-registration', 'User\AccountController@completeRegistration')->name('user.complete-registration');
     Route::post('dashboard/user/complete-registration', 'User\AccountController@submitCompleteRegistration')->name('user.submit-complete-registration');
 
     Route::get('dashboard/corporate/complete-registration', 'Corporate\AccountController@completeRegistration')->name('corporate.complete-registration');
     Route::post('dashboard/corporate/complete-registration', 'Corporate\AccountController@submitCompleteRegistration')->name('corporate.submit-complete-registration');
+
+    // Hire Vehicle here
+    Route::get('dashboard/hire/select-type/vehicle', 'Vehicle\VehicleHireController@selectHireVehicleType')->name('select-vehicle-hire-type');
+
+    Route::get('dashboard/view-single-vehicle/{id}', 'Vehicle\VehicleHireController@viewSingleVehicle')->name('view-single-vehicle');
+
+    Route::post('hire/vehicle', 'Vehicle\VehicleHireController@hireVehicle')->name('hire-vehicle');
+    //   Route::get('dashboard/{hireType}/drivers', 'DriverController@list')->name('user.drivers');
+    //   Route::get('dashboard/{hireType}/drivers/hire', 'DriverController@hireDriver')->name('user.hire-driver');
+    //   Route::get('cart/{id}/add', 'DriverController@addToCart')->name('user.cart.add');
+    //   Route::get('cart/{id}/remove', 'DriverController@removeFromCart')->name('user.cart.remove');
+    //   Route::get('dashboard/{hireType}/cart', 'DriverController@viewCart')->name('user.cart');
+
+    //all Payments
+    // Route::post('/pay', ['uses' => 'PaymentController@redirectToGateway','as' => 'pay']);
+    
+    Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
+
+
 
     //hire driver
     Route::get('dashboard/hire/select-type', 'DriverController@selectHireType')->name('user.hire-type');
@@ -48,7 +67,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('driver/driver/register/complete', 'Driver\RegistrationController@submitRegistration')->name('driver.register.compete');
     Route::post('driver/driver/register/resubmit', 'Driver\RegistrationController@resubmitRegistration')->name('driver.register.resubmit');
 
-    Route::get('dashboard/online-driving', 'OnlineDrivingController@index')->name('online-driving');
+    Route::get('dashboard/online-driving', 'OnlineDriving@index')->name('online-driving');
+    Route::post('dashboard/online-driving-payment', 'OnlineDriving@coursePayment')->name('online-driving-payment');
     Route::get('dashboard/course/{id}', 'OnlineDrivingController@course')->name('course');
     Route::get('dashboard/course/{id}/video/{videoId}', 'OnlineDrivingController@courseVideo')->name('course.video');
     Route::get('dashboard/course/{id}/test/{testId}', 'OnlineDrivingController@courseTest')->name('course.test');
@@ -68,4 +88,3 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('admin/dashboard/hire-request/{id}/{driverId}/decline', 'Admin\DriverHireController@declineRequest')->name('admin.hire-request.decline');
     Route::get('admin/dashboard/hire-request/{id}/{driverId}/terminate', 'Admin\DriverHireController@terminateEmployment')->name('admin.hire-request.terminate');
 });
-

@@ -9,6 +9,8 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "ext-curl": "*",
+        "ext-json": "*",
         "cloudinary-labs/cloudinary-laravel": "^1.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
@@ -17,8 +19,7 @@
         "laravel/helpers": "^1.3",
         "laravel/tinker": "^2.0",
         "twilio/sdk": "^6.10",
-      "ext-json": "*",
-      "ext-curl": "*"
+        "unicodeveloper/laravel-paystack": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.8",

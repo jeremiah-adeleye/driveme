@@ -40,6 +40,7 @@ class AuthController extends Controller
     }
 
     public function createDriver(UserRequest $request) {
+        // data coming from the user might be more than but just work with these fields
         $userRequest = $request->only('first_name', 'last_name', 'phone_number', 'email', 'password');
         $userRequest['role'] = 2;
         $user = $this->userService->make($userRequest);

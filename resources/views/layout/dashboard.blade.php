@@ -43,7 +43,9 @@
                     <p>Driver Training</p>
                 </a>
             @endif
-            <a class="menu-item @if($active == 'dashboard.rentVehicle') active @endif">
+            <a class="menu-item 
+                @if($active == 'dashboard.rentVehicle') active 
+                @endif" href="{{route('select-vehicle-hire-type')}}">
                 <img src="{{ asset('img/icons/hire_vehicle.png') }}" class="menu-item-icon" alt="ic" >
                 <p>Hire/Rent a vehicle</p>
             </a>
@@ -68,6 +70,7 @@
             </li>
         </ul>
         <div class="p-5" >
+            
             @yield('content')
         </div>
     </section>
