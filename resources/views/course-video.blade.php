@@ -21,7 +21,7 @@
 
         <div id="videos-cover" >
             <video controls >
-
+                
             </video>
             <div id="description" >
                 <p class="title h6" >Video Title</p>

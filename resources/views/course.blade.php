@@ -68,7 +68,7 @@
                 <div class="week" >
                     <div class="title" >
                         <p class="h6" >Week {{$i}}</p>
-                        <a href="{{route('course.test', ['id' => $i, 'testId' => $i])}}" class="btn btn-custom-primary test-btn" >Take Test {{$i}}</a>
+                        <a href="{{route('startQuiz', ['module_id' => 1, 'quiz_id' => 1, 'period_id'=> 1])}}" class="btn btn-custom-primary test-btn" >Take Test {{$i}}</a>
                     </div>
                     <div class="videos" >
                         <div class="row" >

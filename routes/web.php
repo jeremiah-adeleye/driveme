@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     //all Payments
     // Route::post('/pay', ['uses' => 'PaymentController@redirectToGateway','as' => 'pay']);
-    
+
     Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
 
 
@@ -71,7 +71,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('dashboard/online-driving-payment', 'OnlineDriving@coursePayment')->name('online-driving-payment');
     Route::get('dashboard/course/{id}', 'OnlineDrivingController@course')->name('course');
     Route::get('dashboard/course/{id}/video/{videoId}', 'OnlineDrivingController@courseVideo')->name('course.video');
-    Route::get('dashboard/course/{id}/test/{testId}', 'OnlineDrivingController@courseTest')->name('course.test');
+
+    // Route::get('dashboard/course/{id}/test/{testId}', 'OnlineDrivingController@courseTest')->name('course.test');
+
+    //Quize here
+    Route::get('dashboard/course/{module_id}/{period_id}/{quiz_id}', 'quizController@index')->name('startQuiz');
+    
 
     Route::get('admin/dashboard/drivers/{id}', 'Admin\DriverController@view')->name('admin.driver');
     Route::get('admin/dashboard/drivers/{id}/approve', 'Admin\DriverController@approveDriver')->name('admin.driver.approve');

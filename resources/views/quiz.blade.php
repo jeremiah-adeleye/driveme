@@ -39,27 +39,33 @@
 @section('content')
     <div id="content" >
         <p class="h5 page-title" >Test</p>
+<script>
+    var ap = {!! json_encode($quizee, JSON_HEX_TAG) !!};
+    //content is the div to hold the quiz
 
+    // get()
+
+</script>
         <div id="question-cover">
            <h1>Question {{$quizee->id}}.</h1>  
         <h5>{{$quizee->question}}</h5>
             <div id="options" >
-              <form action="" questionid={{$quizee->id}}>
+              <form action="" questionId={{$quizee->id}}>
                 
                      <div class="custom-control custom-radio option">
-                      <input type="radio" id="{{$quizee->option_a}}" name="quiz"  class="custom-control-input" value="option_a" onclick="reply_click(this)">A.
+                      <input type="radio" id="{{$quizee->option_a}}" name="quiz"  class="custom-control-input" value="option_a" onClick="reply_click(this)">A.
                       <label class="custom-control-label ml-5" for="{{$quizee->option_a}}">{{$quizee->option_a}}</label>
                     </div>
                     <div class="custom-control custom-radio option">
-                        <input type="radio" id="{{$quizee->option_b}}" name="quiz" class="custom-control-input" value="option_b" onclick="reply_click(this)">B.
+                        <input type="radio" id="{{$quizee->option_b}}" name="quiz" class="custom-control-input" value="option_b" onClick="reply_click(this)">B.
                         <label class="custom-control-label ml-5" for="{{$quizee->option_b}}">{{$quizee->option_b}}</label>
                     </div>
                     <div class="custom-control custom-radio option">
-                        <input type="radio" id="{{$quizee->option_c}}" name="quiz" class="custom-control-input" value="option_c"  onclick="reply_click(this)">C.
+                        <input type="radio" id="{{$quizee->option_c}}" name="quiz" class="custom-control-input" value="option_c" onClick="reply_click(this)">C.
                         <label class="custom-control-label ml-5" for="{{$quizee->option_c}}">{{$quizee->option_c}}</label>
                     </div>
                     <div class="custom-control custom-radio option">
-                        <input type="radio" id="{{$quizee->option_d}}" name="quiz" class="custom-control-input" value="option_d" onclick="reply_click(this)">D.
+                        <input type="radio" id="{{$quizee->option_d}}" name="quiz" class="custom-control-input" value="option_d" onClick="reply_click(this)">D.
                         <label class="custom-control-label ml-5" for="{{$quizee->option_d}}">{{$quizee->option_d}}</label>
                     </div>
                     
@@ -86,8 +92,12 @@
     </div>
 
 @endsection
-<script>
-
+<script type="text/javascript">
+let value = [];
+document.getElementById("question-cover").innerText = "Hello"
+function test(){
+    alert("loaded")
+}
     function reply_click(clicked_id)
     {
         
@@ -99,8 +109,7 @@
         // storeAnswer(questionId, userAnswer);
         //get the value clicked by the user
         //save the value against the question
-        // var ap = {!! json_encode($quizee, JSON_HEX_TAG) !!};
-       
-       console.log(questionId, userAnswer);
+        var ap = {!! json_encode($quizee, JSON_HEX_TAG) !!};
+        console.log(ap)
     }
   </script>
