@@ -56,15 +56,7 @@
 @endif
 
             <div class="row" >
-                <div class="col-xl-4 col-lg-6">
-                    <div class="statistics" id="registered-drivers" >
-                        <div class="d-flex stat-cover" >
-                            <div class="icon" ></div>
-                            <div class="no flex-grow-1" >3000</div>
-                        </div>
-                        <p class="desc" >Number of Registered Drivers</p>
-                    </div>
-                </div>
+                
                 <div class="col-xl-4 col-lg-6">
                     <div class="statistics" id="unavailable-drivers" >
                         <div class="d-flex stat-cover" >
@@ -80,7 +72,7 @@
                             <div class="icon" ></div>
                             <div class="no flex-grow-1" >433</div>
                         </div>
-                        <p class="desc" >Number of Available Drivers</p>
+                        <p class="desc" >Number of Hired Vehicles</p>
                     </div>
                 </div>
                 <div class="col-md-6">

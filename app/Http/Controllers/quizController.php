@@ -10,14 +10,14 @@ class quizController extends Controller
     public function index($module_id, $period_id, $quize_id)
     {
 
-        $totalQuiz = count(quiz::all());
         $active = 'dashboard.onlineDriving';
         $quizee = quiz::where('id', $quize_id)->first();
-         
+
+        $totalQuiz = count(quiz::all()) == $quize_id? true : false;
         // dd($totalQuiz);
         $data = compact('quizee', 'active', 'totalQuiz');
         $checkStart = (session('current'));
-       
+
         return view('course-test', $data);
 
 

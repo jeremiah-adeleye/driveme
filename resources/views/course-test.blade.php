@@ -73,7 +73,7 @@
                     @if($quizee->id >1)
                     <a href="{{route('startQuiz', ['module_id' => $quizee->module_id, 'quiz_id' => $quizee->id-1, 'period_id'=> $quizee->period_id])}}" class="btn btn-custom-primary prev-btn" >PREVIOUS</a>
                     @endif
-                    @if ($quizee->id !== $totalQuiz)
+                    @if ($totalQuiz != true)
                         
                     <a href="{{route('startQuiz', ['module_id' => $quizee->module_id, 'quiz_id' => $quizee->id+1, 'period_id'=> $quizee->period_id])}}" class="btn btn-custom-primary nxt-btn" >NEXT</a>
                     @endif

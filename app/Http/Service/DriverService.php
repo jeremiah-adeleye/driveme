@@ -241,9 +241,9 @@ class DriverService{
             $this->notificationService->newNotification($notification, $link);
             $this->paymentService->updateTransaction($hireRequest['reference'], true);
         }
-
         $user->cart()->delete();
         $user->save();
+
     }
 
     public function userActiveEmployment($driverId) {
