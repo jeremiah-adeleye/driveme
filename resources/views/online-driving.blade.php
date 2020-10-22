@@ -28,11 +28,28 @@
 
 @section('content')
     <div class="row" >
+        @if(session()->has('error'))
+                <div class="alert alert-danger alert-dismissible fade show">
+                    {{ session()->get('error') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+            @if(session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show">
+                    {{ session()->get('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
         @foreach ($allPlans as $plan)
         <div class="col-md-6" >
             
        
-            <form method="POST" action="{{ route('online-driving-payment') }}" accept-charset="UTF-8" class="form-horizontal" role="form">
+            <form method="POST" action="{{ route('online-driving-payment', ['id'=>$plan->id]) }}" accept-charset="UTF-8" class="form-horizontal" role="form">
             <div class="course" style="background: {{$plan->bg_color}}">
             <p class="title h4" >{{$plan->title}}</p>
                 <p class="description" >{{$plan->description}}</p>
@@ -51,7 +68,7 @@
                     <input type="hidden" name="order_id" value="Driving_Class">
                     <input type="hidden" name="quantity" value="1">
                     <input type="hidden" name="currency" value="NGN">
-                    <input type="hidden" name="metadata" value="{{ json_encode($array = ['purpose' => 'driving curse enrollment', 'email'=> $userEmail, 'plan_id'=>$plan->id, 'order_id'=> 2]) }}" > {{-- For other necessary things you want to add to your payload. it is optional though --}}
+                    <input type="hidden" name="metadata" value="{{ json_encode($array = ['purpose' => 'driving curse enrollment', 'email'=> $userEmail, 'driving_plan_id'=>$plan->id, 'order_id'=> 2]) }}" > {{-- For other necessary things you want to add to your payload. it is optional though --}}
                     <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
                     {{ csrf_field() }} {{-- works only when using laravel 5.1, 5.2 --}}
         

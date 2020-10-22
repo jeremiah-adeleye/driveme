@@ -69,19 +69,40 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function setPasswordAttribute($password){
+    public function setPasswordAttribute($password)
+    {
         $this->attributes['password'] = bcrypt($password);
     }
 
-    public function notifications(){
+    public function notifications()
+    {
         return $this->hasMany('App\Notification');
     }
 
-    public function driverHire() {
+    public function driverHire()
+    {
         return $this->hasMany('App\DriverHire');
     }
 
-    public function cart() {
+    public function cart()
+    {
         return $this->hasMany('App\DriverCart');
+    }
+    public function allTransaction()
+    {
+        return $this->hasMany('App\AllTransaction');
+    }
+    public function hireVehicleRequests()
+    {
+        return $this->hasMany('App\hireVehicleRequest');
+    }
+    public function activeTraining()
+    {
+        return $this->hasMany('App\ActiveTraining');
+    }
+    public function drivingPlans()
+    {
+    
+        return $this->belongsToMany('App\driving_plans');
     }
 }

@@ -66,15 +66,22 @@ class VehicleHireController extends Controller
     }
     public function storeVehicleRequest($values, $vehicle)
     {
-        // dd($vehicle, $values, "here here");
-
-        $user_id = auth()->id();
         $requestForm = session('vehicle_request');
 
-        $saveVehicleRequest = ['user_id' => $user_id, 'vehicle_id' => $vehicle['vehivle_id'], 'duration' => $requestForm['duration'], 'delivery_date' => $requestForm['delivery-date'], 'delivery_time' => $requestForm['delivery-date'], 'address' => $requestForm['address'], 'status' => 'PENDING'];
+        $transaction = new AllTransaction($values);
+
+        $user_id = auth()->id();
+        $user = User::find($user_id);
+        $user->allTransaction()->save($transaction)->refresh();
+
+        $transaction_id = $transaction->id;
 
 
-        AllTransaction::create($values);
+
+        $saveVehicleRequest = ['user_id' => $user_id, 'vehicle_id' => $vehicle['vehivle_id'], 'duration' => $requestForm['duration'], 'delivery_date' => $requestForm['delivery-date'], 'delivery_time' => $requestForm['delivery-date'], 'address' => $requestForm['address'], 'status' => 'PENDING', 'transaction_id' => $transaction_id];
+
+
+        // AllTransaction::create($values);
         hireVehicleRequest::create($saveVehicleRequest);
 
         return redirect('dashboard')->with('success', 'Your payment was successfull and your request for the vehicle has been submitted, we would get back to you soon!');

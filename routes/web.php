@@ -68,14 +68,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('driver/driver/register/resubmit', 'Driver\RegistrationController@resubmitRegistration')->name('driver.register.resubmit');
 
     Route::get('dashboard/online-driving', 'OnlineDriving@index')->name('online-driving');
-    Route::post('dashboard/online-driving-payment', 'OnlineDriving@coursePayment')->name('online-driving-payment');
-    Route::get('dashboard/course/{id}', 'OnlineDrivingController@course')->name('course');
+    Route::post('dashboard/online-driving-payment/{id}', 'OnlineDriving@coursePayment')->name('online-driving-payment');
+    Route::get('dashboard/course/{course_id}', 'OnlineDrivingController@course')->name('course');
     Route::get('dashboard/course/{id}/video/{videoId}', 'OnlineDrivingController@courseVideo')->name('course.video');
 
     // Route::get('dashboard/course/{id}/test/{testId}', 'OnlineDrivingController@courseTest')->name('course.test');
 
     //Quize here
-    Route::get('dashboard/course/{module_id}/{period_id}/{quiz_id}', 'quizController@index')->name('startQuiz');
+    Route::get('dashboard/course/{course_id}/{quiz_id}', 'quizController@index')->name('startQuiz');
     
 
     Route::get('admin/dashboard/drivers/{id}', 'Admin\DriverController@view')->name('admin.driver');

@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 
 class quizController extends Controller
 {
-    public function index($module_id, $period_id, $quize_id)
+    public function index($course_id, $quiz_id)
     {
 
         $active = 'dashboard.onlineDriving';
-        $quizee = quiz::where('id', $quize_id)->first();
+        $quizee = quiz::where('id', $quiz_id)->first();
 
-        $totalQuiz = count(quiz::all()) == $quize_id? true : false;
+        $totalQuiz = count(quiz::all()) == $quiz_id? true : false;
         // dd($totalQuiz);
         $data = compact('quizee', 'active', 'totalQuiz');
         $checkStart = (session('current'));

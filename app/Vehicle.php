@@ -13,4 +13,7 @@ class Vehicle extends Model
         "address",
         "user_id"
     ];
+    public function hireVehicleRequests() {
+        return $this->hasMany('App\hire-vehicle-requests');
+    }
 }

@@ -71,11 +71,11 @@
                 <div id="actions" >
                     {{-- Hide previous button if id = 1 or less --}}
                     @if($quizee->id >1)
-                    <a href="{{route('startQuiz', ['module_id' => $quizee->module_id, 'quiz_id' => $quizee->id-1, 'period_id'=> $quizee->period_id])}}" class="btn btn-custom-primary prev-btn" >PREVIOUS</a>
+                    <a href="{{route('startQuiz', ['course_id' => $quizee->course_id, 'quiz_id' => $quizee->id-1])}}" class="btn btn-custom-primary prev-btn" >PREVIOUS</a>
                     @endif
                     @if ($totalQuiz != true)
                         
-                    <a href="{{route('startQuiz', ['module_id' => $quizee->module_id, 'quiz_id' => $quizee->id+1, 'period_id'=> $quizee->period_id])}}" class="btn btn-custom-primary nxt-btn" >NEXT</a>
+                    <a href="{{route('startQuiz', ['course_id' => $quizee->course_id, 'quiz_id' => $quizee->id+1])}}" class="btn btn-custom-primary nxt-btn" >NEXT</a>
                     @endif
                     <a href="#" class="btn btn-custom-primary submit-btn" >SUBMIT</a>
                 </div>

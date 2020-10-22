@@ -8,7 +8,11 @@ use Redirect;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Vehicle\VehicleHireController;
+use App\User as AppUser;
+use Illuminate\Foundation\Auth\User as AuthUser;
 use Paystack;
+
+
 
 class PaymentController extends Controller
 {
@@ -40,12 +44,16 @@ class PaymentController extends Controller
             $status = $paymentDetails['data']['status'];
             $amount = $paymentDetails['data']['amount'] / 100;
             $order_id = $paymentDetails['data']['metadata']['order_id'];
-            // $plan_id = $paymentDetails['data']['metadata']['plan_id'];
-            $email = $paymentDetails['data']['metadata']['email'];
+            $driving_plan_id = $paymentDetails['data']['metadata']['driving_plan_id'];
+            // $email = $paymentDetails['data']['metadata']['email'];
 
-            $data = ['reference' => $reference, 'status' => $status, 'amount' => $amount, 'order_id' => $order_id, 'email' => $email];
+            $data = ['reference' => $reference, 'status' => $status, 'amount' => $amount, 'order_id' => $order_id];
+
+            // call to save the plans subscribed for and save before saving into transaction table
+            $user = AppUser::find(auth()->id());
             $driving_plan = new OnlineDriving();
-            return $driving_plan->storePaystackRecord($data);
+
+            return $driving_plan->storePaystackRecord($data, $driving_plan_id, $user);
         } else {
 
             $reference = $paymentDetails['data']['reference'];
@@ -53,14 +61,18 @@ class PaymentController extends Controller
             $amount = $paymentDetails['data']['amount'] / 100;
             $order_id = $paymentDetails['data']['metadata']['order_id'];
             $vehicle_id = $paymentDetails['data']['metadata']['vehicle_id'];
-            $email = $paymentDetails['data']['metadata']['email'];
+            // $email = $paymentDetails['data']['metadata']['email'];
+            $user = AppUser::find(auth()->id());
 
-            $data = ['reference' => $reference, 'status' => $status, 'amount' => $amount, 'order_id' => $order_id, 'email' => $email];
+            $data = ['reference' => $reference, 'status' => $status, 'amount' => $amount, 'order_id' => $order_id];
             
             $driving_plan = new OnlineDriving();
 
             $vehicleData = ['vehivle_id' => $vehicle_id];
 
+           
+
+            
             $hireVehicle = new VehicleHireController();
 
             return $hireVehicle->storeVehicleRequest($data, $vehicleData);

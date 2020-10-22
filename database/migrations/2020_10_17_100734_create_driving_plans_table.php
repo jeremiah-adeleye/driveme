@@ -17,10 +17,9 @@ class CreateDrivingPlansTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->string('total_lessons');
+            $table->integer('total_lessons');
             $table->string('amount');
             $table->string('bg_color');
-            $table->string('lesson_period');
             $table->timestamps();
         });
     }

@@ -16,11 +16,14 @@ class CreateAllTransactionsTable extends Migration
         Schema::create('all_transactions', function (Blueprint $table) {
             $table->id();
             $table->string('reference');
+            $table->unsignedBigInteger('user_id')->index();
             $table->string('status');
             $table->string('amount');
             $table->string('order_id');
-            $table->string('email');
+            // $table->string('email');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

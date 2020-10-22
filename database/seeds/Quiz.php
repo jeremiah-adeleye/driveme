@@ -13,8 +13,8 @@ class Quiz extends Seeder
     {
         DB::table('quizzes')->insert([
             [
-                'module_id' => "1",
-                'period_id' => '1 ',
+                'course_id' => "1",
+                
                 'question' => 'what is the name of US president?',
                 'option_a' => 'me',
                 'option_b' => 'you',
@@ -24,9 +24,8 @@ class Quiz extends Seeder
             ],
 
             [
-                'module_id' => "1",
-                'period_id' => '1',
-                'question' => 'Who owns Nigeria?',
+                'course_id' => "1",
+                                'question' => 'Who owns Nigeria?',
                 'option_a' => 'Jerry',
                 'option_b' => 'Tom',
                 'option_c' => 'Everyone',
@@ -34,17 +33,15 @@ class Quiz extends Seeder
                 'correct_option' => 'option_d'
             ],
             [
-                'module_id' => "1",
-                'period_id' => '1',
-                'question' => 'When is the independence day?',
+                'course_id' => "1",
+                                'question' => 'When is the independence day?',
                 'option_a' => '1990',
                 'option_b' => '1992',
                 'option_c' => '20009',              'option_d' => 'October 1',               'correct_option' => 'option_d'
             ],
             [
-                'module_id' => "1",
-                'period_id' => '1',
-                'question' => 'What is ten?',
+                'course_id' => "1",
+                                'question' => 'What is ten?',
                 'option_a' => '1010',
                 'option_b' => 'tens',
                 'option_c' => 'then',              'option_d' => '10',               'correct_option' => 'option_d'

@@ -17,8 +17,9 @@ class CreateHireVehicleRequestsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('vehicle_id');
+            $table->unsignedBigInteger('transaction_id');
             $table->integer('duration');
-            $table->timestamp('delivery_date');
+            $table->string('delivery_date');
             $table->string('delivery_time');
             $table->string('address');
             $table->string('status');

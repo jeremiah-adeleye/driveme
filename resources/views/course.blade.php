@@ -33,7 +33,10 @@
             padding-top: 56.25%;
             background-color: #4e4e4e;
         }
-
+.video:hover{
+    background: url("{{asset('img/icons/play-btn.png')}}") center/cover no-repeat;
+    
+}
         .video .duration {
             margin: auto 1rem 1rem auto;
             background: #000000;
@@ -68,7 +71,7 @@
                 <div class="week" >
                     <div class="title" >
                         <p class="h6" >Week {{$i}}</p>
-                        <a href="{{route('startQuiz', ['module_id' => 1, 'quiz_id' => 1, 'period_id'=> 1])}}" class="btn btn-custom-primary test-btn" >Take Test {{$i}}</a>
+                        <a href="{{route('startQuiz', ['course_id' => 1, 'quiz_id' => 1])}}" class="btn btn-custom-primary test-btn" >Take Test {{$i}}</a>
                     </div>
                     <div class="videos" >
                         <div class="row" >
@@ -78,6 +81,7 @@
                                         <div class="video">
                                             <p class="duration" >30:00</p>
                                         </div>
+                                        <p class="h5">Introduction to driving</p>
                                     </a>
                                 </div>
                             @endfor
