@@ -8,6 +8,7 @@ use App\driving_plans;
 use Illuminate\Http\Request;
 
 use App\User;
+use Auth;
 use Redirect;
 
 class OnlineDriving extends Controller
@@ -31,9 +32,12 @@ class OnlineDriving extends Controller
     }
     public function coursePayment($id)
     {
-        $activePlans = ActiveTraining::find($id);
-        if ($activePlans != null) {
-            return \Redirect::back()->with('error', 'You are currently subscribed to this plan, kindly go to your dashboard to continue the course.');
+        $userId = auth()->id();
+        $activePlans = ActiveTraining::where('user_id', $userId)->orderBy('driving_plans_id', 'desc')->first();
+
+       
+        if ($activePlans != null && $id <= $activePlans->driving_plans_id) {
+            return \Redirect::back()->with('error', 'It seems you are currently on this plan or an higher plan, kindly go to your dashboard to continue the course.');
         }
 
         $paystackPayment = new PaymentController();

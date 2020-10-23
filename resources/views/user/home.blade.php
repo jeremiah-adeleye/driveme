@@ -62,7 +62,7 @@
                     <div class="statistics" id="unavailable-drivers" >
                         <div class="d-flex stat-cover" >
                             <div class="icon" ></div>
-                            <div class="no flex-grow-1" >2557</div>
+                            <div class="no flex-grow-1" >{{$noHiredDriver}}</div>
                         </div>
                         <p class="desc" >Number of Hired Drivers</p>
                     </div>
@@ -76,39 +76,39 @@
                         <p class="desc" >Number of Hired Vehicles</p>
                     </div>
                 </div>
-                @foreach ($drivingPlans as $plan)
-                    <div class="col-md-6">
+               
+                    <div class={{$drivingPlans? "col-md-6" : "d-none"}}>
                         <a href="{{route('course.video', ['id' => 1, 'videoId' => 1])}}">
-                            <div class="statistics statistics-lg" style="background: {{$plan->bg_color}}">
+                            <div class="statistics statistics-lg" style="background: {{$drivingPlans? $drivingPlans->bg_color : ''}}">
                                 <div class="d-flex stat-cover" >
                                     <div>
                                         <div class="icon" ></div>
-                                    <p class="desc" ><span class="h5">{{$plan->title}} Plan</span>  
+                                    <p class="desc" ><span class="h5">{{$drivingPlans?$drivingPlans->title: ''}} Plan</span>  
                                         <br/>
                                         Number
                                         of Videos Completed</p>
                                     </div>
-                                    <div class="no flex-grow-1" >{{$plan->completed_videos}}</div>
+                                    <div class="no flex-grow-1" >{{$completedVideos}}</div>
                                 </div>
                             </div>
                         </a>
                    
                     </div>
 
-                        <div class="col-md-6">
+                        <div class={{$drivingPlans? "col-md-6" : "d-none"}}>
                             
 
                         <a href="">
-                            <div class="statistics statistics-lg" style="background: {{$plan->bg_color}}">
+                            <div class="statistics statistics-lg" style="background: {{$drivingPlans? $drivingPlans->bg_color : ''}}">
                                 <div class="d-flex stat-cover" >
                                     <div>
                                         <div class="icon" ></div>
-                                    <p class="desc" ><span class="h5">{{$plan->title}} Plan</span>  
+                                    <p class="desc" ><span class="h5">{{$drivingPlans? $drivingPlans->title : ''}} Plan</span>  
                                         <br/>
                                         Number
                                         of Test Completed</p>
                                     </div>
-                                    <div class="no flex-grow-1" >{{$plan->completed_test}}</div>
+                                    <div class="no flex-grow-1" >{{$completedTest}}</div>
                                 </div>
                             </div>
                         </a>
@@ -118,7 +118,7 @@
                             +"completed_videos": 0
       +"completed_test": 0 --}}
     </div>
-    @endforeach
+  
 
                     </div>
         </div>

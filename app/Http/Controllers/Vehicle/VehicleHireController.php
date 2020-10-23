@@ -10,11 +10,16 @@ use Illuminate\Http\Request;
 use Redirect;
 use App\Http\Controllers\PaymentController;
 use App\User;
+use App\Http\Service\NotificationService;
 
 class VehicleHireController extends Controller
 {
     private $validatedData;
+    private $notificationService;
 
+    public function __construct(){
+        $this->notificationService = new NotificationService();
+    }
     public function selectHireVehicleType(Request $request)
     {
         $vehicles = Vehicle::all();
@@ -66,9 +71,14 @@ class VehicleHireController extends Controller
     }
     public function storeVehicleRequest($values, $vehicle)
     {
+
+        //we get session used to store user form filled before proceeding to payment in hire a driver
         $requestForm = session('vehicle_request');
 
+        // here we save the result of transaction after payment
         $transaction = new AllTransaction($values);
+
+        // get the transaction id to be used in other processing
 
         $user_id = auth()->id();
         $user = User::find($user_id);
@@ -76,13 +86,17 @@ class VehicleHireController extends Controller
 
         $transaction_id = $transaction->id;
 
+        // save the vehicle request in user hire vehicle request table
 
+        $saveVehicleRequest = ['user_id' => $user_id, 'vehicle_id' => $vehicle['vehivle_id'], 'duration' => $requestForm['duration'], 'delivery_date' => $requestForm['delivery-date'], 'delivery_time' => $requestForm['delivery-date'], 'address' => $requestForm['address'], 'status' => 1, 'transaction_id' => $transaction_id];
 
-        $saveVehicleRequest = ['user_id' => $user_id, 'vehicle_id' => $vehicle['vehivle_id'], 'duration' => $requestForm['duration'], 'delivery_date' => $requestForm['delivery-date'], 'delivery_time' => $requestForm['delivery-date'], 'address' => $requestForm['address'], 'status' => 'PENDING', 'transaction_id' => $transaction_id];
-
-
-        // AllTransaction::create($values);
-        hireVehicleRequest::create($saveVehicleRequest);
+       $getSaveRequest = hireVehicleRequest::create($saveVehicleRequest)->refresh();
+        // also call the notification service to store the notification so as to enable admin see it on the page
+        $fullName = ucfirst($user->first_name . ' ' . $user->last_name);
+        $notification = "$fullName has submitted application to hire a vehicle";
+        $link = route('admin.vehicle-hire', ['id' => $getSaveRequest->id]);
+        $this->notificationService->newNotification($notification, $link);
+       
 
         return redirect('dashboard')->with('success', 'Your payment was successfull and your request for the vehicle has been submitted, we would get back to you soon!');
     }

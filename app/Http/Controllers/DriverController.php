@@ -53,6 +53,7 @@ class DriverController extends Controller
 
     public function hireDriver($hireType) {
         $active = 'dashboard.hireDriver';
+        
         $user = auth()->user();
 
         if (!$this->verifyRegistration()) {

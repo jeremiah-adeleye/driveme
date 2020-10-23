@@ -38,7 +38,7 @@
                     <p>Online Driving </p>
                 </a>
             @else
-                <a class="menu-item @if($active == 'dashboard.driverTraining') active @endif">
+                <a class="menu-item @if($active == 'dashboard.driverTraining') active @endif" href="{{route('online-driving')}}">
                     <img src="{{ asset('img/icons/driver_training.png') }}" class="menu-item-icon" alt="ic" >
                     <p>Driver Training</p>
                 </a>
