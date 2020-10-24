@@ -13,24 +13,15 @@ class quizController extends Controller
         $active = 'dashboard.onlineDriving';
         $quizee = quiz::where('id', $quiz_id)->first();
 
-        $totalQuiz = count(quiz::all()) == $quiz_id? true : false;
-        // dd($totalQuiz);
-        $data = compact('quizee', 'active', 'totalQuiz');
-        $checkStart = (session('current'));
+        if ($quizee != null) {
+            $totalQuiz = count(quiz::all()) == $quiz_id ? true : false;
+            $data = compact('quizee', 'active', 'totalQuiz');
+         
 
-        return view('course-test', $data);
-
-
-        // dd(request());
-
-
-        //get a random s/n from the quiz array
-        //send the gotten to the view
-
-
-
-        // dashboard/course/{module_id}/{period_id}/{quize_id}
-
+            // $checkStart = (session('current'));
+            return view('course-test', $data);
+        }
+        return \Redirect::back()->with('error', 'No more question here');
     }
 
 

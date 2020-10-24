@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 class DriverHireController extends Controller{
 
+   
+
     public function hireRequest($id) {
         $active = 'dashboard.drivers';
         $hireRequest = DriverHire::find($id);
@@ -85,4 +87,5 @@ class DriverHireController extends Controller{
 
         return redirect()->intended(route('dashboard'))->with('error', 'Invalid request');
     }
+   
 }
