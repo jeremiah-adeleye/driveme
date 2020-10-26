@@ -26,7 +26,13 @@ class DashboardController extends Controller
             // check if the user exist if yes check the vehicle user has applied for
 
             $vehicleHired = hireVehicleRequest::where([['user_id', '=', $userId], ['status', '=', '2']])->get();
+
+
+            //get user data 
+
+
             $user = User::find($userId);
+
             // count the numbers of vehicles approved for hiring
             $noHiredVehicle = count($vehicleHired);
 
@@ -48,12 +54,18 @@ class DashboardController extends Controller
 
             // count the numbers of vehicles approved for hiring
             $noHiredDriver = count($hiredDrivers);
-           
+
 
             $active = 'dashboard.home';
             $data = ['user', 'active', 'noHiredVehicle', 'drivingPlans', 'completedVideos', 'completedTest', 'noHiredDriver'];
 
             if ($user->role == 1) {
+
+                // user with role 1 is a normal user
+                // role 2 is a driver
+                // role 3 is a coporate or company account
+                // role 4 is an admin
+
                 return view('user.home', compact($data));
             } elseif ($user->role == 2) {
                 $driver = Driver::whereUserId(auth()->id())->first();
@@ -84,6 +96,7 @@ class DashboardController extends Controller
             } elseif ($user->role == 3) {
                 $corporate = Corporate::whereUserId($userId);
                 if ($corporate == null) $corporate = new Corporate();
+
                 array_push($data, 'corporate');
 
                 return view('corporate.home', compact($data));

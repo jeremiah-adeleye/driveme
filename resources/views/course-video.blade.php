@@ -18,29 +18,37 @@
         }
 
     </style>
+    
 @endsection
 
 @section('content')
-    <div id="content" >
+    <div id="content">
         <p class="h5 page-title" >Video</p>
 
         <div id="videos-cover" >
-        <video controls>
+        <video controls id="video" >
             
             <source src="{{ asset('videos/video3.mp4') }}">
           
                 Your browser does not support embedded videos.
         </video>
-            <div id="description" >
-                <p class="title h6" >Video Title</p>
+            <div id="description">
+                <p class="title h6" id="description">Video Title</p>
                 <div>
                     <p>this is the description of the video</p>
                 </div>
             </div>
             <div class="controls">
                 <a href="{{ route('course', ['course_id'=>1]) }}" class="btn btn-custom-primary">Course Home</a>
-                <a href="{{ route('startQuiz', ['course_id'=>1, 'quiz_id'=> 1]) }}" class="btn btn-custom-primary">Take Test</a>
+                <a href="{{ route('startQuiz', ['course_id'=>1, 'quiz_id'=> 1, 'driving_plans_id'=> 1]) }}" class="btn btn-custom-primary">Take Test</a>
             </div>
         </div>
     </div>
+
 @endsection
+<script type='text/javascript'>
+
+
+
+              
+</script>   
