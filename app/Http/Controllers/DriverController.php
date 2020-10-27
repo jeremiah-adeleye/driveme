@@ -69,9 +69,9 @@ class DriverController extends Controller
         }
 
         $id = 2;
+
         $driver = $this->driverService->userGetDriver($id);
         $data = compact('active', 'drivers', 'driverIds', 'hireType');
-
         if ($driver != null) {
             $pendingRequest = $this->driverService->userPendingEmploymentRequest($id);
             $activeEmployment = $this->driverService->userActiveEmployment($id);
