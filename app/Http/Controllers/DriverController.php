@@ -78,7 +78,7 @@ class DriverController extends Controller
             if ($pendingRequest || $activeEmployment) return redirect()->route('user.driver', ['id' => $driver->id]);
 
             return view('hire-driver', $data);
-        }else return redirect()->route('user.drivers');
+        }else return redirect()->route('user.drivers', ['hireType' => $hireType]);
     }
 
     public function hireDriverPayment(HireDriverRequest $request) {

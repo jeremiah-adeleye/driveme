@@ -1,5 +1,5 @@
 @extends('admin.layout.dashboard')
-
+@section('head')
 @section('content')
     <div id="details" >
         <p class="h5" >USER DETAILS</p>
