@@ -68,14 +68,10 @@ class DriverController extends Controller
         $drivers = Driver::whereIn('id', $driverIds)->get();
 
 
-
         if (sizeof($drivers) % 2 != 0) {
             return redirect()->route('user.drivers',['hireType'=>$hireType])->with('error', 'You must select double the number of drivers you wish to hire');
         }
 
-
-//        $id = 2;
-//        $driver = $this->driverService->userGetDriver($id);
         $data = compact('active', 'drivers', 'driverIds', 'hireType');
 
         if (is_object($drivers)) {
@@ -89,9 +85,6 @@ class DriverController extends Controller
                     return redirect()->route('user.driver', ['id' => $dri->id]);
                 }
             }
-
-
-
 
             return view('hire-driver', $data);
         }else return redirect()->route('user.drivers', ['hireType' => $hireType]);

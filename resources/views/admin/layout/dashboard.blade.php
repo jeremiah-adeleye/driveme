@@ -38,8 +38,22 @@
             </a>
         </div>
     </div>
-    <section id="dashboard-content" class="container-fluid flex-grow-1" >
-        <ul id="top-nav" class="nav justify-content-end ">
+    <section id="dashboard-content" class="flex-grow-1" >
+        <div class="top-nav d-flex">
+            <div class="search"> <img src="{{ asset('img/icons/searche.png') }}" alt="search icon" /></div>
+            <a class="profile-icon d-flex" href="#">
+            <div>
+
+                <img class="profile-thumbnail" src="{{ asset('img/icons/thumbnail.jpg') }}" alt="search icon" />
+            </div>
+                
+                <div class="">Adeleye</div>
+                <div class="dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     
+                </div>
+        </a>
+        </div>
+        {{-- <ul id="top-nav" class="nav justify-content-end ">
             <li class="nav-item">
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
@@ -51,8 +65,8 @@
                     </div>
                 </div>
             </li>
-        </ul>
-        <div class="p-5" >
+        </ul> --}}
+        <div class="p-3" >
             @yield('content')
         </div>
     </section>

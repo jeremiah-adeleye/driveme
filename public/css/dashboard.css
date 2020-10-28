@@ -3,7 +3,7 @@ body {
 }
 
 .sidenav {
-  width: 25rem;
+  width: 18rem;
   background: #20ADF2;
   height: 100%;
   transition: width 0.5s;
@@ -31,7 +31,7 @@ body {
 }
 
 #dashboard-content #top-nav .dropdown-toggle #username-icon {
-  background: #021827;
+  background: #abafb3;
   color: #ffffff;
   border-radius: 50%;
   padding: 0.5rem;
@@ -146,4 +146,23 @@ body {
   width: 50%;
   margin: 0 auto 2rem;
 }
+.top-nav{
+  height: 4rem;
+  background: #ffffff;
+  align-items: center;
+  padding: 0 1.5rem;
+  justify-content: space-between;
+}
+.profile-thumbnail{
+  width: 24px;
+  height: 24px;
+  border-radius: 25px;
+  margin: 0 1rem;
+}
 
+.profile-icon{
+  height: 100%;
+ align-items: center;
+ width: auto;
+ justify-content: space-between;
+}
