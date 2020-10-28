@@ -8,7 +8,9 @@ use App\Driver;
 use App\Http\Requests\HireDriverRequest;
 use App\Http\Service\DriverService;
 use App\Http\Service\PaymentService;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 
 class DriverController extends Controller
@@ -53,8 +55,9 @@ class DriverController extends Controller
 
     public function hireDriver($hireType) {
         $active = 'dashboard.hireDriver';
-        
+
         $user = auth()->user();
+
 
         if (!$this->verifyRegistration()) {
             return redirect()->route($this->getRedirectUrlOnRegFail())->with('error', 'You need to complete registration');
@@ -64,18 +67,31 @@ class DriverController extends Controller
         $driverIds = $cartItems->pluck('driver_id');
         $drivers = Driver::whereIn('id', $driverIds)->get();
 
+
+
         if (sizeof($drivers) % 2 != 0) {
-            return redirect()->route('user.drivers')->with('error', 'You must select double the number of drivers you wish to hire');
+            return redirect()->route('user.drivers',['hireType'=>$hireType])->with('error', 'You must select double the number of drivers you wish to hire');
         }
 
-        $id = 2;
-        $driver = $this->driverService->userGetDriver($id);
+
+//        $id = 2;
+//        $driver = $this->driverService->userGetDriver($id);
         $data = compact('active', 'drivers', 'driverIds', 'hireType');
 
-        if ($driver != null) {
-            $pendingRequest = $this->driverService->userPendingEmploymentRequest($id);
-            $activeEmployment = $this->driverService->userActiveEmployment($id);
-            if ($pendingRequest || $activeEmployment) return redirect()->route('user.driver', ['id' => $driver->id]);
+        if (is_object($drivers)) {
+
+            //check if any of the drivers has a pending request
+            foreach ($drivers as $dri)
+            {
+                $pendingRequest = $this->driverService->userPendingEmploymentRequest($dri->id);
+                $activeEmployment = $this->driverService->userActiveEmployment($dri->id);
+                if ($pendingRequest || $activeEmployment) {
+                    return redirect()->route('user.driver', ['id' => $dri->id]);
+                }
+            }
+
+
+
 
             return view('hire-driver', $data);
         }else return redirect()->route('user.drivers', ['hireType' => $hireType]);
