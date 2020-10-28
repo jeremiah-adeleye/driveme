@@ -77,7 +77,12 @@ Route::group(['middleware' => ['auth']], function () {
     //Quize here
     Route::get('dashboard/course/{course_id}/{quiz_id}', 'quizController@index')->name('startQuiz');
     
-// Vehicle Request
+
+
+// Admin dashboard feed
+    Route::get('admin/dashboard/feed', 'FeedController@index')->name('feed');
+
+    // Vehicle Request
     Route::get('admin/dashboard/vehicle/{id}', 'AdminHireVehicleController@hireVehicleRequest')->name('admin.vehicle-hire');
     Route::post('admin/dashboard/vehicle/{id}/reject', 'AdminHireVehicleController@rejectApproval')->name('admin.vehicle.reject');
     Route::get('admin/dashboard/vehicle/{id}/approve', 'AdminHireVehicleController@approveVehicle')->name('admin.vehicle.approve');

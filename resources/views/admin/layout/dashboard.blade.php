@@ -20,9 +20,13 @@
             <img src="{{ asset('img/driveme_logo.png') }}" alt="logo" >
         </div>
         <div id="menu-items" class="flex-grow-1" >
-            <a class="menu-item @if($active == 'dashboard.home') active @endif" href="{{route('dashboard')}}" >
+            <a class="menu-item @if($active == 'admin.feed') active @endif" href="{{route('feed')}}" >
                 <img src="{{ asset('img/icons/bar_chart.png') }}" class="menu-item-icon" alt="ic" >
                 <p>Feed</p>
+            </a>
+            <a class="menu-item @if($active == 'dashboard.home') active @endif" href="{{route('dashboard')}}" >
+                <img src="{{ asset('img/icons/bar_chart.png') }}" class="menu-item-icon" alt="ic" >
+                <p>Dashboard</p>
             </a>
             <a class="menu-item @if($active == 'dashboard.drivers') active @endif" >
                 <img src="{{ asset('img/icons/user_icon.png') }}" class="menu-item-icon" alt="ic" >
