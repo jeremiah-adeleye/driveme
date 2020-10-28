@@ -28,7 +28,7 @@ class DashboardController extends Controller
             $vehicleHired = hireVehicleRequest::where([['user_id', '=', $userId], ['status', '=', '2']])->get();
 
 
-            //get user data 
+            //get user data
 
 
             $user = User::find($userId);
