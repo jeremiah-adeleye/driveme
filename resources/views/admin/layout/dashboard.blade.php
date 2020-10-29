@@ -28,6 +28,10 @@
                 <img src="{{ asset('img/icons/bar_chart.png') }}" class="menu-item-icon" alt="ic" >
                 <p>Dashboard</p>
             </a>
+            <a class="menu-item @if($active == 'dashboard.users') active @endif" href="{{route('all.users')}}" >
+                <img src="{{ asset('img/icons/online_driving.png') }}" class="menu-item-icon" alt="ic" >
+                <p>All Users</p>
+            </a>
             <a class="menu-item @if($active == 'dashboard.drivers') active @endif" >
                 <img src="{{ asset('img/icons/user_icon.png') }}" class="menu-item-icon" alt="ic" >
                 <p>Drivers</p>
@@ -36,10 +40,10 @@
                 <img src="{{ asset('img/icons/user_icon.png') }}" class="menu-item-icon" alt="ic" >
                 <p>Corporates</p>
             </a>
-            <a class="menu-item @if($active == 'dashboard.users') active @endif">
+            {{-- <a class="menu-item @if($active == 'dashboard.users') active @endif">
                 <img src="{{ asset('img/icons/online_driving.png') }}" class="menu-item-icon" alt="ic" >
                 <p>Users</p>
-            </a>
+            </a> --}}
         </div>
     </div>
     <section id="dashboard-content" class="flex-grow-1" >

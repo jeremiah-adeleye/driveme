@@ -82,6 +82,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 // Admin dashboard feed
     Route::get('admin/dashboard/feed', 'FeedController@index')->name('feed');
+    Route::get('admin/dashboard/all-users', 'AllUsersController@index')->name('all.users');
 
     // Vehicle Request
 

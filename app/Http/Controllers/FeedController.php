@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Notification;
 use Illuminate\Http\Request;
 
+
 class FeedController extends Controller
 {
     public function index()

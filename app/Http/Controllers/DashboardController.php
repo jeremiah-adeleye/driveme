@@ -20,13 +20,15 @@ class DashboardController extends Controller
     {
         // get user id
         $userId = auth()->id();
-
+        
         if ($userId != null) {
-
+            
             // check if the user exist if yes check the vehicle user has applied for
-
-            $vehicleHired = hireVehicleRequest::where([['user_id', '=', $userId], ['status', '=', '2']])->get();
-
+            
+            $vehicleHired = ['id'=> 1];
+            // hireVehicleRequest::where([['user_id', '=', $userId], ['status', '=', '2']])->get();
+            
+            
 
             //get user data
 

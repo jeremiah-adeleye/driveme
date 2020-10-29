@@ -14,6 +14,6 @@ class Vehicle extends Model
         "user_id"
     ];
     public function hireVehicleRequests() {
-        return $this->hasMany('App\hire-vehicle-requests');
+        return $this->hasMany('App\hireVehicleRequest');
     }
 }
