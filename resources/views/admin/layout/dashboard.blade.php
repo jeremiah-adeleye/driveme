@@ -11,6 +11,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 {{-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> --}}
     <title>Drive me</title>
+    <script>
+        .hover{
+            
+        }
+    </script>
     @yield('head')
 </head>
 <body class="d-flex flex-column" >
@@ -50,18 +55,22 @@
     </div>
     <section id="dashboard-content" class="flex-grow-1" >
         <div class="top-nav d-flex">
-            <div class="search"> <img src="{{ asset('img/icons/searche.png') }}" alt="search icon" /></div>
-            <a class="profile-icon d-flex" href="#">
+            {{-- <div class="search"> <img src="{{ asset('img/icons/searche.png') }}" alt="search icon" /></div> --}}
+            <p class="search h-100 d-flex align-items-center">Logged in as Admin</p>
+            
+            <div class="profile-icon d-flex pointer">
             <div>
-
-                <img class="profile-thumbnail" src="{{ asset('img/icons/thumbnail.jpg') }}" alt="search icon" />
+                <img class="profile-thumbnail" src="{{ asset('img/icons/thumbnail.jpg') }}" alt="user profile image" />
             </div>
                 
-                <div class="">Adeleye</div>
+        <div class="">{{auth()->user()->first_name}}</div>
                 <div class="dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                      
                 </div>
-        </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+                </div>
+            </div>
         </div>
         {{-- <ul id="top-nav" class="nav justify-content-end ">
             <li class="nav-item">

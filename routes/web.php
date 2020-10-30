@@ -55,14 +55,14 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     //hire driver
-    Route::get('dashboard/hire/select-type',  [DriverController::class,'selectHireType'])->name('user.hire-type');
-    Route::get('dashboard/{hireType}/drivers', [DriverController::class,'list'])->name('user.drivers');
-    Route::get('dashboard/{hireType}/drivers/hire', [DriverController::class,'hireDriver'])->name('user.hire-driver');
-    Route::post('dashboard/drivers/hire', [DriverController::class,'hireDriverPayment'])->name('user.hire-driver-payment');
+    Route::get('dashboard/hire/select-type',  [DriverController::class, 'selectHireType'])->name('user.hire-type');
+    Route::get('dashboard/{hireType}/drivers', [DriverController::class, 'list'])->name('user.drivers');
+    Route::get('dashboard/{hireType}/drivers/hire', [DriverController::class, 'hireDriver'])->name('user.hire-driver');
+    Route::post('dashboard/drivers/hire', [DriverController::class, 'hireDriverPayment'])->name('user.hire-driver-payment');
     Route::get('dashboard/{hireType}/drivers/{id}', 'DriverController@showDriver')->name('user.driver');
     Route::get('cart/{id}/add', 'DriverController@addToCart')->name('user.cart.add');
     Route::get('cart/{id}/remove', 'DriverController@removeFromCart')->name('user.cart.remove');
-    Route::get('dashboard/{hireType}/cart', [DriverController::class,'viewCart'])->name('user.cart');
+    Route::get('dashboard/{hireType}/cart', [DriverController::class, 'viewCart'])->name('user.cart');
 
     Route::get('dashboard/driver/complete-registration', 'Driver\RegistrationController@completeRegistration')->name('driver.complete-registration');
     Route::post('driver/driver/register/complete', 'Driver\RegistrationController@submitRegistration')->name('driver.register.compete');
@@ -77,17 +77,17 @@ Route::group(['middleware' => ['auth']], function () {
 
     //Quize here
     Route::get('dashboard/course/{course_id}/{quiz_id}', 'quizController@index')->name('startQuiz');
-    
 
 
-// Admin dashboard feed
+
+    // Admin dashboard feed
     Route::get('admin/dashboard/feed', 'FeedController@index')->name('feed');
     Route::get('admin/dashboard/all-users', 'AllUsersController@index')->name('all.users');
     Route::get('admin/dashboard/action', 'AllUsersController@action')->name('usersAction');
 
     // Vehicle Request
 
-// Vehicle Request
+    // Vehicle Request
     Route::get('admin/dashboard/vehicle/{id}', 'AdminHireVehicleController@hireVehicleRequest')->name('admin.vehicle-hire');
     Route::post('admin/dashboard/vehicle/{id}/reject', 'AdminHireVehicleController@rejectApproval')->name('admin.vehicle.reject');
     Route::get('admin/dashboard/vehicle/{id}/approve', 'AdminHireVehicleController@approveVehicle')->name('admin.vehicle.approve');

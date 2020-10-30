@@ -20,15 +20,15 @@ class DashboardController extends Controller
     {
         // get user id
         $userId = auth()->id();
-        
+
         if ($userId != null) {
-            
+
             // check if the user exist if yes check the vehicle user has applied for
-            
-            $vehicleHired = ['id'=> 1];
+
+            $vehicleHired = ['id' => 1];
             // hireVehicleRequest::where([['user_id', '=', $userId], ['status', '=', '2']])->get();
-            
-            
+
+
 
             //get user data
 
@@ -104,7 +104,15 @@ class DashboardController extends Controller
                 return view('corporate.home', compact($data));
             } else {
                 $notifications = Notification::whereSeen(false)->orderBy('created_at', 'desc')->get();
-                array_push($data, 'notifications');
+                $allUser = DB::table('users')
+                    ->orderBy('id')
+                    ->get();
+                $allDriver = DB::table('drivers')->orderBy('id')
+                    ->get();
+                $hiredDrivers = DB::table('driver_hire_drivers')->where('active', 1)->orderBy('id')->get();
+                $fullTimeDriversRequest = DB::table('driver_hires')->where('type', 'full_time')->orderBy('id')->get();
+                $shortTimeDriversRequest = DB::table('driver_hires')->where('type', 'short_time')->orderBy('id')->get();
+                array_push($data, 'notifications', 'allUser', 'allDriver', 'hiredDrivers', 'fullTimeDriversRequest', 'shortTimeDriversRequest');
 
                 return view('admin.home', compact($data));
             }

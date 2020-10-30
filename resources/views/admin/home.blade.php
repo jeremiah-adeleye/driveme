@@ -50,48 +50,56 @@
     <div class="col-md-4 col-sm-12">
 
         <div class="card">
+            <a href="{{route('all.users')}}">
             <div class="card-body">
                 <div class="stat-widget-two">
                     <div class="media">
                         <div class="media-body">
-                            <h2 class="mt-0 mb-1 pry-color ">184</h2><span class="muted">Total Users</span>
+
+                                <h2 class="mt-0 mb-1 pry-color ">{{count($allUser)}}</h2><span class="muted">Total Users</span>
+                            </div>
+                            <img class="ml-3" src="{{ asset('img/icons/1.png') }}" alt="">
                         </div>
-                        <img class="ml-3" src="{{ asset('img/icons/1.png') }}" alt="">
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
         
     </div>
     <div class="col-md-4 col-sm-12">
 
         <div class="card">
+            <a href="">
             <div class="card-body">
                 <div class="stat-widget-two">
                     <div class="media">
                         <div class="media-body">
-                            <h2 class="mt-0 mb-1 red-color ">184</h2><span class="muted">Active Drivers</span>
+                        <h2 class="mt-0 mb-1 red-color ">{{count($allDriver)}}</h2><span class="muted">Active Drivers</span>
                         </div>
                         <img class="ml-3" src="{{ asset('img/icons/2.png') }}" alt="">
                     </div>
                 </div>
             </div>
+        </a>
         </div>
         
     </div>
     <div class="col-md-4 col-sm-12">
 
         <div class="card">
-            <div class="card-body">
-                <div class="stat-widget-two">
-                    <div class="media">
-                        <div class="media-body">
-                            <h2 class="mt-0 mb-1 yellow-color ">184</h2><span class="muted">Drivers with Clients</span>
+            <a href="">
+
+                <div class="card-body">
+                    <div class="stat-widget-two">
+                        <div class="media">
+                            <div class="media-body">
+                                <h2 class="mt-0 mb-1 yellow-color ">{{count($hiredDrivers)}}</h2><span class="muted">Drivers with Clients</span>
+                            </div>
+                            <img class="ml-3" src="{{ asset('img/icons/3.png') }}" alt="">
                         </div>
-                        <img class="ml-3" src="{{ asset('img/icons/3.png') }}" alt="">
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
         
     </div>
@@ -107,35 +115,41 @@
     <div class="card">
         <div class="card-body">
             <div class="row">
+                
                 <div class="col-sm-4 mb-sm-0">
-                    <div class="py-2">
-                        <div class="d-flex">
-                            <img class="mr-4 mt-3 driver-img" src="{{ asset('img/icons/4.png') }}" alt="">
-                            <div class="media-body">
-                                <h2 class="mt-0 mb-1 text-info">57</h2>
-                                <span class="text-pale-sky grey">Fulltime Driver Request</span>
+                    <a href="">
+                        <div class="py-2">
+                            <div class="d-flex">
+                                <img class="mr-4 mt-3 driver-img" src="{{ asset('img/icons/4.png') }}" alt="">
+                                <div class="media-body">
+                                <h2 class="mt-0 mb-1 text-info">{{count($shortTimeDriversRequest)}}</h2>
+                                    <span class="text-pale-sky grey">Fulltime Driver Request</span>
+                                </div>
                             </div>
                         </div>
+                    </a>
                     </div>
-                </div>
+                
                 <div class="col-sm-4 mb-sm-0">
-                    <div class="py-2">
-                        <div class="d-flex">
-                            <img class="mr-4 mt-3 driver-img" src="{{ asset('img/icons/5.png') }}" alt="">
-                            <div class="media-body">
-                                <h2 class="mt-0 mb-1 text-success">0</h2>
-                                <span class="text-pale-sky grey">Short Term Driver Request</span>
+                    <a href="">
+                        <div class="py-2">
+                            <div class="d-flex">
+                                <img class="mr-4 mt-3 driver-img" src="{{ asset('img/icons/5.png') }}" alt="">
+                                <div class="media-body">
+                                <h2 class="mt-0 mb-1 text-success">{{count($fullTimeDriversRequest)}}</h2>
+                                    <span class="text-pale-sky grey">Short Term Driver Request</span>
+                                </div>
                             </div>
                         </div>
+                    </a>
                     </div>
-                </div>
 
                 <div class="col-sm-2">
                     <div class="py-2" onclick="window.location.href='fulltime-driver'">
                         <div class="d-flex">
                             <img class="mr-4 mt-3 driver-img" src="{{ asset('img/icons/7.png') }}" alt="">
                             <div class="media-body">
-                                <h2 class="mt-0 mb-1 text-warning">1</h2>
+                                <h2 class="mt-0 mb-1 text-warning">0</h2>
                                 <span class="text-pale-sky grey">FullTime Processing</span>
                             </div>
                         </div>
