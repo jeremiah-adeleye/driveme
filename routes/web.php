@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DriverController;
+use App\Http\Controllers\OnlineDriving;
+use App\Http\Controllers\OnlineDrivingController;
+use App\Http\Controllers\quizController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +32,7 @@ Route::get('corporate/register', 'Corporate\AuthController@register')->name('cor
 Route::post('corporate/register', 'Corporate\AuthController@saveCorporateUser')->name('corporate.register');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::get('dashboard',   [DashboardController::class,'index'])->name('dashboard');
     Route::get('dashboard/user/complete-registration', 'User\AccountController@completeRegistration')->name('user.complete-registration');
     Route::post('dashboard/user/complete-registration', 'User\AccountController@submitCompleteRegistration')->name('user.submit-complete-registration');
 
@@ -68,15 +72,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('driver/driver/register/complete', 'Driver\RegistrationController@submitRegistration')->name('driver.register.compete');
     Route::post('driver/driver/register/resubmit', 'Driver\RegistrationController@resubmitRegistration')->name('driver.register.resubmit');
 
-    Route::get('dashboard/online-driving', 'OnlineDriving@index')->name('online-driving');
-    Route::post('dashboard/online-driving-payment/{id}', 'OnlineDriving@coursePayment')->name('online-driving-payment');
-    Route::get('dashboard/course/{course_id}', 'OnlineDrivingController@course')->name('course');
-    Route::get('dashboard/course/{id}/video/{videoId}', 'OnlineDrivingController@courseVideo')->name('course.video');
+    Route::get('dashboard/online-driving',  [OnlineDriving::class,'index'])->name('online-driving');
+    Route::post('dashboard/online-driving-payment/{id}',[OnlineDriving::class,'coursePayment'])->name('online-driving-payment');
+    Route::get('dashboard/course/{course_id}', [OnlineDrivingController::class,'course'])->name('course');
+    Route::get('dashboard/course/{id}/video/{videoId}',  [OnlineDrivingController::class,'courseVideo'])->name('course.video');
 
     // Route::get('dashboard/course/{id}/test/{testId}', 'OnlineDrivingController@courseTest')->name('course.test');
 
     //Quize here
-    Route::get('dashboard/course/{course_id}/{quiz_id}', 'quizController@index')->name('startQuiz');
+    Route::get('dashboard/course/{course_id}/{quiz_id}', [quizController::class,'index'])->name('startQuiz');
+    Route::post('savequizresult', [quizController::class,'savequizresult']);
 
 // Vehicle Request
     Route::get('admin/dashboard/vehicle/{id}', 'AdminHireVehicleController@hireVehicleRequest')->name('admin.vehicle-hire');
