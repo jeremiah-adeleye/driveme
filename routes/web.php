@@ -80,8 +80,21 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::get('dashboard/course/{id}/test/{testId}', 'OnlineDrivingController@courseTest')->name('course.test');
 
     //Quize here
+<<<<<<< HEAD
     Route::get('dashboard/course/{course_id}/{quiz_id}', [quizController::class,'index'])->name('startQuiz');
     Route::post('savequizresult', [quizController::class,'savequizresult']);
+=======
+    Route::get('dashboard/course/{course_id}/{quiz_id}', 'quizController@index')->name('startQuiz');
+    
+
+
+// Admin dashboard feed
+    Route::get('admin/dashboard/feed', 'FeedController@index')->name('feed');
+    Route::get('admin/dashboard/all-users', 'AllUsersController@index')->name('all.users');
+    Route::get('admin/dashboard/action', 'AllUsersController@action')->name('usersAction');
+
+    // Vehicle Request
+>>>>>>> bbcc7e0af3032299704dba2eea400d469183e0c4
 
 // Vehicle Request
     Route::get('admin/dashboard/vehicle/{id}', 'AdminHireVehicleController@hireVehicleRequest')->name('admin.vehicle-hire');

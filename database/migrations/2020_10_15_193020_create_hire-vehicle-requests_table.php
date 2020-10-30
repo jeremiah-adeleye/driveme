@@ -34,6 +34,6 @@ class CreateHireVehicleRequestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hire-vehicle-requests');
+        Schema::dropIfExists('hire_vehicle_requests');
     }
 }
