@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" >
     <link rel="stylesheet" href="{{asset('css/app.css')}}" >
     <link rel="stylesheet" href="{{asset('css/dashboard.css')}}" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> --}}
     <title>Drive me</title>
     @yield('head')
 </head>
@@ -80,8 +82,11 @@
     </section>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+{{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+{{-- <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">   --}}
+{{-- <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script> --}}
 <script src="{{asset('js/bootstrap.min.js')}}" ></script>
 <script src="https://kit.fontawesome.com/768a7cb0ff.js" crossorigin="anonymous"></script>
 <script src="{{asset('js/app.js')}}" ></script>

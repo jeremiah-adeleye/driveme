@@ -6,6 +6,7 @@
             min-height: 840px;
         }
     </style>
+    
 @endsection
 
 @section('content')
@@ -15,6 +16,7 @@
 <div class="container-fluid">
 
     <div class="row">
+  
         <div class="col-12">
             <div class="card">
             <b><p class="btn btn-warning">MAIL ALL USERS</p></b>
@@ -23,7 +25,11 @@
                         <h5 class="card-title">All Users</h5>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-striped table-responsive-fix-big muted">
+                        <div>
+                            <input class="form-control" id="search" type="text" name="search" placeholder="Search all user">
+                        </div>
+                        <h3 align="center">Total User : <span id="total_records"></span></h3>
+                        <table id="user-table" class="table table-hover table-striped table-responsive-fix-big muted">
                             <thead>
                                 <tr>
                                     <th>Sort</th>
@@ -33,46 +39,11 @@
                                     <th>Last Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Status</th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" value="1">
-                                    </td>
-                                <td> <img src="{{ asset('img/icons/thumbnail.jpg') }}" alt="search icon" /></td>
-                                    <td>1</td>
-                                <td>Adeleye</td>
-                                <td>Jeremiah</td>
-                                <td>Jerrycaffe@gmail.com</td>
-                                <td>08088492993</td>
-                                <td>Active</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" value="1">
-                                    </td>
-                                <td> <img src="{{ asset('img/icons/thumbnail.jpg') }}" alt="search icon" /></td>
-                                    <td>2</td>
-                                <td>Adeleye</td>
-                                <td>Jeremiah</td>
-                                <td>Jerrycaffe@gmail.com</td>
-                                <td>08088492993</td>
-                                <td>Active</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" value="1">
-                                    </td>
-                                <td> <img src="{{ asset('img/icons/thumbnail.jpg') }}" alt="search icon" /></td>
-                                    <td>3</td>
-                                <td>Adeleye</td>
-                                <td>Jeremiah</td>
-                                <td>Jerrycaffe@gmail.com</td>
-                                <td>08088492993</td>
-                                <td>Active</td>
-                                </tr>
+                               
                             </tbody>
                         </table>
                     </div>
@@ -86,4 +57,34 @@
 
                
 
-@endsection
+<script>
+
+
+$(document).ready(function(){
+
+fetch_customer_data();
+
+function fetch_customer_data(query = '')
+{
+ $.ajax({
+  url:"{{ route('usersAction') }}",
+  method:'GET',
+  data:{query:query},
+  dataType:'json',
+  success:function(data)
+  {
+      
+   $('tbody').html(data.table_data);
+   $('#total_records').text(data.total_data);
+  }
+ })
+}
+
+$(document).on('keyup', '#search', function(){
+ var query = $(this).val();
+
+ fetch_customer_data(query);
+});
+});
+   </script>
+    @endsection
