@@ -11,6 +11,9 @@ body {
 a {
   color: #1d1d1d;
 }
+.hover{
+  cursor: pointer;
+}
 
 a:hover {
   text-decoration: none;
